@@ -11,9 +11,31 @@ import '../models/userprofile_item_model.dart';
 
 // ignore_for_file: must_be_immutable
 class K1Provider extends ChangeNotifier {
+  final PrefUtils _prefUtils = PrefUtils();
   TextEditingController tfController = TextEditingController();
 
   K1Model k1ModelObj = K1Model();
+
+  String? _departureCity;
+  String? get departureCity => _departureCity;
+
+  K1Provider() {
+    setup();
+  }
+
+  void setup() {
+    _departureCity = _prefUtils.getdepartureCity();
+    print(_departureCity);
+  }
+
+  void savedepartureCity() {
+    _departureCity = tfController.text.isNotEmpty
+        ? '${tfController.text.trim().substring(0, 1).toUpperCase()}${tfController.text.trim().substring(1).toLowerCase()}'
+        : "lbl6".tr;
+    _prefUtils.setdepartureCity(_departureCity ?? "lbl6".tr);
+
+    print(_departureCity);
+  }
 
   @override
   void dispose() {

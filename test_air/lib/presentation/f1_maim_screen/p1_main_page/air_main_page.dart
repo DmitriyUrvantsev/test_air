@@ -4,19 +4,16 @@ import '../../../widgets/app_bar/appbar_title.dart';
 import '../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_text_form_field.dart';
-import 'models/k1_model.dart';
 import 'models/userprofile_item_model.dart';
-import 'provider/k1_provider.dart';
-import 'widgets/userprofile_item_widget.dart'; // ignore_for_file: must_be_immutable
+import 'provider/air_main_provider.dart';
+import 'widgets/userprofile_item_widget.dart';
 
 class AirMainPage extends StatefulWidget {
-  const AirMainPage({Key? key})
-      : super(
-          key: key,
-        );
+  const AirMainPage({Key? key}) : super(key: key);
 
   @override
   AirMainPageState createState() => AirMainPageState();
+
   static Widget builder(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => K1Provider(),
@@ -36,14 +33,14 @@ class AirMainPageState extends State<AirMainPage> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        appBar: _buildAppBar(context),
+        //appBar: _buildAppBar(context),
         body: SizedBox(
           width: SizeUtils.width,
           child: SingleChildScrollView(
             padding: EdgeInsets.only(top: 32.v),
             child: Column(
               children: [
-                _buildRewind(context),
+                _buildTextField(context),
                 SizedBox(height: 34.v),
                 Align(
                   alignment: Alignment.centerLeft,
@@ -63,7 +60,7 @@ class AirMainPageState extends State<AirMainPage> {
                   text: "msg5".tr,
                   margin: EdgeInsets.symmetric(horizontal: 16.h),
                 ),
-                SizedBox(height: 33.v),
+                SizedBox(height: 23.v),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
@@ -74,11 +71,11 @@ class AirMainPageState extends State<AirMainPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 271.v),
-                CustomElevatedButton(
-                  text: "msg5".tr,
-                  margin: EdgeInsets.symmetric(horizontal: 16.h),
-                )
+                // SizedBox(height: 271.v),
+                // CustomElevatedButton(
+                //   text: "msg5".tr,
+                //   margin: EdgeInsets.symmetric(horizontal: 16.h),
+                // )
               ],
             ),
           ),
@@ -87,19 +84,16 @@ class AirMainPageState extends State<AirMainPage> {
     );
   }
 
-  /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return CustomAppBar(
       centerTitle: true,
       title: AppbarTitle(
-        text: '1111111111scr',
-        //"msg2".tr,
+        text: "msg2".tr,
       ),
     );
   }
 
-  /// Section Widget
-  Widget _buildRewind(BuildContext context) {
+  Widget _buildTextField(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.h),
       padding: EdgeInsets.all(16.h),
@@ -134,13 +128,23 @@ class AirMainPageState extends State<AirMainPage> {
                     Selector<K1Provider, TextEditingController?>(
                       selector: (context, provider) => provider.tfController,
                       builder: (context, tfController, child) {
+                        final provider = context.read<K1Provider>();
                         return CustomTextFormField(
+                          
                           controller: tfController,
-                          hintText: "lbl6".tr,
+                          hintText: provider.departureCity??"lbl6".tr,
+                          hintStyle:
+                              CustomTextStyles.titleMediumPrimaryContainer,
                           textInputAction: TextInputAction.done,
                           contentPadding: EdgeInsets.symmetric(horizontal: 1.h),
                           borderDecoration:
                               TextFormFieldStyleHelper.underLineGray,
+                              onSubmitted: (p0) => {
+                                print('p0!!!!!!!!!!!!! $p0'),
+              provider.savedepartureCity(),
+              
+            },
+            
                         );
                       },
                     ),
@@ -159,10 +163,9 @@ class AirMainPageState extends State<AirMainPage> {
     );
   }
 
-  /// Section Widget
   Widget _buildUserProfile(BuildContext context) {
     return SizedBox(
-      height: 213.v,
+      height: 223.v,
       child: Consumer<K1Provider>(
         builder: (context, provider, child) {
           return ListView.separated(

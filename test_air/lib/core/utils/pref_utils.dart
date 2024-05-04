@@ -35,4 +35,18 @@ class PrefUtils {
       return 'primary';
     }
   }
+
+//---------------------userName---------------------------------------------------------
+
+  Future<void> setdepartureCity(String value) {
+    return _sharedPreferences!.setString('departureCity', value);
+  }
+
+  String getdepartureCity() {
+    try {
+      return _sharedPreferences!.getString('departureCity')!;
+    } catch (e) {
+      return '';
+    }
+  }
 }

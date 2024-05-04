@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import '../../../../core/app_export.dart';
-import '../models/userprofile_item_model.dart'; // ignore: must_be_immutable
-// ignore_for_file: must_be_immutable
+import '../models/userprofile_item_model.dart';
 
-// ignore_for_file: must_be_immutable
 class UserprofileItemWidget extends StatelessWidget {
-  UserprofileItemWidget(this.userprofileItemModelObj, {Key? key})
-      : super(
-          key: key,
-        );
+  final UserprofileItemModel model;
 
-  UserprofileItemModel userprofileItemModelObj;
+  const UserprofileItemWidget(this.model, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +15,7 @@ class UserprofileItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomImageView(
-            imagePath: userprofileItemModelObj.userImage!,
+            imagePath: model.userImage!,
             height: 133.v,
             width: 132.h,
             radius: BorderRadius.circular(
@@ -31,13 +26,13 @@ class UserprofileItemWidget extends StatelessWidget {
           Container(
             decoration: AppDecoration.outlineBlackF,
             child: Text(
-              userprofileItemModelObj.userName!,
+              model.userName!,
               style: theme.textTheme.titleMedium,
             ),
           ),
           SizedBox(height: 8.v),
           Text(
-            userprofileItemModelObj.location!,
+            model.location!,
             style: theme.textTheme.bodyMedium,
           ),
           SizedBox(height: 3.v),
@@ -52,7 +47,7 @@ class UserprofileItemWidget extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 3.v),
                 child: Text(
-                  userprofileItemModelObj.flightPrice!,
+                  model.flightPrice!,
                   style: theme.textTheme.bodyMedium,
                 ),
               )

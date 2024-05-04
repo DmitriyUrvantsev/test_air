@@ -24,15 +24,18 @@ class AppbarTitle extends StatelessWidget {
       child: Padding(
         padding: margin ?? EdgeInsets.zero,
         child: Container(
-          width: 84.h,
+          width: 280.h,
           decoration: AppDecoration.outlineBlackF,
-          child: Text(
-            text,
-            maxLines: null,
-            overflow: TextOverflow.ellipsis,
-            style: CustomTextStyles.titleLargeBluegray100.copyWith(
-              color: appTheme.blueGray100,
-              height: 1.20,
+          child: Expanded(
+            child: Text(
+              text,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: CustomTextStyles.titleLargeBluegray100.copyWith(
+                color: appTheme.blueGray100,
+                height: 1.20,
+              ),
             ),
           ),
         ),

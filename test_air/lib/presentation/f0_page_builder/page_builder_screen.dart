@@ -6,8 +6,7 @@ import '../../widgets/custom_bottom_bar.dart';
 import '../f1_maim_screen/p1_main_page/air_main_page.dart';
 import '../f3_placeholders/s2_shorter.dart';
 import '../f3_placeholders/s3_subscription.dart';
-import 'models/container_model.dart';
-import 'provider/container_provider.dart';
+
 
 class PageBuilderScreen extends StatefulWidget {
   const PageBuilderScreen({Key? key})
@@ -18,10 +17,7 @@ class PageBuilderScreen extends StatefulWidget {
   @override
   PageBuilderScreenState createState() => PageBuilderScreenState();
   static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => ContainerProvider(),
-      child: PageBuilderScreen(),
-    );
+    return PageBuilderScreen();
   }
 }
 // ignore_for_file: must_be_immutable

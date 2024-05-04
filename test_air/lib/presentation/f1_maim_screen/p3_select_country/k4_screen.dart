@@ -160,7 +160,7 @@ class K4ScreenState extends State<K4Screen> {
                               ),
                               suffixConstraints: BoxConstraints(
                                 maxHeight: 33.v,
-                              ),
+                              ), onSubmitted: (String ) {  },
                             );
                           },
                         ),
