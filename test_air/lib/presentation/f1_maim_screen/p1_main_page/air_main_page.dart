@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import '../../../core/app_export.dart';
 import '../../../widgets/app_bar/appbar_title.dart';
 import '../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_text_form_field.dart';
-import 'models/userprofile_item_model.dart';
+import 'models/scr1_item_model.dart';
 import 'provider/air_main_provider.dart';
 import 'widgets/userprofile_item_widget.dart';
 
@@ -56,21 +58,21 @@ class AirMainPageState extends State<AirMainPage> {
                 SizedBox(height: 12.v),
                 _buildUserProfile(context),
                 SizedBox(height: 28.v),
-                CustomElevatedButton(
-                  text: "msg5".tr,
-                  margin: EdgeInsets.symmetric(horizontal: 16.h),
-                ),
-                SizedBox(height: 23.v),
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 16.h),
-                    child: Text(
-                      "lbl10".tr,
-                      style: theme.textTheme.titleLarge,
-                    ),
-                  ),
-                ),
+                // CustomElevatedButton(
+                //   text: "msg5".tr,
+                //   margin: EdgeInsets.symmetric(horizontal: 16.h),
+                // ),
+                // SizedBox(height: 23.v),
+                // Align(
+                //   alignment: Alignment.centerLeft,
+                //   child: Padding(
+                //     padding: EdgeInsets.only(left: 16.h),
+                //     child: Text(
+                //       "lbl10".tr,
+                //       style: theme.textTheme.titleLarge,
+                //     ),
+                //   ),
+                // ),
                 // SizedBox(height: 271.v),
                 // CustomElevatedButton(
                 //   text: "msg5".tr,
@@ -94,6 +96,7 @@ class AirMainPageState extends State<AirMainPage> {
   }
 
   Widget _buildTextField(BuildContext context) {
+    final provider = context.read<K1Provider>();
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.h),
       padding: EdgeInsets.all(16.h),
@@ -126,32 +129,67 @@ class AirMainPageState extends State<AirMainPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Selector<K1Provider, TextEditingController?>(
-                      selector: (context, provider) => provider.tfController,
-                      builder: (context, tfController, child) {
+                      selector: (context, provider) =>
+                          provider.departureController,
+                      builder: (context, departureController, child) {
                         final provider = context.read<K1Provider>();
                         return CustomTextFormField(
-                          
-                          controller: tfController,
-                          hintText: provider.departureCity??"lbl6".tr,
-                          hintStyle:
-                              CustomTextStyles.titleMediumPrimaryContainer,
+                          controller: departureController,
+                          hintText: provider.departureCity ?? "lbl6".tr,
+                          hintStyle: provider.departureCity == "lbl6".tr
+                              ? CustomTextStyles.titleMediumPrimaryContainer
+                              : null,
+                          inputLanguageCode: 'ru',
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp(
+                                r'[а-яА-Я]')), // Регулярное выражение для кириллических символов
+                          ],
                           textInputAction: TextInputAction.done,
                           contentPadding: EdgeInsets.symmetric(horizontal: 1.h),
                           borderDecoration:
                               TextFormFieldStyleHelper.underLineGray,
-                              onSubmitted: (p0) => {
-                                print('p0!!!!!!!!!!!!! $p0'),
-              provider.savedepartureCity(),
-              
-            },
-            
+                          onSubmitted: (p0) => {
+                            print('p0!!!!!!!!!!!!! $p0'),
+                            provider.savedepartureCity(),
+                          },
                         );
                       },
                     ),
                     SizedBox(height: 8.v),
-                    Text(
-                      "lbl7".tr,
-                      style: CustomTextStyles.titleMediumPrimaryContainer,
+
+                    // Selector<K1Provider, TextEditingController?>(
+                    //   selector: (context, provider) => provider.tfController,
+                    //   builder: (context, tfController, child) {
+                    //     final provider = context.read<K1Provider>();
+                    //     return CustomTextFormField(
+                    //       controller: tfController,
+                    //       hintText: provider.arrivalCity ?? "lbl7".tr,
+                    //       hintStyle: provider.arrivalCity == null
+                    //           ? CustomTextStyles.titleMediumPrimaryContainer
+                    //           : null,
+                    //       inputLanguageCode: 'ru',
+                    //       inputFormatters: [
+                    //         FilteringTextInputFormatter.allow(RegExp(
+                    //             r'[а-яА-Я]')), // Регулярное выражение для кириллических символов
+                    //       ],
+                    //       textInputAction: TextInputAction.done,
+                    //       contentPadding: EdgeInsets.symmetric(horizontal: 1.h),
+                    //       // borderDecoration:
+                    //       //     TextFormFieldStyleHelper.underLineGray,
+                    //       onSubmitted: (p0) => {
+                    //         print('p0!!!!!!!!!!!!! $p0'),
+                    //         // provider.savedepartureCity(),
+                    //       },
+                    //     );
+                    //   },
+                    // ),
+
+                    GestureDetector(
+                      onTap: () => provider.nextStep(context),
+                      child: Text(
+                        "lbl7".tr,
+                        style: CustomTextStyles.titleMediumPrimaryContainer,
+                      ),
                     )
                   ],
                 ),
@@ -178,7 +216,7 @@ class AirMainPageState extends State<AirMainPage> {
             },
             itemCount: provider.k1ModelObj.userprofileItemList.length,
             itemBuilder: (context, index) {
-              UserprofileItemModel model =
+              Scr1ItemModel model =
                   provider.k1ModelObj.userprofileItemList[index];
               return UserprofileItemWidget(
                 model,

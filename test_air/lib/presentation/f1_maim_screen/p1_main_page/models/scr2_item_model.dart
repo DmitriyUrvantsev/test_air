@@ -4,9 +4,8 @@ import '../../../../core/app_export.dart';
 // ignore_for_file: must_be_immutable
 
 // ignore_for_file: must_be_immutable
-class Userprofile1ItemModel {
-  Userprofile1ItemModel(
-      {this.userImage, this.username, this.description, this.id}) {
+class Scr2ItemModel {
+  Scr2ItemModel({this.userImage, this.username, this.description, this.id}) {
     userImage = userImage ?? ImageConstant.imgRectangle288;
     username = username ?? "Стамбул";
     description = description ?? "Популярное направление";
@@ -14,10 +13,7 @@ class Userprofile1ItemModel {
   }
 
   String? userImage;
-
   String? username;
-
   String? description;
-
   String? id;
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import '../../../../core/app_export.dart';
-import '../models/userprofile_item_model.dart';
+import '../models/scr1_item_model.dart';
 
 class UserprofileItemWidget extends StatelessWidget {
-  final UserprofileItemModel model;
+  final Scr1ItemModel model;
 
   const UserprofileItemWidget(this.model, {Key? key}) : super(key: key);
 

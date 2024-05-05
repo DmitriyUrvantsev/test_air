@@ -11,25 +11,25 @@ import 'models/k4_model.dart';
 import 'provider/k4_provider.dart';
 import 'widgets/chips_item_widget.dart';
 
-class K4Screen extends StatefulWidget {
-  const K4Screen({Key? key})
+class SelectCountryScreen extends StatefulWidget {
+  const SelectCountryScreen({Key? key})
       : super(
           key: key,
         );
 
   @override
-  K4ScreenState createState() => K4ScreenState();
+  SelectCountryScreenState createState() => SelectCountryScreenState();
   static Widget builder(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => K4Provider(),
-      child: K4Screen(),
+      child: SelectCountryScreen(),
     );
   }
 }
 // ignore_for_file: must_be_immutable
 
 // ignore_for_file: must_be_immutable
-class K4ScreenState extends State<K4Screen> {
+class SelectCountryScreenState extends State<SelectCountryScreen> {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
@@ -160,7 +160,8 @@ class K4ScreenState extends State<K4Screen> {
                               ),
                               suffixConstraints: BoxConstraints(
                                 maxHeight: 33.v,
-                              ), onSubmitted: (String ) {  },
+                              ),
+                              onSubmitted: (String) {},
                             );
                           },
                         ),

@@ -4,8 +4,8 @@ import '../../../../core/app_export.dart';
 // ignore_for_file: must_be_immutable
 
 // ignore_for_file: must_be_immutable
-class UserprofileItemModel {
-  UserprofileItemModel(
+class Scr1ItemModel {
+  Scr1ItemModel(
       {this.userImage,
       this.userName,
       this.location,

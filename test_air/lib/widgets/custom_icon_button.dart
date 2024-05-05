@@ -25,7 +25,7 @@ class CustomIconButton extends StatelessWidget {
       this.padding,
       this.decoration,
       this.child,
-      this.onTap})
+      this.onTap, this.color})
       : super(
           key: key,
         );
@@ -41,6 +41,7 @@ class CustomIconButton extends StatelessWidget {
   final BoxDecoration? decoration;
 
   final Widget? child;
+  final Color? color;
 
   final VoidCallback? onTap;
 
@@ -63,7 +64,7 @@ class CustomIconButton extends StatelessWidget {
             padding: padding ?? EdgeInsets.zero,
             decoration: decoration ??
                 BoxDecoration(
-                  color: theme.colorScheme.errorContainer,
+                  color: color ?? theme.colorScheme.errorContainer,
                   borderRadius: BorderRadius.circular(8.h),
                 ),
             child: child,

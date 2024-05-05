@@ -7,7 +7,6 @@ import '../f1_maim_screen/p1_main_page/air_main_page.dart';
 import '../f3_placeholders/s2_shorter.dart';
 import '../f3_placeholders/s3_subscription.dart';
 
-
 class PageBuilderScreen extends StatefulWidget {
   const PageBuilderScreen({Key? key})
       : super(
@@ -116,3 +115,4 @@ class PageBuilderScreenState extends State<PageBuilderScreen> {
     }
   }
 }
+

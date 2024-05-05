@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../core/app_export.dart';
 
 extension TextFormFieldStyleHelper on CustomTextFormField {
@@ -22,6 +23,7 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.textInputAction = TextInputAction.next,
     this.textInputType = TextInputType.text,
+    this.inputFormatters,
     this.maxLines,
     this.hintText,
     this.hintStyle,
@@ -34,55 +36,36 @@ class CustomTextFormField extends StatelessWidget {
     this.fillColor,
     this.filled = false,
     this.validator,
-    required this.onSubmitted,
+    required this.onSubmitted, 
+    this.inputLanguageCode, 
   }) : super(
           key: key,
         );
 
   final Alignment? alignment;
-
   final double? width;
-
   final TextEditingController? scrollPadding;
-
   final TextEditingController? controller;
-
   final FocusNode? focusNode;
-
   final bool? autofocus;
-
   final TextStyle? textStyle;
-
   final bool? obscureText;
-
   final TextInputAction? textInputAction;
-
   final TextInputType? textInputType;
-
+  final List<TextInputFormatter>? inputFormatters;
+  final String? inputLanguageCode;
   final int? maxLines;
-
   final String? hintText;
-
   final TextStyle? hintStyle;
-
   final Widget? prefix;
-
   final BoxConstraints? prefixConstraints;
-
   final Widget? suffix;
-
   final BoxConstraints? suffixConstraints;
-
   final EdgeInsets? contentPadding;
-
   final InputBorder? borderDecoration;
-
   final Color? fillColor;
-
   final bool? filled;
-
   final FormFieldValidator<String>? validator;
-
   final Function(String) onSubmitted;
 
   @override
@@ -100,6 +83,9 @@ class CustomTextFormField extends StatelessWidget {
           scrollPadding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           controller: controller,
+           inputFormatters: inputLanguageCode != null
+              ? [FilteringTextInputFormatter.allow(RegExp(r'[а-яА-Я]'))]
+              : null,
           focusNode: focusNode,
           onTapOutside: (event) {
             if (focusNode != null) {
