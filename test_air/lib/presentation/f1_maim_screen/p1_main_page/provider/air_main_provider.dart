@@ -24,12 +24,12 @@ class K1Provider extends ChangeNotifier {
   String? _arrivalCity;
   String? get arrivalCity => _arrivalCity;
 
-
-
-  
+  late DateTime _selectedDate;
+  DateTime get selectedDate => _selectedDate;
 
   K1Provider() {
     setup();
+    _selectedDate = DateTime.now();
   }
 
   void setup() {
@@ -83,7 +83,48 @@ class K1Provider extends ChangeNotifier {
     notifyListeners();
   }
 
+//========================календарь=============================================
+//========================календарь=============================================
+//========================календарь=============================================
+//========================календарь=============================================
+//========================календарь=============================================
+//========================календарь=============================================
 
+  void selectDepartureDateCallback(
+      void Function(DateTime) callback, context) async {
+    final DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (selectedDate != null) {
+      _selectedDate = selectedDate;
+      print('_selectedDepartureDate!!!!!!!!!! $_selectedDate');
+      notifyListeners();
+      callback(selectedDate);
+    }
+  }
+
+
+ void selectArrivalDateCallback(
+      void Function(DateTime) callback, context) async {
+    final DateTime? selectedDate = await showDatePicker(
+      context: context,
+      initialDate: _selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (selectedDate != null) {
+      _selectedDate = selectedDate;
+      print('_selectedArrivalDate!!!!!!!!!! $_selectedDate');
+      notifyListeners();
+      callback(selectedDate);
+    }
+  }
+//========================календарь=============================================
 
   void showSelectCountry() {
     NavigatorService.popAndPushNamed(AppRoutes.selectCountry);

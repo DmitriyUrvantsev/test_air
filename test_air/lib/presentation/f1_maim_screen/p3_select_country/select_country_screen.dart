@@ -12,7 +12,7 @@ import '../p1_main_page/provider/air_main_provider.dart';
 import '../p1_main_page/widgets/departure_field_widget.dart';
 import 'models/direct_flights_model.dart';
 import 'models/settings_item_model.dart';
-import 'models/k4_model.dart';
+import 'models/select_country_model.dart';
 import 'provider/k4_provider.dart';
 import 'widgets/direct_flights_widget.dart';
 import 'widgets/settings_item_widget.dart';
@@ -158,7 +158,11 @@ class SelectCountryScreen extends StatelessWidget {
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: SettingsItemWidget(
-                  model,
+                  index: index, chipsItemModelObj: model,
+                  //                 onDateSelected: (date) {
+                  //   // Обработка выбранной даты здесь
+                  //   print('Selected date: $date');
+                  // },
                   // onSelectedChipView: (value) {
                   //   // provider.onSelectedChipView(index, value);
                   // },

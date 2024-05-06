@@ -21,15 +21,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(
       builder: (context, orientation, deviceType) {
-        return 
-        MultiProvider(
+        return MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (context) => K1Provider()),
-      ChangeNotifierProvider(create: (context) => SelectCountryProvider()),
-      
+            ChangeNotifierProvider(
+                create: (context) => SelectCountryProvider()),
             ChangeNotifierProvider(create: (context) => ThemeProvider()),
           ],
-         
           child: Consumer<ThemeProvider>(
             builder: (context, provider, child) {
               return MaterialApp(

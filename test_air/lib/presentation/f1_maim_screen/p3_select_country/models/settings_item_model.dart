@@ -1,14 +1,13 @@
 /// This class is used in the [chips_item_widget] screen.
 
-// ignore_for_file: must_be_immutable
 class SettingItemModel {
-  SettingItemModel({this.iconButton, this.iconText, this.functtion}) {
-    //iconButton = iconButton ?? '';
-    // isSelected = isSelected ?? false;
-  }
+  final String? iconButton;
+  final String? iconText;
+ final void Function(DateTime)? onSelectDate; // Колбэк для выбора даты
 
-  String? iconButton;
-  String? iconText;
-  Function()? functtion;
-  // bool? isSelected;
+  SettingItemModel({
+    this.iconButton,
+    this.iconText,
+    this.onSelectDate, // добавляем функцию в конструктор
+  });
 }

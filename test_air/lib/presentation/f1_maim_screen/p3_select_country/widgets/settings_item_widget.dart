@@ -1,25 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../../core/app_export.dart';
+import '../../p1_main_page/provider/air_main_provider.dart';
 import '../models/settings_item_model.dart';
 
 class SettingsItemWidget extends StatelessWidget {
   final SettingItemModel chipsItemModelObj;
-  //final Function(bool)? onSelectedChipView;
+  final int index;
+  final void Function(DateTime)? onDateSelected;
 
-  const SettingsItemWidget(
-    this.chipsItemModelObj, {
-    Key? key,
-    // this.onSelectedChipView,
-  }) : super(key: key);
+  const SettingsItemWidget({
+    super.key,
+    required this.chipsItemModelObj,
+    required this.index,
+    this.onDateSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final dateProvider = Provider.of<K1Provider>(context);
+    final selectedDate = dateProvider.selectedDate;
+
+    // if (selectedDate) {
+    final dateFormat = DateFormat('dd MMM, E', 'ru');
     return ElevatedButton(
       onPressed: () {
-        if(chipsItemModelObj.functtion != null) {
-    chipsItemModelObj.functtion!();
-  }
-        // onSelectedChipView?.call(!(chipsItemModelObj.isSelected ?? false));
+        if (chipsItemModelObj.onSelectDate != null && index == 0) {
+          Provider.of<K1Provider>(context, listen: false)
+              .selectArrivalDateCallback((date) {
+            if (onDateSelected != null) {
+              onDateSelected!(date);
+            }
+          }, context);
+        }
+
+        if (chipsItemModelObj.onSelectDate != null && index == 1) {
+          Provider.of<K1Provider>(context, listen: false)
+              .selectDepartureDateCallback((date) {
+            if (onDateSelected != null) {
+              onDateSelected!(date);
+            }
+          }, context);
+        }
       },
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
@@ -52,16 +74,47 @@ class SettingsItemWidget extends StatelessWidget {
             width: 16.adaptSize,
             margin: EdgeInsets.only(right: 8.h),
           ),
-          Text(
-            chipsItemModelObj.iconText ?? '',
-            style: TextStyle(
-              color: theme.colorScheme.onPrimary,
-              fontSize: 14.fSize,
-              fontFamily: 'SF Pro Display',
-              fontWeight: FontWeight.w500,
-              fontStyle: FontStyle.italic,
+
+          RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: dateFormat.format(selectedDate).split(',')[0],
+                  style: TextStyle(
+                    color: theme.colorScheme.onPrimary,
+                    fontSize: 14.fSize,
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w500,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                TextSpan(
+                  text: ',',
+                ),
+                TextSpan(
+                  text: dateFormat.format(selectedDate).split(',')[1],
+                  style: TextStyle(
+                    color: appTheme.gray700,
+                    fontSize: 14.fSize,
+                    fontFamily: 'SF Pro Display',
+                    fontWeight: FontWeight.w500,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+              ],
             ),
-          ),
+          )
+
+          // Text(
+          //   chipsItemModelObj.iconText ?? '',
+          //   style: TextStyle(
+          //     color: theme.colorScheme.onPrimary,
+          //     fontSize: 14.fSize,
+          //     fontFamily: 'SF Pro Display',
+          //     fontWeight: FontWeight.w500,
+          //     fontStyle: FontStyle.italic,
+          //   ),
+          // ),
         ],
       ),
     );

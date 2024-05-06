@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/app_export.dart';
 import '../models/settings_item_model.dart';
-import '../models/k4_model.dart';
+import '../models/select_country_model.dart';
 
 /// A provider class for the K4Screen.
 ///
@@ -13,7 +13,7 @@ import '../models/k4_model.dart';
 class SelectCountryProvider extends ChangeNotifier {
   TextEditingController citytwooneController = TextEditingController();
 
-  K4Model k4ModelObj = K4Model();
+  SelectCountryModel k4ModelObj = SelectCountryModel();
 
   bool isSelectedSwitch = false;
 

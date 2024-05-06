@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:urvandeniss_s_1/presentation/f3_placeholders/s1_hotels.dart';
 import 'package:urvandeniss_s_1/presentation/f3_placeholders/s4_profile.dart';
 import '../../core/app_export.dart';
 import '../../widgets/custom_bottom_bar.dart';
 import '../f1_maim_screen/p1_main_page/air_main_page.dart';
+import '../f1_maim_screen/p1_main_page/provider/air_main_provider.dart';
 import '../f3_placeholders/s2_shorter.dart';
 import '../f3_placeholders/s3_subscription.dart';
 
@@ -116,3 +118,84 @@ class PageBuilderScreenState extends State<PageBuilderScreen> {
   }
 }
 
+
+// import 'package:flutter/material.dart';
+// import 'package:intl/intl.dart';
+// import 'package:urvandeniss_s_1/core/app_export.dart';
+
+// import '../f1_maim_screen/p1_main_page/provider/air_main_provider.dart';
+
+// class HomeScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Calendar Example'),
+//       ),
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         crossAxisAlignment: CrossAxisAlignment.center,
+//         children: [
+//           CalendarButton(),
+//           SizedBox(height: 20),
+//           SelectedDateText(),
+//         ],
+//       ),
+//     );
+//   }
+// }
+// class CalendarButton extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     final dateProvider = Provider.of<K1Provider>(context);
+//     return ElevatedButton(
+//       onPressed: () async {
+//         final DateTime? selectedDate = await showDatePicker(
+//           context: context,
+//           initialDate: dateProvider.selectedDate,
+//           firstDate: DateTime(2000),
+//           lastDate: DateTime(2100),
+//         );
+
+//         if (selectedDate != null) {
+//           dateProvider.setSelectedDate(context, selectedDate);
+//         }
+//       },
+//       child: Text('Select Date'),
+//     );
+//   }
+// }
+
+class SelectedDateText extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final dateProvider = Provider.of<K1Provider>(context);
+    final selectedDate = dateProvider.selectedDate;
+
+   // if (selectedDate) {
+      final dateFormat = DateFormat('dd MMM, E', 'ru');
+      return RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: dateFormat.format(selectedDate).split(',')[0],
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
+            TextSpan(
+              text: ' ',
+            ),
+            TextSpan(
+              text: dateFormat.format(selectedDate).split(',')[1],
+              style: TextStyle(fontSize: 20, color: Colors.grey),
+            ),
+          ],
+        ),
+      );
+    // } else {
+    //   return Text(
+    //     'No date selected',
+    //     style: TextStyle(fontSize: 20),
+    //   );
+    // }
+  }
+}

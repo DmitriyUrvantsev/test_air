@@ -27,7 +27,7 @@ class DirectFlightsWidget extends StatelessWidget {
             width: 24.adaptSize,
             margin: EdgeInsets.only(bottom: 14.v),
             decoration: BoxDecoration(
-              color: appTheme.redA200,
+              color: directFlightsObj.circleColor ?? appTheme.redA200,
               borderRadius: BorderRadius.circular(
                 12.h,
               ),
@@ -51,12 +51,13 @@ class DirectFlightsWidget extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(top: 1.v),
                               child: Text(
-                                "msg7".tr,
+                                directFlightsObj.airCompany ?? "msg7".tr,
+                                // ,
                                 style: theme.textTheme.titleSmall,
                               ),
                             ),
                             Text(
-                              "lbl_2_3902".tr,
+                              directFlightsObj.pice ?? "lbl_2_3902".tr,
                               style: CustomTextStyles.titleSmallBlue800,
                             )
                           ],
@@ -66,7 +67,8 @@ class DirectFlightsWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "msg_08_05_09_55_16_35".tr,
+                              directFlightsObj.time ??
+                                  "msg_08_05_09_55_16_35".tr,
                               style: theme.textTheme.bodyMedium,
                             ),
                           ],
@@ -87,7 +89,5 @@ class DirectFlightsWidget extends StatelessWidget {
         ],
       ),
     );
-
-
   }
 }

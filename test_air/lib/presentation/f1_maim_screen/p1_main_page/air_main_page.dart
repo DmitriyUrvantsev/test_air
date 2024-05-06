@@ -19,10 +19,7 @@ class AirMainPage extends StatefulWidget {
   AirMainPageState createState() => AirMainPageState();
 
   static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => K1Provider(),
-      child: AirMainPage(),
-    );
+    return AirMainPage();
   }
 }
 
