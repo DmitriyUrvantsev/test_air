@@ -25,21 +25,14 @@ class SelectCountryModel {
         time: "msg_08_05_09_55_16_35".tr,
         pice: '2390 \u20BD'),
   ];
- final dateFormat = DateFormat('dd MMM, E', 'ru');
-   List<SettingItemModel> settingsItemList = [
+  final dateFormat = DateFormat('dd MMM, E', 'ru');
+  List<SettingItemModel> settingsItemList = [
     SettingItemModel(
-    
- 
         iconButton: ImageConstant.imgPlus,
         iconText: 'обратно',
         onSelectDate: (date) {}),
-
-    SettingItemModel(
-     
-    
-        iconButton: null, onSelectDate: (date) {}),
-
-    SettingItemModel(iconButton: ImageConstant.imgPlus, iconText: '1,эконом'),
-    SettingItemModel(iconButton: ImageConstant.imgPlus, iconText: 'фильтры'),
+    SettingItemModel(iconButton: null, onSelectDate: (date) {}),
+    SettingItemModel(iconButton: ImageConstant.profile, iconText: '1,эконом'),
+    SettingItemModel(iconButton: ImageConstant.filter, iconText: 'фильтры'),
   ];
 }

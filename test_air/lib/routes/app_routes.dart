@@ -7,7 +7,7 @@ import '../presentation/f1_maim_screen/p1_main_page/widgets/search_placeholders/
 import '../presentation/f1_maim_screen/p1_main_page/widgets/search_placeholders/difficult_route.dart';
 import '../presentation/f1_maim_screen/p1_main_page/widgets/search_placeholders/hotTickets.dart';
 import '../presentation/f1_maim_screen/p1_main_page/widgets/search_placeholders/weekend.dart';
-import '../presentation/f1_maim_screen/p4_filters/k0_screen.dart';
+import '../presentation/f1_maim_screen/p4_filters/filters_screen.dart';
 import '../presentation/f1_maim_screen/p3_select_country/select_country_screen.dart';
 import '../presentation/f1_maim_screen/p5_see_all_tickets/k5_screen.dart';
 import '../presentation/f3_placeholders/s1_hotels.dart';
@@ -29,13 +29,14 @@ class AppRoutes {
   static const String weekend = '/weekend';
   static const String hotTickets = '/hotTickets';
 
-  static const String k0Screen = '/k0_screen';
 
   //static const String k1Page = '/k1_page';
 
   static const String selectCountry = '/selectCountry';
+  static const String filtersScreen = '/filtersScreen';
 
   static const String k5Screen = '/k5_screen';
+
 
   //static const String appNavigationScreen = '/app_navigation_screen';
 
@@ -55,9 +56,9 @@ class AppRoutes {
         weekend: (context) => Weekend(),
         hotTickets: (context) => HotTickets(),
 
-        k0Screen: K0Screen.builder,
+        filtersScreen: FiltersScreen.builder,
         selectCountry: (context) => SelectCountryScreen(),
-     
+
         k5Screen: K5Screen.builder,
         // appNavigationScreen: AppNavigationScreen.builder,
         initialRoute: PageBuilderScreen.builder

@@ -6,26 +6,27 @@ import '../../../widgets/app_bar/appbar_subtitle.dart';
 import '../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_switch.dart';
+import '../p1_main_page/provider/air_main_provider.dart';
 import 'models/k0_model.dart';
 import 'provider/k0_provider.dart';
 
-class K0Screen extends StatefulWidget {
-  const K0Screen({Key? key})
+class FiltersScreen extends StatefulWidget {
+  const FiltersScreen({Key? key})
       : super(
           key: key,
         );
 
   @override
-  K0ScreenState createState() => K0ScreenState();
+  FiltersScreenState createState() => FiltersScreenState();
   static Widget builder(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => K0Provider(),
-      child: K0Screen(),
+      child: FiltersScreen(),
     );
   }
 }
 
-class K0ScreenState extends State<K0Screen> {
+class FiltersScreenState extends State<FiltersScreen> {
   @override
   void initState() {
     super.initState();
@@ -52,10 +53,10 @@ class K0ScreenState extends State<K0Screen> {
                 ),
               ),
               SizedBox(height: 14.v),
-              Text('00000000!!!!!!!'),
-              //_buildStackBaggage(context),
+              // Text('Без пересадок'),
+              _buildStackBaggage(context),
               SizedBox(height: 15.v),
-              //_buildRowTransfers(context),
+              _buildRowTransfers(context),
               SizedBox(height: 5.v)
             ],
           ),
@@ -67,10 +68,12 @@ class K0ScreenState extends State<K0Screen> {
 
   /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
+    final provider = context.read<K1Provider>();
     return CustomAppBar(
       height: 40.v,
       leadingWidth: 44.h,
       leading: AppbarLeadingImage(
+        onTap: () => provider.goBack(),
         imagePath: ImageConstant.imgIconOnprimary24x24,
         margin: EdgeInsets.only(
           left: 20.h,
@@ -79,8 +82,7 @@ class K0ScreenState extends State<K0Screen> {
         ),
       ),
       title: AppbarSubtitle(
-        text:
-        '0000000000',
+        text: 'Фильтры',
         // "lbl".tr,
         margin: EdgeInsets.only(left: 8.h),
       ),
@@ -96,21 +98,19 @@ class K0ScreenState extends State<K0Screen> {
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: EdgeInsets.only(left: 16.h),
-              child: Text(
-                "lbl3".tr,
-                style: theme.textTheme.titleMedium,
-              ),
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.bottomLeft,
+          //   child: Text(
+          //     '1111', // "lbl3".tr,
+          //     style: theme.textTheme.titleMedium,
+          //   ),
+          // ),
           Align(
             alignment: Alignment.topCenter,
             child: Container(
               margin: EdgeInsets.only(
-                left: 16.h,
+                left: 7.h,
+                right: 7.h,
                 bottom: 4.v,
               ),
               padding: EdgeInsets.fromLTRB(15.h, 15.v, 15.h, 14.v),
@@ -145,16 +145,6 @@ class K0ScreenState extends State<K0Screen> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: EdgeInsets.only(top: 58.v),
-              child: SizedBox(
-                width: 52.h,
-                child: Divider(),
-              ),
-            ),
-          )
         ],
       ),
     );
@@ -164,7 +154,7 @@ class K0ScreenState extends State<K0Screen> {
   Widget _buildRowTransfers(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.h),
-      padding: EdgeInsets.all(15.h),
+      padding: EdgeInsets.fromLTRB(15.h, 5.v, 15.h, 5.v),
       decoration: AppDecoration.fillGray,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -191,7 +181,9 @@ class K0ScreenState extends State<K0Screen> {
 
   /// Section Widget
   Widget _buildButtonDone(BuildContext context) {
+    final provider = context.read<K1Provider>();
     return CustomElevatedButton(
+      onPressed: () => provider.goBack(),
       height: 48.v,
       text: "lbl5".tr,
       margin: EdgeInsets.only(

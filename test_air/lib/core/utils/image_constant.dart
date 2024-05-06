@@ -26,7 +26,7 @@ class ImageConstant {
  static String locations = '$imagePath/locations.svg';
  static String subscriptions = '$imagePath/subscriptions.svg';
 static String profile = '$imagePath/profile.svg';
-
+static String filter = '$imagePath/filter.svg';
 
 // Поиск images
   static String imgAirplanePrimarycontainer =

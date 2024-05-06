@@ -39,6 +39,9 @@ class SettingsItemWidget extends StatelessWidget {
             }
           }, context);
         }
+        if (index == 3) {
+          Provider.of<K1Provider>(context, listen: false).showFilters();
+        }
       },
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(

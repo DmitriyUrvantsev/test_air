@@ -11,7 +11,8 @@ class CustomSwitch extends StatelessWidget {
       this.value,
       this.width,
       this.height,
-      this.margin})
+      this.margin,
+      this.color})
       : super(
           key: key,
         );
@@ -28,6 +29,8 @@ class CustomSwitch extends StatelessWidget {
 
   final EdgeInsetsGeometry? margin;
 
+  final Color? color;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,6 +44,8 @@ class CustomSwitch extends StatelessWidget {
   }
 
   Widget get switchWidget => Switch(
+        activeColor: color ?? Color.fromRGBO(34, 97, 188, 1),
+        
         value: value ?? false,
         onChanged: (value) {
           onChange(value);

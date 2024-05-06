@@ -120,7 +120,6 @@ class K1Provider extends ChangeNotifier {
 
       print('_selectedDepartureDate!!!!!!!!!! $_selectedDepartureDate');
 
-     
       notifyListeners();
       callback(selectedDate);
     }
@@ -154,6 +153,10 @@ class K1Provider extends ChangeNotifier {
 
   void showSelectCountry() {
     NavigatorService.popAndPushNamed(AppRoutes.selectCountry);
+  }
+
+  void showFilters() {
+    NavigatorService.popAndPushNamed(AppRoutes.filtersScreen);
   }
 
   void goBack() {
