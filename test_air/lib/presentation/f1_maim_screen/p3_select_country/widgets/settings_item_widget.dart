@@ -18,8 +18,9 @@ class SettingsItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateProvider = Provider.of<K1Provider>(context);
-    final selectedDate = dateProvider.selectedDate;
+    final provider = Provider.of<K1Provider>(context);
+    //final selectedDate = chipsItemModelObj.date;
+    //;
 
     // if (selectedDate) {
     final dateFormat = DateFormat('dd MMM, E', 'ru');
@@ -69,7 +70,9 @@ class SettingsItemWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           CustomImageView(
-            imagePath: chipsItemModelObj.iconButton ?? null,
+            imagePath: index == 0 && provider.isArrivalDate
+                ? null
+                : chipsItemModelObj.iconButton ?? null,
             height: 16.adaptSize,
             width: 16.adaptSize,
             margin: EdgeInsets.only(right: 8.h),
@@ -79,7 +82,15 @@ class SettingsItemWidget extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: dateFormat.format(selectedDate).split(',')[0],
+                  text: index == 0 && provider.isArrivalDate
+                      ? dateFormat
+                          .format(provider.selectedArrivalDate)
+                          .split(',')[0]
+                      : index == 1 && provider.isDepartureDate
+                          ? dateFormat
+                              .format(provider.selectedDepartureDate)
+                              .split(',')[0]
+                          : chipsItemModelObj.iconText,
                   style: TextStyle(
                     color: theme.colorScheme.onPrimary,
                     fontSize: 14.fSize,
@@ -89,10 +100,22 @@ class SettingsItemWidget extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: ',',
+                  text: index == 0 && provider.isArrivalDate
+                      ? ','
+                      : index == 1 && provider.isDepartureDate
+                          ? ','
+                          : null,
                 ),
                 TextSpan(
-                  text: dateFormat.format(selectedDate).split(',')[1],
+                  text: index == 0 && provider.isArrivalDate
+                      ? dateFormat
+                          .format(provider.selectedArrivalDate)
+                          .split(',')[1]
+                      : index == 1 && provider.isDepartureDate
+                          ? dateFormat
+                              .format(provider.selectedDepartureDate)
+                              .split(',')[1]
+                          : null,
                   style: TextStyle(
                     color: appTheme.gray700,
                     fontSize: 14.fSize,

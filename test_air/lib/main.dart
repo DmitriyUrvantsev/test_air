@@ -24,8 +24,8 @@ class MyApp extends StatelessWidget {
         return MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (context) => K1Provider()),
-            ChangeNotifierProvider(
-                create: (context) => SelectCountryProvider()),
+            // ChangeNotifierProvider(
+            //     create: (context) => SelectCountryProvider()),
             ChangeNotifierProvider(create: (context) => ThemeProvider()),
           ],
           child: Consumer<ThemeProvider>(

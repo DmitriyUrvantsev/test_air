@@ -25,13 +25,19 @@ class SelectCountryModel {
         pice: '2390 \u20BD'),
   ];
 
-  List<SettingItemModel> settingsItemList = [
+   List<SettingItemModel> settingsItemList = [
     SettingItemModel(
+    
+ 
         iconButton: ImageConstant.imgPlus,
         iconText: 'обратно',
         onSelectDate: (date) {}),
+
     SettingItemModel(
-        iconButton: null, iconText: '24 фв, сб', onSelectDate: (date) {}),
+     
+    
+        iconButton: null,  iconText: '24 фв, сб', onSelectDate: (date) {}),
+
     SettingItemModel(iconButton: ImageConstant.imgPlus, iconText: '1,эконом'),
     SettingItemModel(iconButton: ImageConstant.imgPlus, iconText: 'фильтры'),
   ];

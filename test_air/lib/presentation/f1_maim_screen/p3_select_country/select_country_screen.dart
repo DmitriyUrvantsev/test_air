@@ -145,7 +145,7 @@ class SelectCountryScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildSettingsSection(BuildContext context) {
-    return Consumer<SelectCountryProvider>(
+    return Consumer<K1Provider>(
       builder: (context, provider, child) {
         return SizedBox(
           height: 33.v, // Замените эту высоту на необходимую
@@ -177,7 +177,7 @@ class SelectCountryScreen extends StatelessWidget {
 
   ///---------  _buildDirectFlights(---------------
   Widget _buildDirectFlights(BuildContext context) {
-    final provider = context.read<SelectCountryProvider>();
+    final provider = context.read<K1Provider>();
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 16.h,
@@ -263,14 +263,14 @@ class SelectCountryScreen extends StatelessWidget {
             ),
           ),
           Spacer(),
-          Selector<SelectCountryProvider, bool?>(
+          Selector<K1Provider, bool?>(
             selector: (context, provider) => provider.isSelectedSwitch,
             builder: (context, isSelectedSwitch, child) {
               return CustomSwitch(
                 margin: EdgeInsets.only(bottom: 1.v),
                 value: isSelectedSwitch,
                 onChange: (value) {
-                  context.read<SelectCountryProvider>().changeSwitchBox(value);
+                  context.read<K1Provider>().changeSwitchBox(value);
                 },
               );
             },

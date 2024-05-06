@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../../core/app_export.dart';
+import '../../p3_select_country/models/select_country_model.dart';
+import '../../p3_select_country/models/settings_item_model.dart';
 import '../k3_bottomsheet.dart';
 import '../models/k1_model.dart';
 import '../models/scr1_item_model.dart';
@@ -17,19 +20,16 @@ class K1Provider extends ChangeNotifier {
   TextEditingController arrivalController = TextEditingController(); //!======
 
   K1Model k1ModelObj = K1Model();
-
+  SelectCountryModel k4ModelObj = SelectCountryModel();
   String? _departureCity;
   String? get departureCity => _departureCity;
 
   String? _arrivalCity;
   String? get arrivalCity => _arrivalCity;
 
-  late DateTime _selectedDate;
-  DateTime get selectedDate => _selectedDate;
-
   K1Provider() {
     setup();
-    _selectedDate = DateTime.now();
+    _selectedDepartureDate = DateTime.now();
   }
 
   void setup() {
@@ -89,42 +89,68 @@ class K1Provider extends ChangeNotifier {
 //========================календарь=============================================
 //========================календарь=============================================
 //========================календарь=============================================
+  final dateFormat = DateFormat('dd MMM, E', 'ru');
+  DateTime _selectedDepartureDate = DateTime.now();
+  DateTime get selectedDepartureDate => _selectedDepartureDate;
+  bool _isDepartureDate = false;
+  bool get isDepartureDate => _isDepartureDate;
+//
+  DateTime _selectedArrivalDate = DateTime.now();
+  DateTime get selectedArrivalDate => _selectedArrivalDate;
+  bool _isArrivalDate = false;
+  bool get isArrivalDate => _isArrivalDate;
+//
+
+//
+//
 
   void selectDepartureDateCallback(
       void Function(DateTime) callback, context) async {
     final DateTime? selectedDate = await showDatePicker(
       context: context,
-      initialDate: _selectedDate,
+      initialDate: _selectedDepartureDate,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
 
     if (selectedDate != null) {
-      _selectedDate = selectedDate;
-      print('_selectedDepartureDate!!!!!!!!!! $_selectedDate');
+      _selectedDepartureDate = selectedDate;
+
+      _isDepartureDate = true;
+
+      print('_selectedDepartureDate!!!!!!!!!! $_selectedDepartureDate');
+
+     
       notifyListeners();
       callback(selectedDate);
     }
   }
 
-
- void selectArrivalDateCallback(
+  void selectArrivalDateCallback(
       void Function(DateTime) callback, context) async {
     final DateTime? selectedDate = await showDatePicker(
       context: context,
-      initialDate: _selectedDate,
+      initialDate: _selectedArrivalDate,
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
 
     if (selectedDate != null) {
-      _selectedDate = selectedDate;
-      print('_selectedArrivalDate!!!!!!!!!! $_selectedDate');
+      _selectedArrivalDate = selectedDate;
+      _isArrivalDate = true;
+      print('_selectedArrivalDate!!!!!!!!!! $_selectedArrivalDate');
       notifyListeners();
       callback(selectedDate);
     }
   }
 //========================календарь=============================================
+
+  bool isSelectedSwitch = false;
+//
+  void changeSwitchBox(bool value) {
+    isSelectedSwitch = value;
+    notifyListeners();
+  }
 
   void showSelectCountry() {
     NavigatorService.popAndPushNamed(AppRoutes.selectCountry);

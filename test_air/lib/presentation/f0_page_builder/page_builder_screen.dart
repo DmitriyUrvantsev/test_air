@@ -118,7 +118,6 @@ class PageBuilderScreenState extends State<PageBuilderScreen> {
   }
 }
 
-
 // import 'package:flutter/material.dart';
 // import 'package:intl/intl.dart';
 // import 'package:urvandeniss_s_1/core/app_export.dart';
@@ -170,27 +169,27 @@ class SelectedDateText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dateProvider = Provider.of<K1Provider>(context);
-    final selectedDate = dateProvider.selectedDate;
+    final selectedDate = dateProvider.selectedDepartureDate;
 
-   // if (selectedDate) {
-      final dateFormat = DateFormat('dd MMM, E', 'ru');
-      return RichText(
-        text: TextSpan(
-          children: [
-            TextSpan(
-              text: dateFormat.format(selectedDate).split(',')[0],
-              style: TextStyle(fontSize: 20, color: Colors.white),
-            ),
-            TextSpan(
-              text: ' ',
-            ),
-            TextSpan(
-              text: dateFormat.format(selectedDate).split(',')[1],
-              style: TextStyle(fontSize: 20, color: Colors.grey),
-            ),
-          ],
-        ),
-      );
+    // if (selectedDate) {
+    final dateFormat = DateFormat('dd MMM, E', 'ru');
+    return RichText(
+      text: TextSpan(
+        children: [
+          TextSpan(
+            text: dateFormat.format(selectedDate).split(',')[0],
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
+          TextSpan(
+            text: ' ',
+          ),
+          TextSpan(
+            text: dateFormat.format(selectedDate).split(',')[1],
+            style: TextStyle(fontSize: 20, color: Colors.grey),
+          ),
+        ],
+      ),
+    );
     // } else {
     //   return Text(
     //     'No date selected',
