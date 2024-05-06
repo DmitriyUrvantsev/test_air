@@ -80,6 +80,7 @@ class CustomTextFormField extends StatelessWidget {
   Widget textFormFieldWidget(BuildContext context) => SizedBox(
         width: width ?? double.maxFinite,
         child: TextFormField(
+          cursorColor: Colors.white,
           scrollPadding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           controller: controller,
@@ -108,6 +109,7 @@ class CustomTextFormField extends StatelessWidget {
         ),
       );
   InputDecoration get decoration => InputDecoration(
+
         hintText: hintText ?? "",
         hintStyle: hintStyle ?? theme.textTheme.titleMedium,
         prefixIcon: prefix,
@@ -139,7 +141,10 @@ class CustomTextFormField extends StatelessWidget {
             UnderlineInputBorder(
               borderSide: BorderSide(
                 color: appTheme.gray800,
+
               ),
+              
             ),
+            
       );
 }

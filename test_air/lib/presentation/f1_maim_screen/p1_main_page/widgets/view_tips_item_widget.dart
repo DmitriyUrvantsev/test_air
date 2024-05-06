@@ -29,7 +29,7 @@ class ViewTipsItemWidget extends StatelessWidget {
               } else {
                 provider
                     .setArrivalCity(viewTipsItemModelObj.complexRouteTex ?? '');
-                provider.selectCountry();
+                provider.showSelectCountry();
               }
             },
             color: viewTipsItemModelObj.colorItem,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:urvandeniss_s_1/presentation/f1_maim_screen/p1_main_page/widgets/arrival_field_widget.dart';
 import '../../../core/app_export.dart';
 import '../../../theme/custom_button_style.dart';
 import '../../../widgets/custom_bottom_bar.dart';
@@ -6,6 +8,8 @@ import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_switch.dart';
 import '../../../widgets/custom_text_form_field.dart';
 import '../p1_main_page/air_main_page.dart';
+import '../p1_main_page/provider/air_main_provider.dart';
+import '../p1_main_page/widgets/departure_field_widget.dart';
 import 'models/direct_flights_model.dart';
 import 'models/settings_item_model.dart';
 import 'models/k4_model.dart';
@@ -20,6 +24,7 @@ class SelectCountryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.read<K1Provider>();
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -52,8 +57,10 @@ class SelectCountryScreen extends StatelessWidget {
     );
   }
 
-  /// -------Section Widget---------------------
+  // -------Section Widget---------------------
+
   Widget _buildTextFields(BuildContext context) {
+    final provider = context.read<K1Provider>();
     return Card(
       clipBehavior: Clip.antiAlias,
       elevation: 0,
@@ -67,97 +74,65 @@ class SelectCountryScreen extends StatelessWidget {
         width: 328.h,
         padding: EdgeInsets.symmetric(
           horizontal: 8.h,
-          vertical: 16.v,
+          vertical: 10.v,
         ),
         decoration: AppDecoration.fillPrimary.copyWith(
           borderRadius: BorderRadiusStyle.roundedBorder16,
         ),
-        child: Stack(
-          alignment: Alignment.bottomRight,
+        child: Row(
           children: [
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: 32.h,
-                  bottom: 1.v,
-                ),
-                child: Text(
-                  //'4444444444444!!!!!!!!!!',
-                  "lbl21".tr,
-                  style: theme.textTheme.titleMedium,
-                ),
-              ),
-            ),
             CustomImageView(
-              imagePath: ImageConstant.imgIconPrimarycontainer,
+              imagePath: ImageConstant.imgArrowLeft,
               height: 24.adaptSize,
               width: 24.adaptSize,
-              alignment: Alignment.bottomRight,
-              margin: EdgeInsets.only(right: 8.h),
+              //margin: EdgeInsets.symmetric(vertical: 17.v),
+              onTap: () {
+                onTapImgArrowleftone(context);
+              },
             ),
-            Align(
-              alignment: Alignment.topCenter,
+            Expanded(
               child: Padding(
-                padding: EdgeInsets.only(top: 2.v),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                padding: EdgeInsets.only(
+                  left: 16.h,
+                  top: 1.v,
+                ),
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CustomImageView(
-                      imagePath: ImageConstant.imgArrowLeft,
-                      height: 24.adaptSize,
-                      width: 24.adaptSize,
-                      margin: EdgeInsets.only(top: 18.v),
-                      onTap: () {
-                        onTapImgArrowleftone(context);
-                      },
+                    Row(
+                      children: [
+                        DepartureFieldWidget(),
+                        Spacer(),
+                        CustomImageView(
+                          onTap: () => provider.swapCities(),
+                          imagePath: ImageConstant.imgShare,
+                          height: 24.adaptSize,
+                          width: 24.adaptSize,
+                          margin: EdgeInsets.only(right: 8.h),
+                        ),
+                      ],
                     ),
-                    
-                    
-//-------------------------------topTextField---------------------------------------
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          left: 8.h,
-                          bottom: 9.v,
+                    SizedBox(height: 3.v),
+                    Divider(
+                      thickness: 1,
+                      color: appTheme.gray700,
+                    ),
+                    SizedBox(height: 5.v),
+                    Row(
+                      children: [
+                        ArrivalFieldWidget(),
+                        Spacer(),
+                        CustomImageView(
+                          onTap: () => {},
+                          imagePath: ImageConstant.imgIconPrimarycontainer,
+                          height: 24.adaptSize,
+                          width: 24.adaptSize,
+                          alignment: Alignment.bottomRight,
+                          margin: EdgeInsets.only(right: 8.h),
                         ),
-                        child: Selector<SelectCountryProvider,
-                            TextEditingController?>(
-                          selector: (context, provider) =>
-                              provider.citytwooneController,
-                          builder: (context, citytwooneController, child) {
-                            return CustomTextFormField(
-                              controller: citytwooneController,
-                              hintText: "lbl6".tr,
-                              textInputAction: TextInputAction.done,
-                              suffix: Container(
-                                margin: EdgeInsets.only(
-                                  left: 30.h,
-                                  bottom: 9.v,
-                                ),
-                                child: CustomImageView(
-                                  imagePath: ImageConstant.imgShare,
-                                  height: 24.adaptSize,
-                                  width: 24.adaptSize,
-                                ),
-                              ),
-                              suffixConstraints: BoxConstraints(
-                                maxHeight: 33.v,
-                              ),
-                              onSubmitted: (String) {},
-                            );
-                          },
-                        ),
-                      ),
+                      ],
                     )
-//-------------------------------topTextField---------------------------------------
-//
-//
-//
-
-
                   ],
                 ),
               ),
@@ -178,15 +153,15 @@ class SelectCountryScreen extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: provider.k4ModelObj.settingsItemList.length,
             itemBuilder: (context, index) {
-              ChipsItemModel model =
+              SettingItemModel model =
                   provider.k4ModelObj.settingsItemList[index];
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: SettingsItemWidget(
                   model,
-                  onSelectedChipView: (value) {
-                    provider.onSelectedChipView(index, value);
-                  },
+                  // onSelectedChipView: (value) {
+                  //   // provider.onSelectedChipView(index, value);
+                  // },
                 ),
               );
             },

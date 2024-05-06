@@ -57,9 +57,8 @@ class Scr2ItemWidget extends StatelessWidget {
               clipBehavior: Clip.hardEdge,
               child: InkWell(
                 onTap: () {
-                  provider
-                      .setArrivalCity(scr2ItemModelObj.username ?? '');
-                      provider.selectCountry();
+                  provider.setArrivalCity(scr2ItemModelObj.username ?? '');
+                  provider.showSelectCountry();
                 },
                 child: SizedBox(
                   height: 50.v,

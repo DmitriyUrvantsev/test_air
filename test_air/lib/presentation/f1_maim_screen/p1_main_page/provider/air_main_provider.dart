@@ -24,6 +24,10 @@ class K1Provider extends ChangeNotifier {
   String? _arrivalCity;
   String? get arrivalCity => _arrivalCity;
 
+
+
+  
+
   K1Provider() {
     setup();
   }
@@ -70,11 +74,22 @@ class K1Provider extends ChangeNotifier {
     );
   }
 
-  void selectCountry() {
+  void swapCities() {
+    String? temp = _departureCity;
+    _departureCity = _arrivalCity;
+    _arrivalCity = temp;
+    departureController.text = _departureCity ?? '';
+    arrivalController.text = _arrivalCity ?? '';
+    notifyListeners();
+  }
+
+
+
+  void showSelectCountry() {
     NavigatorService.popAndPushNamed(AppRoutes.selectCountry);
   }
 
-  void close() {
+  void goBack() {
     NavigatorService.goBack();
   }
 

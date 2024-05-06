@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -8,6 +9,7 @@ import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_text_form_field.dart';
 import 'models/scr1_item_model.dart';
 import 'provider/air_main_provider.dart';
+import 'widgets/departure_field_widget.dart';
 import 'widgets/userprofile_item_widget.dart';
 
 class AirMainPage extends StatefulWidget {
@@ -111,7 +113,10 @@ class AirMainPageState extends State<AirMainPage> {
         decoration: AppDecoration.outlineBlack9003f1.copyWith(
           borderRadius: BorderRadiusStyle.roundedBorder16,
         ),
-        child: Row(
+        child:
+        
+        
+         Row(
           children: [
             CustomImageView(
               imagePath: ImageConstant.imgRewind,
@@ -128,62 +133,16 @@ class AirMainPageState extends State<AirMainPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Selector<K1Provider, TextEditingController?>(
-                      selector: (context, provider) =>
-                          provider.departureController,
-                      builder: (context, departureController, child) {
-                        final provider = context.read<K1Provider>();
-                        return CustomTextFormField(
-                          controller: departureController,
-                          hintText: provider.departureCity ?? "lbl6".tr,
-                          hintStyle: provider.departureCity == "lbl6".tr
-                              ? CustomTextStyles.titleMediumPrimaryContainer
-                              : null,
-                          inputLanguageCode: 'ru',
-                          inputFormatters: [
-                            FilteringTextInputFormatter.allow(RegExp(
-                                r'[а-яА-Я]')), // Регулярное выражение для кириллических символов
-                          ],
-                          textInputAction: TextInputAction.done,
-                          contentPadding: EdgeInsets.symmetric(horizontal: 1.h),
-                          borderDecoration:
-                              TextFormFieldStyleHelper.underLineGray,
-                          onSubmitted: (p0) => {
-                            print('p0!!!!!!!!!!!!! $p0'),
-                            provider.savedepartureCity(),
-                          },
-                        );
-                      },
+                    Row(
+                      children: [
+                        DepartureFieldWidget(),
+                      ],
+                    ),
+                    Divider(
+                      thickness: 1,
+                      color: appTheme.gray700,
                     ),
                     SizedBox(height: 8.v),
-
-                    // Selector<K1Provider, TextEditingController?>(
-                    //   selector: (context, provider) => provider.tfController,
-                    //   builder: (context, tfController, child) {
-                    //     final provider = context.read<K1Provider>();
-                    //     return CustomTextFormField(
-                    //       controller: tfController,
-                    //       hintText: provider.arrivalCity ?? "lbl7".tr,
-                    //       hintStyle: provider.arrivalCity == null
-                    //           ? CustomTextStyles.titleMediumPrimaryContainer
-                    //           : null,
-                    //       inputLanguageCode: 'ru',
-                    //       inputFormatters: [
-                    //         FilteringTextInputFormatter.allow(RegExp(
-                    //             r'[а-яА-Я]')), // Регулярное выражение для кириллических символов
-                    //       ],
-                    //       textInputAction: TextInputAction.done,
-                    //       contentPadding: EdgeInsets.symmetric(horizontal: 1.h),
-                    //       // borderDecoration:
-                    //       //     TextFormFieldStyleHelper.underLineGray,
-                    //       onSubmitted: (p0) => {
-                    //         print('p0!!!!!!!!!!!!! $p0'),
-                    //         // provider.savedepartureCity(),
-                    //       },
-                    //     );
-                    //   },
-                    // ),
-
                     GestureDetector(
                       onTap: () => provider.nextStep(context),
                       child: Text(
@@ -197,6 +156,7 @@ class AirMainPageState extends State<AirMainPage> {
             )
           ],
         ),
+        
       ),
     );
   }

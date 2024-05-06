@@ -8,6 +8,8 @@ import '../../../widgets/custom_text_form_field.dart';
 import 'provider/air_main_provider.dart';
 import 'models/scr2_item_model.dart';
 import 'models/view_tips_item_model.dart';
+import 'widgets/arrival_field_widget.dart';
+import 'widgets/departure_field_widget.dart';
 import 'widgets/scr2_item_widget.dart';
 import 'widgets/view_tips_item_widget.dart'; // ignore_for_file: must_be_immutable
 
@@ -66,50 +68,8 @@ class K3BottomSheet extends StatelessWidget {
                                     height: 24.adaptSize,
                                     width: 24.adaptSize,
                                   ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                        left: 8.h,
-                                        bottom: 2.v,
-                                      ),
-                                      child: Selector<K1Provider,
-                                          TextEditingController?>(
-                                        selector: (context, provider) =>
-                                            provider.departureController,
-                                        builder: (context, departureController,
-                                            child) {
-                                          final provider =
-                                              context.read<K1Provider>();
-                                          return CustomTextFormField(
-                                            controller: departureController,
-                                            hintText: provider.departureCity ??
-                                                "lbl6".tr,
-                                            hintStyle: provider.departureCity ==
-                                                    "lbl6".tr
-                                                ? CustomTextStyles
-                                                    .titleMediumPrimaryContainer
-                                                : null,
-                                            inputLanguageCode: 'ru',
-                                            inputFormatters: [
-                                              FilteringTextInputFormatter.allow(
-                                                  RegExp(
-                                                      r'[а-яА-Я]')), // Регулярное выражение для кириллических символов
-                                            ],
-                                            textInputAction:
-                                                TextInputAction.done,
-                                            contentPadding:
-                                                EdgeInsets.symmetric(
-                                                    horizontal: 1.h),
-                                            borderDecoration: InputBorder.none,
-                                            onSubmitted: (p0) => {
-                                              print('p0!!!!!!!!!!!!! $p0'),
-                                              provider.savedepartureCity(),
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ),
+                                  SizedBox(width: 8.h),
+                                  DepartureFieldWidget(),
                                 ],
                               ),
                               // Align(
@@ -136,48 +96,11 @@ class K3BottomSheet extends StatelessWidget {
                               height: 24.adaptSize,
                               width: 24.adaptSize,
                             ),
-                            Expanded(
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                  left: 8.h,
-                                  bottom: 2.v,
-                                ),
-                                child: Selector<K1Provider,
-                                    TextEditingController?>(
-                                  selector: (context, provider) =>
-                                      provider.arrivalController,
-                                  builder: (context, arrivalController, child) {
-                                    // final provider = context.read<K1Provider>();
-                                    return CustomTextFormField(
-                                      controller: arrivalController,
-                                      hintText:
-                                          provider.arrivalCity ?? "lbl7".tr,
-                                      hintStyle: provider.arrivalCity ==
-                                              null //"lbl7".tr
-                                          ? CustomTextStyles
-                                              .titleMediumPrimaryContainer
-                                          : null,
-                                      inputLanguageCode: 'ru',
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter.allow(RegExp(
-                                            r'[а-яА-Я]')), // Регулярное выражение для кириллических символов
-                                      ],
-                                      textInputAction: TextInputAction.done,
-                                      contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 1.h),
-                                      borderDecoration: InputBorder.none,
-                                      onSubmitted: (p0) => {
-                                        print('p0!!!!!!!!!!!!! $p0'),
-                                         provider.selectCountry(),
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
+                            SizedBox(width: 8.h),
+                            ArrivalFieldWidget(),
                             Spacer(),
                             CustomImageView(
-                              onTap: () => provider.close(),
+                              onTap: () => provider.goBack(),
                               imagePath: ImageConstant.imgIconPrimarycontainer,
                               height: 24.adaptSize,
                               width: 24.adaptSize,

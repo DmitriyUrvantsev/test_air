@@ -23,16 +23,16 @@ class SelectCountryProvider extends ChangeNotifier {
     citytwooneController.dispose();
   }
 
-  void onSelectedChipView(
-    int index,
-    bool value,
-  ) {
-    k4ModelObj.settingsItemList.forEach((element) {
-      element.isSelected = false;
-    });
-    k4ModelObj.settingsItemList[index].isSelected = value;
-    notifyListeners();
-  }
+  // void onSelectedChipView(
+  //   int index,
+  //   bool value,
+  // ) {
+  //   k4ModelObj.settingsItemList.forEach((element) {
+  //     element.isSelected = false;
+  //   });
+  //   k4ModelObj.settingsItemList[index].isSelected = value;
+  //   notifyListeners();
+  // }
 
   void changeSwitchBox(bool value) {
     isSelectedSwitch = value;
