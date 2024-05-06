@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/app_export.dart';
 import '../../p1_main_page/provider/air_main_provider.dart';
@@ -24,7 +25,7 @@ class SelectCountryModel {
         time: "msg_08_05_09_55_16_35".tr,
         pice: '2390 \u20BD'),
   ];
-
+ final dateFormat = DateFormat('dd MMM, E', 'ru');
    List<SettingItemModel> settingsItemList = [
     SettingItemModel(
     
@@ -36,7 +37,7 @@ class SelectCountryModel {
     SettingItemModel(
      
     
-        iconButton: null,  iconText: '24 фв, сб', onSelectDate: (date) {}),
+        iconButton: null, onSelectDate: (date) {}),
 
     SettingItemModel(iconButton: ImageConstant.imgPlus, iconText: '1,эконом'),
     SettingItemModel(iconButton: ImageConstant.imgPlus, iconText: 'фильтры'),

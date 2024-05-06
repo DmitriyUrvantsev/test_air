@@ -19,10 +19,6 @@ class SettingsItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<K1Provider>(context);
-    //final selectedDate = chipsItemModelObj.date;
-    //;
-
-    // if (selectedDate) {
     final dateFormat = DateFormat('dd MMM, E', 'ru');
     return ElevatedButton(
       onPressed: () {
@@ -90,7 +86,8 @@ class SettingsItemWidget extends StatelessWidget {
                           ? dateFormat
                               .format(provider.selectedDepartureDate)
                               .split(',')[0]
-                          : chipsItemModelObj.iconText,
+                          : chipsItemModelObj.iconText ??
+                              dateFormat.format(DateTime.now()).split(',')[0],
                   style: TextStyle(
                     color: theme.colorScheme.onPrimary,
                     fontSize: 14.fSize,
@@ -104,7 +101,9 @@ class SettingsItemWidget extends StatelessWidget {
                       ? ','
                       : index == 1 && provider.isDepartureDate
                           ? ','
-                          : null,
+                          : index == 1 && provider.isDepartureDate == false
+                              ? ','
+                              : null,
                 ),
                 TextSpan(
                   text: index == 0 && provider.isArrivalDate
@@ -115,7 +114,9 @@ class SettingsItemWidget extends StatelessWidget {
                           ? dateFormat
                               .format(provider.selectedDepartureDate)
                               .split(',')[1]
-                          : null,
+                          : index == 1 && provider.isDepartureDate == false
+                              ? dateFormat.format(DateTime.now()).split(',')[1]
+                              : null,
                   style: TextStyle(
                     color: appTheme.gray700,
                     fontSize: 14.fSize,
