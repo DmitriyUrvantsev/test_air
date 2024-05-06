@@ -13,19 +13,19 @@ class DirectFlightsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
-        top: 7.v,
-        bottom: 6.v,
-      ),
-      decoration: AppDecoration.fillBlue,
-      // AppDecoration.outlineGray800,
+      // padding: EdgeInsets.only(
+      //   top: 7.v,
+      //   bottom: 6.v,
+      // ),
+      decoration: // AppDecoration.fillBlue,
+          AppDecoration.outlineGray800,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             height: 24.adaptSize,
             width: 24.adaptSize,
-            margin: EdgeInsets.only(bottom: 16.v),
+            margin: EdgeInsets.only(bottom: 14.v),
             decoration: BoxDecoration(
               color: appTheme.redA200,
               borderRadius: BorderRadius.circular(
@@ -37,7 +37,7 @@ class DirectFlightsWidget extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.only(
                 left: 8.h,
-                bottom: 2.v,
+                bottom: 10.v,
               ),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,9 +62,14 @@ class DirectFlightsWidget extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 2.v),
-                        Text(
-                          "msg_08_05_09_55_16_35".tr,
-                          style: theme.textTheme.bodyMedium,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "msg_08_05_09_55_16_35".tr,
+                              style: theme.textTheme.bodyMedium,
+                            ),
+                          ],
                         )
                       ],
                     ),
@@ -83,49 +88,6 @@ class DirectFlightsWidget extends StatelessWidget {
       ),
     );
 
-    // Padding(
-    //   padding: const EdgeInsets.all(8.0),
-    //   child: Container(
-    //     padding: EdgeInsets.only(
-    //       top: 7.v,
-    //       bottom: 6.v,
-    //     ),
-    //     decoration: AppDecoration.outlineGray800,
-    //     child: Row(
-    //       children: [
-    //         Container(
-    //           height: 40.adaptSize,
-    //           width: 40.adaptSize,
-    //           margin: EdgeInsets.only(bottom: 16.v),
-    //           decoration: BoxDecoration(
-    //             color: directFlightsObj.circleColor ,
-    //             // image: DecorationImage(
-    //             //   image: AssetImage(scr2ItemModelObj.userImage),
-    //             //   fit: BoxFit.cover,
-    //             // ),
-    //             borderRadius: BorderRadius.circular(8.h),
-    //           ),
-    //         ),
-    //         Padding(
-    //           padding: EdgeInsets.only(left: 8.h),
-    //           child: Column(
-    //             crossAxisAlignment: CrossAxisAlignment.start,
-    //             children: [
-    //               Text(
-    //                 directFlightsObj.airCompany?? '',
-    //                 style: theme.textTheme.titleMedium,
-    //               ),
-    //               SizedBox(height: 3.v),
-    //               Text(
-    //                 directFlightsObj.time??'',
-    //                 style: CustomTextStyles.bodyMediumGray700,
-    //               )
-    //             ],
-    //           ),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
+
   }
 }

@@ -88,21 +88,22 @@ class SettingsItemWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.h),
-          side: BorderSide(
-            color: theme.colorScheme.onPrimary.withOpacity(0.6),
-            width: 1.h,
-          ),
+          // side: BorderSide(
+          //   color: theme.colorScheme.onPrimary.withOpacity(0.6),
+          //   width: 1.h,
+          // ),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 8.v),
       ).copyWith(
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
           (Set<MaterialState> states) {
-            if (states.contains(MaterialState.pressed)) {
+            // if (states.contains(MaterialState.pressed)) {
+            if (true) {
               return theme.colorScheme.primary.withOpacity(0.6);
             }
-            return chipsItemModelObj.isSelected ?? false
-                ? theme.colorScheme.primary
-                : Colors.transparent;
+            // return chipsItemModelObj.isSelected ?? false
+            //     ? theme.colorScheme.primary
+            //     : Colors.transparent;
           },
         ),
       ),

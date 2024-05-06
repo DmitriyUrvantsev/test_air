@@ -52,7 +52,7 @@ class SelectCountryScreen extends StatelessWidget {
     );
   }
 
-  /// Section Widget
+  /// -------Section Widget---------------------
   Widget _buildTextFields(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -83,8 +83,8 @@ class SelectCountryScreen extends StatelessWidget {
                   bottom: 1.v,
                 ),
                 child: Text(
-                  '4444444444444!!!!!!!!!!',
-                  // "lbl21".tr,
+                  //'4444444444444!!!!!!!!!!',
+                  "lbl21".tr,
                   style: theme.textTheme.titleMedium,
                 ),
               ),
@@ -114,6 +114,9 @@ class SelectCountryScreen extends StatelessWidget {
                         onTapImgArrowleftone(context);
                       },
                     ),
+                    
+                    
+//-------------------------------topTextField---------------------------------------
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.only(
@@ -149,6 +152,12 @@ class SelectCountryScreen extends StatelessWidget {
                         ),
                       ),
                     )
+//-------------------------------topTextField---------------------------------------
+//
+//
+//
+
+
                   ],
                 ),
               ),
@@ -187,46 +196,9 @@ class SelectCountryScreen extends StatelessWidget {
     );
   }
 
-//================================================================================
-//================================================================================
-
-  /// Section Widget
-// Widget _buildDirectFlights(BuildContext context) {
-//   final provider = context.read<SelectCountryProvider>();
-
-//   return Container(
-//     margin: EdgeInsets.only(left: 10.h),
-//     padding: EdgeInsets.all(16.h),
-//     decoration: AppDecoration.fillPrimary.copyWith(
-//       borderRadius: BorderRadiusStyle.roundedBorder16,
-//     ),
-//     child: ListView.separated(
-//       physics: NeverScrollableScrollPhysics(),
-//       shrinkWrap: true,
-//       separatorBuilder: (context, index) {
-//         return SizedBox(
-//           height: 8.v,
-//         );
-//       },
-//       itemCount: provider.k4ModelObj.directFlightsList.length,
-//       itemBuilder: (context, index) {
-//         DirectFlightsModel model =provider.k4ModelObj.directFlightsList[index];
-//         return DirectFlightsWidget(
-//           model,
-//         );
-//       },
-//     ),
-//   );
-// }
-
-  ///
-  ///
-  ///
-  ///
-  ///
-  ///
-  ///
+  ///---------  _buildDirectFlights(---------------
   Widget _buildDirectFlights(BuildContext context) {
+    final provider = context.read<SelectCountryProvider>();
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 16.h,
@@ -239,209 +211,37 @@ class SelectCountryScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 11.v),
+          SizedBox(height: 8.v),
           Text(
             "lbl24".tr,
             style: CustomTextStyles.titleLarge20,
           ),
-          SizedBox(height: 6.v),
+          SizedBox(height: 2.v),
 
 //------------------
-
           Container(
-            padding: EdgeInsets.only(
-              top: 7.v,
-              bottom: 6.v,
-            ),
-            decoration: AppDecoration.fillBlue,
-            // AppDecoration.outlineGray800,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 24.adaptSize,
-                  width: 24.adaptSize,
-                  margin: EdgeInsets.only(bottom: 16.v),
-                  decoration: BoxDecoration(
-                    color: appTheme.redA200,
-                    borderRadius: BorderRadius.circular(
-                      12.h,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      left: 8.h,
-                      bottom: 2.v,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 1.v),
-                                    child: Text(
-                                      "msg7".tr,
-                                      style: theme.textTheme.titleSmall,
-                                    ),
-                                  ),
-                                  Text(
-                                    "lbl_2_3902".tr,
-                                    style: CustomTextStyles.titleSmallBlue800,
-                                  )
-                                ],
-                              ),
-                              SizedBox(height: 2.v),
-                              Text(
-                                "msg_08_05_09_55_16_35".tr,
-                                style: theme.textTheme.bodyMedium,
-                              )
-                            ],
-                          ),
-                        ),
-                        CustomImageView(
-                          imagePath: ImageConstant.imgArrowRight,
-                          height: 16.v,
-                          width: 14.h,
-                          margin: EdgeInsets.only(bottom: 21.v),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
+            // margin: EdgeInsets.only(left: 10.h),
+            padding: EdgeInsets.only(top: 10.h),
+
+            child: ListView.separated(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              separatorBuilder: (context, index) {
+                return SizedBox(
+                  height: 8.v,
+                );
+              },
+              itemCount: provider.k4ModelObj.directFlightsList.length,
+              itemBuilder: (context, index) {
+                DirectFlightsModel model =
+                    provider.k4ModelObj.directFlightsList[index];
+                return DirectFlightsWidget(
+                  model,
+                );
+              },
             ),
           ),
-          //-----------------------
 
-
-
-
-
-
-          SizedBox(height: 8.v),
-          Container(
-            padding: EdgeInsets.only(
-              top: 7.v,
-              bottom: 6.v,
-            ),
-            decoration: AppDecoration.outlineGray800,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 24.adaptSize,
-                  width: 24.adaptSize,
-                  margin: EdgeInsets.only(bottom: 16.v),
-                  decoration: BoxDecoration(
-                    color: appTheme.blue800,
-                    borderRadius: BorderRadius.circular(
-                      12.h,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 8.h,
-                    bottom: 3.v,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "lbl25".tr,
-                        style: theme.textTheme.titleSmall,
-                      ),
-                      SizedBox(height: 4.v),
-                      Text(
-                        "msg_08_05_09_55_16_35".tr,
-                        style: theme.textTheme.bodyMedium,
-                      )
-                    ],
-                  ),
-                ),
-                Spacer(),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 24.v),
-                  child: Text(
-                    "lbl_2_3902".tr,
-                    style: CustomTextStyles.titleSmallBlue800,
-                  ),
-                ),
-                CustomImageView(
-                  imagePath: ImageConstant.imgArrowRight,
-                  height: 16.v,
-                  width: 14.h,
-                  margin: EdgeInsets.only(bottom: 24.v),
-                )
-              ],
-            ),
-          ),
-          SizedBox(height: 8.v),
-          Container(
-            padding: EdgeInsets.only(
-              top: 7.v,
-              bottom: 6.v,
-            ),
-            decoration: AppDecoration.outlineGray800,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 24.adaptSize,
-                  width: 24.adaptSize,
-                  margin: EdgeInsets.only(bottom: 16.v),
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.onPrimary,
-                    borderRadius: BorderRadius.circular(
-                      12.h,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: 8.h,
-                    bottom: 3.v,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "lbl_nordstar".tr,
-                        style: theme.textTheme.titleSmall,
-                      ),
-                      SizedBox(height: 4.v),
-                      Text(
-                        "lbl_13_10".tr,
-                        style: theme.textTheme.bodyMedium,
-                      )
-                    ],
-                  ),
-                ),
-                Spacer(),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 24.v),
-                  child: Text(
-                    "lbl_2_3902".tr,
-                    style: CustomTextStyles.titleSmallBlue800,
-                  ),
-                ),
-                CustomImageView(
-                  imagePath: ImageConstant.imgArrowRight,
-                  height: 16.v,
-                  width: 14.h,
-                  margin: EdgeInsets.only(bottom: 24.v),
-                )
-              ],
-            ),
-          ),
           SizedBox(height: 8.v),
           CustomElevatedButton(
             text: "lbl26".tr,
@@ -453,19 +253,12 @@ class SelectCountryScreen extends StatelessWidget {
     );
   }
 
-//================================================================================
-//================================================================================
-//================================================================================
-//================================================================================
-//================================================================================
-//================================================================================
-
   /// Section Widget
   Widget _buildOne(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 15.h,
-        vertical: 13.v,
+        vertical: 6.v,
       ),
       decoration: AppDecoration.fillGray.copyWith(
         borderRadius: BorderRadiusStyle.roundedBorder8,
