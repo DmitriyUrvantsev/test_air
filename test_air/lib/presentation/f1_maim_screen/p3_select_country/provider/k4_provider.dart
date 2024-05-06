@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/app_export.dart';
-import '../models/chips_item_model.dart';
+import '../models/settings_item_model.dart';
 import '../models/k4_model.dart';
 
 /// A provider class for the K4Screen.
@@ -10,7 +10,7 @@ import '../models/k4_model.dart';
 // ignore_for_file: must_be_immutable
 
 // ignore_for_file: must_be_immutable
-class K4Provider extends ChangeNotifier {
+class SelectCountryProvider extends ChangeNotifier {
   TextEditingController citytwooneController = TextEditingController();
 
   K4Model k4ModelObj = K4Model();
@@ -27,10 +27,10 @@ class K4Provider extends ChangeNotifier {
     int index,
     bool value,
   ) {
-    k4ModelObj.chipsItemList.forEach((element) {
+    k4ModelObj.settingsItemList.forEach((element) {
       element.isSelected = false;
     });
-    k4ModelObj.chipsItemList[index].isSelected = value;
+    k4ModelObj.settingsItemList[index].isSelected = value;
     notifyListeners();
   }
 

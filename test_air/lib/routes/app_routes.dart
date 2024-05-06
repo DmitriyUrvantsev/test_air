@@ -56,7 +56,8 @@ class AppRoutes {
         hotTickets: (context) => HotTickets(),
 
         k0Screen: K0Screen.builder,
-        selectCountry: SelectCountryScreen.builder,
+        selectCountry: (context) => SelectCountryScreen(),
+     
         k5Screen: K5Screen.builder,
         // appNavigationScreen: AppNavigationScreen.builder,
         initialRoute: PageBuilderScreen.builder

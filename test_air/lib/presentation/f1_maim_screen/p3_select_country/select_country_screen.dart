@@ -6,36 +6,17 @@ import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_switch.dart';
 import '../../../widgets/custom_text_form_field.dart';
 import '../p1_main_page/air_main_page.dart';
-import 'models/chips_item_model.dart';
+import 'models/direct_flights_model.dart';
+import 'models/settings_item_model.dart';
 import 'models/k4_model.dart';
 import 'provider/k4_provider.dart';
-import 'widgets/chips_item_widget.dart';
+import 'widgets/direct_flights_widget.dart';
+import 'widgets/settings_item_widget.dart';
 
-class SelectCountryScreen extends StatefulWidget {
-  const SelectCountryScreen({Key? key})
-      : super(
-          key: key,
-        );
+//! GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
-  @override
-  SelectCountryScreenState createState() => SelectCountryScreenState();
-  static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => K4Provider(),
-      child: SelectCountryScreen(),
-    );
-  }
-}
-// ignore_for_file: must_be_immutable
-
-// ignore_for_file: must_be_immutable
-class SelectCountryScreenState extends State<SelectCountryScreen> {
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
-
-  @override
-  void initState() {
-    super.initState();
-  }
+class SelectCountryScreen extends StatelessWidget {
+  const SelectCountryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,16 +27,16 @@ class SelectCountryScreenState extends State<SelectCountryScreen> {
           width: double.maxFinite,
           padding: EdgeInsets.symmetric(
             horizontal: 16.h,
-            vertical: 39.v,
+            //vertical: 39.v,
           ),
           child: Column(
             children: [
               SizedBox(height: 8.v),
-              _buildStackSochi(context),
+              _buildTextFields(context),
               SizedBox(height: 13.v),
-              _buildChips(context),
+              _buildSettingsSection(context),
               SizedBox(height: 12.v),
-              _buildColumnPrjamie(context),
+              _buildDirectFlights(context),
               SizedBox(height: 23.v),
               CustomElevatedButton(
                 text: "msg8".tr,
@@ -72,7 +53,7 @@ class SelectCountryScreenState extends State<SelectCountryScreen> {
   }
 
   /// Section Widget
-  Widget _buildStackSochi(BuildContext context) {
+  Widget _buildTextFields(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAlias,
       elevation: 0,
@@ -139,7 +120,8 @@ class SelectCountryScreenState extends State<SelectCountryScreen> {
                           left: 8.h,
                           bottom: 9.v,
                         ),
-                        child: Selector<K4Provider, TextEditingController?>(
+                        child: Selector<SelectCountryProvider,
+                            TextEditingController?>(
                           selector: (context, provider) =>
                               provider.citytwooneController,
                           builder: (context, citytwooneController, child) {
@@ -178,21 +160,25 @@ class SelectCountryScreenState extends State<SelectCountryScreen> {
   }
 
   /// Section Widget
-  Widget _buildChips(BuildContext context) {
-    return Consumer<K4Provider>(
+  Widget _buildSettingsSection(BuildContext context) {
+    return Consumer<SelectCountryProvider>(
       builder: (context, provider, child) {
-        return Wrap(
-          runSpacing: 8.v,
-          spacing: 8.h,
-          children: List<Widget>.generate(
-            provider.k4ModelObj.chipsItemList.length,
-            (index) {
-              ChipsItemModel model = provider.k4ModelObj.chipsItemList[index];
-              return ChipsItemWidget(
-                model,
-                onSelectedChipView: (value) {
-                  provider.onSelectedChipView(index, value);
-                },
+        return SizedBox(
+          height: 33.v, // Замените эту высоту на необходимую
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: provider.k4ModelObj.settingsItemList.length,
+            itemBuilder: (context, index) {
+              ChipsItemModel model =
+                  provider.k4ModelObj.settingsItemList[index];
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: SettingsItemWidget(
+                  model,
+                  onSelectedChipView: (value) {
+                    provider.onSelectedChipView(index, value);
+                  },
+                ),
               );
             },
           ),
@@ -201,8 +187,46 @@ class SelectCountryScreenState extends State<SelectCountryScreen> {
     );
   }
 
+//================================================================================
+//================================================================================
+
   /// Section Widget
-  Widget _buildColumnPrjamie(BuildContext context) {
+// Widget _buildDirectFlights(BuildContext context) {
+//   final provider = context.read<SelectCountryProvider>();
+
+//   return Container(
+//     margin: EdgeInsets.only(left: 10.h),
+//     padding: EdgeInsets.all(16.h),
+//     decoration: AppDecoration.fillPrimary.copyWith(
+//       borderRadius: BorderRadiusStyle.roundedBorder16,
+//     ),
+//     child: ListView.separated(
+//       physics: NeverScrollableScrollPhysics(),
+//       shrinkWrap: true,
+//       separatorBuilder: (context, index) {
+//         return SizedBox(
+//           height: 8.v,
+//         );
+//       },
+//       itemCount: provider.k4ModelObj.directFlightsList.length,
+//       itemBuilder: (context, index) {
+//         DirectFlightsModel model =provider.k4ModelObj.directFlightsList[index];
+//         return DirectFlightsWidget(
+//           model,
+//         );
+//       },
+//     ),
+//   );
+// }
+
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  ///
+  Widget _buildDirectFlights(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 16.h,
@@ -221,12 +245,16 @@ class SelectCountryScreenState extends State<SelectCountryScreen> {
             style: CustomTextStyles.titleLarge20,
           ),
           SizedBox(height: 6.v),
+
+//------------------
+
           Container(
             padding: EdgeInsets.only(
               top: 7.v,
               bottom: 6.v,
             ),
-            decoration: AppDecoration.outlineGray800,
+            decoration: AppDecoration.fillBlue,
+            // AppDecoration.outlineGray800,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -272,7 +300,7 @@ class SelectCountryScreenState extends State<SelectCountryScreen> {
                               ),
                               SizedBox(height: 2.v),
                               Text(
-                                "msg_07_00_09_10_10_00".tr,
+                                "msg_08_05_09_55_16_35".tr,
                                 style: theme.textTheme.bodyMedium,
                               )
                             ],
@@ -291,6 +319,13 @@ class SelectCountryScreenState extends State<SelectCountryScreen> {
               ],
             ),
           ),
+          //-----------------------
+
+
+
+
+
+
           SizedBox(height: 8.v),
           Container(
             padding: EdgeInsets.only(
@@ -418,6 +453,13 @@ class SelectCountryScreenState extends State<SelectCountryScreen> {
     );
   }
 
+//================================================================================
+//================================================================================
+//================================================================================
+//================================================================================
+//================================================================================
+//================================================================================
+
   /// Section Widget
   Widget _buildOne(BuildContext context) {
     return Container(
@@ -449,14 +491,14 @@ class SelectCountryScreenState extends State<SelectCountryScreen> {
             ),
           ),
           Spacer(),
-          Selector<K4Provider, bool?>(
+          Selector<SelectCountryProvider, bool?>(
             selector: (context, provider) => provider.isSelectedSwitch,
             builder: (context, isSelectedSwitch, child) {
               return CustomSwitch(
                 margin: EdgeInsets.only(bottom: 1.v),
                 value: isSelectedSwitch,
                 onChange: (value) {
-                  context.read<K4Provider>().changeSwitchBox(value);
+                  context.read<SelectCountryProvider>().changeSwitchBox(value);
                 },
               );
             },
@@ -470,8 +512,8 @@ class SelectCountryScreenState extends State<SelectCountryScreen> {
   Widget _buildBottomBar(BuildContext context) {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {
-        Navigator.pushNamed(
-            navigatorKey.currentContext!, getCurrentRoute(type));
+        // Navigator.pushNamed(
+        //     navigatorKey.currentContext!, getCurrentRoute(type));
       },
     );
   }
