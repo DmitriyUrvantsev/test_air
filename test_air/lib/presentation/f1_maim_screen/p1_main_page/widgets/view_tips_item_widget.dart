@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import '../../../../core/app_export.dart';
 import '../../../../widgets/custom_icon_button.dart';
 import '../models/view_tips_item_model.dart';
-import '../../provider/air_main_provider.dart'; // ignore: must_be_immutable
+import '../../provider/air_main_provider.dart'; // 
 // ignore_for_file: must_be_immutable
 
-// ignore_for_file: must_be_immutable
+
 class ViewTipsItemWidget extends StatelessWidget {
   ViewTipsItemWidget(this.viewTipsItemModelObj, {Key? key})
       : super(

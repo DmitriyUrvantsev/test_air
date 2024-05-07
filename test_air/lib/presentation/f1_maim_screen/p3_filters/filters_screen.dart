@@ -7,8 +7,7 @@ import '../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_switch.dart';
 import '../provider/air_main_provider.dart';
-import 'models/k0_model.dart';
-import 'provider/k0_provider.dart';
+
 
 
 class FiltersPage extends StatelessWidget {
@@ -172,7 +171,7 @@ class FiltersPage extends StatelessWidget {
 
   /// Section Widget
   Widget _buildButtonDone(BuildContext context) {
-    final provider = context.read<K1Provider>();
+   
     return CustomElevatedButton(
       onPressed: () => goBack(),
       height: 48.v,

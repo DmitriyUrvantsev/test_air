@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../core/app_export.dart'; // ignore_for_file: must_be_immutable
 
-// ignore_for_file: must_be_immutable
+// ignore_for_file: 
 class CustomSwitch extends StatelessWidget {
   CustomSwitch(
       {Key? key,

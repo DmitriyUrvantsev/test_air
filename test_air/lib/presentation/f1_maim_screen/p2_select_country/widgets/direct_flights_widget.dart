@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:urvandeniss_s_1/core/utils/size_utils.dart';
 
 import '../../../../core/app_export.dart';
 import '../../../../domain/offers_tickets.dart';
 import '../../provider/air_main_provider.dart';
-import '../models/direct_flights_model.dart';
-import '../models/select_country_model.dart';
+
 
 class DirectFlightsWidget extends StatelessWidget {
   final TicketsOffers model;

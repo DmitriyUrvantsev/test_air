@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../core/app_export.dart';
-import '../../provider/air_main_provider.dart';
 import 'direct_flights_model.dart';
 import 'settings_item_model.dart'; // ignore_for_file: must_be_immutable
 
-// ignore_for_file: must_be_immutable
 class SelectCountryModel {
   List<DirectFlightsModel> directFlightsList = [
     DirectFlightsModel(

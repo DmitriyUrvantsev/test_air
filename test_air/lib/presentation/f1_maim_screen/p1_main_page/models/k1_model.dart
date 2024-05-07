@@ -5,7 +5,7 @@ import 'scr2_item_model.dart';
 import 'offer_image_model.dart';
 import 'view_tips_item_model.dart'; // ignore_for_file: must_be_immutable
 
-// ignore_for_file: must_be_immutable
+// ignore_for_file: 
 class K1Model {
   List<OfferImageModel> userprofileItemList = [
     OfferImageModel(offerImage: ImageConstant.imgRectangle287, id: 1),

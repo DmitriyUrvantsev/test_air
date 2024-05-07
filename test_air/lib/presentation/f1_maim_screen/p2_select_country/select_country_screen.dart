@@ -9,7 +9,6 @@ import '../p1_main_page/air_main_page.dart';
 import '../provider/air_main_provider.dart';
 import '../p1_main_page/widgets/arrival_field_widget.dart';
 import '../p1_main_page/widgets/departure_field_widget.dart';
-import 'models/direct_flights_model.dart';
 import 'models/settings_item_model.dart';
 
 import 'widgets/direct_flights_widget.dart';
@@ -20,7 +19,7 @@ class SelectCountryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<K1Provider>();
+    
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,

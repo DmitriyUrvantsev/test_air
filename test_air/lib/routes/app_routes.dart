@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../core/app_export.dart';
 //import '../presentation/app_navigation_screen/app_navigation_screen.dart';
 import 'page_builder_screen.dart';
 import '../presentation/f1_maim_screen/p1_main_page/air_main_page.dart';

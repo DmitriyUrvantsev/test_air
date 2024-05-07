@@ -9,7 +9,6 @@ import '../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../widgets/custom_bottom_bar.dart';
 import '../p1_main_page/air_main_page.dart';
 import '../provider/air_main_provider.dart';
-import 'models/userprofile2_item_model.dart';
 import 'widgets/see_all_ticets_screen_item_widget.dart';
 
 class SeeAllTicetsPage extends StatelessWidget {

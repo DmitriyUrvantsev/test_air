@@ -4,7 +4,7 @@ import '../core/app_export.dart';
 enum BottomBarEnum { air, hotel, short, subscr, profile }
 // ignore_for_file: must_be_immutable
 
-// ignore_for_file: must_be_immutable
+// ignore_for_file: 
 class CustomBottomBar extends StatefulWidget {
   CustomBottomBar({this.onChanged});
 
@@ -13,9 +13,9 @@ class CustomBottomBar extends StatefulWidget {
   @override
   CustomBottomBarState createState() => CustomBottomBarState();
 }
-// ignore_for_file: must_be_immutable
+// ignore_for_file: 
 
-// ignore_for_file: must_be_immutable
+// ignore_for_file: 
 class CustomBottomBarState extends State<CustomBottomBar> {
   int selectedIndex = 0;
 
@@ -145,9 +145,9 @@ class CustomBottomBarState extends State<CustomBottomBar> {
     );
   }
 }
-// ignore_for_file: must_be_immutable
+// ignore_for_file: 
 
-// ignore_for_file: must_be_immutable
+// ignore_for_file: 
 class BottomMenuModel {
   BottomMenuModel(
       {required this.icon,

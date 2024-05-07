@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:urvandeniss_s_1/core/utils/time.dart';
 import '../../../../core/app_export.dart';
 import '../../../../domain/all_tickets.dart';
-import '../../provider/air_main_provider.dart';
-import '../models/userprofile2_item_model.dart'; // ignore: must_be_immutable
 // ignore_for_file: must_be_immutable
 
-// ignore_for_file: must_be_immutable
 class SeeAllTicetsItemWidget extends StatelessWidget {
   SeeAllTicetsItemWidget(this.model, {Key? key})
       : super(
@@ -17,8 +14,6 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<K1Provider>();
-
     String? price = model.price!.value.toString().replaceAllMapped(
               RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
               (Match match) => 'от ${match[1]} ',
@@ -58,7 +53,8 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
                     SizedBox(height: 4.v),
                     Text(
                       price,
-                      style: theme.textTheme.titleLarge,
+                      style: theme.textTheme.titleLarge
+                          ?.copyWith(fontStyle: FontStyle.normal),
                     ),
                     SizedBox(height: 14.v),
                     Row(

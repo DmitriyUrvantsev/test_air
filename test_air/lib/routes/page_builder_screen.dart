@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:urvandeniss_s_1/presentation/f3_placeholders/s1_hotels.dart';
 import 'package:urvandeniss_s_1/presentation/f3_placeholders/s4_profile.dart';
 import '../core/app_export.dart';
 import '../widgets/custom_bottom_bar.dart';
 import '../presentation/f1_maim_screen/p1_main_page/air_main_page.dart';
-import '../presentation/f1_maim_screen/provider/air_main_provider.dart';
 import '../presentation/f3_placeholders/s2_shorter.dart';
 import '../presentation/f3_placeholders/s3_subscription.dart';
 
@@ -23,7 +21,6 @@ class PageBuilderScreen extends StatefulWidget {
 }
 // ignore_for_file: must_be_immutable
 
-// ignore_for_file: must_be_immutable
 class PageBuilderScreenState extends State<PageBuilderScreen> {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 

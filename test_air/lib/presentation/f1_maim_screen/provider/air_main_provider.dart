@@ -6,11 +6,9 @@ import '../../../domain/offer.dart';
 import '../../../domain/offers_tickets.dart';
 import '../../../services/api_client.dart';
 import '../p2_select_country/models/select_country_model.dart';
-import '../p2_select_country/models/settings_item_model.dart';
 import '../p4_see_all_tickets/models/k5_model.dart';
 import '../p1_main_page/k3_bottomsheet.dart';
 import '../p1_main_page/models/k1_model.dart';
-import '../p1_main_page/models/offer_image_model.dart';
 
 /// A provider class for the K1Page.
 ///
@@ -18,7 +16,6 @@ import '../p1_main_page/models/offer_image_model.dart';
 /// current k1ModelObj
 // ignore_for_file: must_be_immutable
 
-// ignore_for_file: must_be_immutable
 class K1Provider extends ChangeNotifier {
   final _apiClient = ApiClient();
   Offer? _offers;
