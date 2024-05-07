@@ -4,13 +4,13 @@ import '../models/userprofile2_item_model.dart'; // ignore: must_be_immutable
 // ignore_for_file: must_be_immutable
 
 // ignore_for_file: must_be_immutable
-class Userprofile2ItemWidget extends StatelessWidget {
-  Userprofile2ItemWidget(this.userprofile2ItemModelObj, {Key? key})
+class SeeAllTicetsItemWidget extends StatelessWidget {
+  SeeAllTicetsItemWidget(this.seeAllTicetsItemModelObj, {Key? key})
       : super(
           key: key,
         );
 
-  Userprofile2ItemModel userprofile2ItemModelObj;
+  SeeAllTicetsItemModel seeAllTicetsItemModelObj;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class Userprofile2ItemWidget extends StatelessWidget {
                   children: [
                     SizedBox(height: 4.v),
                     Text(
-                      userprofile2ItemModelObj.price!,
+                      seeAllTicetsItemModelObj.price!,
                       style: theme.textTheme.titleLarge,
                     ),
                     SizedBox(height: 14.v),
@@ -62,12 +62,12 @@ class Userprofile2ItemWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                userprofile2ItemModelObj.time!,
+                                seeAllTicetsItemModelObj.time!,
                                 style: theme.textTheme.titleSmall,
                               ),
                               SizedBox(height: 4.v),
                               Text(
-                                userprofile2ItemModelObj.destination!,
+                                seeAllTicetsItemModelObj.destination!,
                                 style:
                                     CustomTextStyles.titleSmallPrimaryContainer,
                               )
@@ -92,12 +92,12 @@ class Userprofile2ItemWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                userprofile2ItemModelObj.time1!,
+                                seeAllTicetsItemModelObj.time1!,
                                 style: theme.textTheme.titleSmall,
                               ),
                               SizedBox(height: 4.v),
                               Text(
-                                userprofile2ItemModelObj.destination1!,
+                                seeAllTicetsItemModelObj.destination1!,
                                 style:
                                     CustomTextStyles.titleSmallPrimaryContainer,
                               )
@@ -148,7 +148,7 @@ class Userprofile2ItemWidget extends StatelessWidget {
                   borderRadius: BorderRadiusStyle.roundedBorder8,
                 ),
                 child: Text(
-                  userprofile2ItemModelObj.buttonsmall!,
+                  seeAllTicetsItemModelObj.buttonsmall!,
                   style: theme.textTheme.titleSmall,
                 ),
               ),

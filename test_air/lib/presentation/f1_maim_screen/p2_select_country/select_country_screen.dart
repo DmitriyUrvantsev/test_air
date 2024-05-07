@@ -1,23 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:urvandeniss_s_1/presentation/f1_maim_screen/p1_main_page/widgets/arrival_field_widget.dart';
 import '../../../core/app_export.dart';
 import '../../../theme/custom_button_style.dart';
 import '../../../widgets/custom_bottom_bar.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_switch.dart';
-import '../../../widgets/custom_text_form_field.dart';
 import '../p1_main_page/air_main_page.dart';
 import '../p1_main_page/provider/air_main_provider.dart';
+import '../p1_main_page/widgets/arrival_field_widget.dart';
 import '../p1_main_page/widgets/departure_field_widget.dart';
 import 'models/direct_flights_model.dart';
 import 'models/settings_item_model.dart';
-import 'models/select_country_model.dart';
-import 'provider/k4_provider.dart';
+
 import 'widgets/direct_flights_widget.dart';
 import 'widgets/settings_item_widget.dart';
-
-//! GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
 class SelectCountryScreen extends StatelessWidget {
   const SelectCountryScreen({super.key});
@@ -44,11 +39,12 @@ class SelectCountryScreen extends StatelessWidget {
               _buildDirectFlights(context),
               SizedBox(height: 23.v),
               CustomElevatedButton(
+                onPressed: () => onSeeAllTicets(),
                 text: "msg8".tr,
                 buttonStyle: CustomButtonStyles.fillBlue,
               ),
               SizedBox(height: 24.v),
-              _buildOne(context)
+              _buildTicketSubscription(context)
             ],
           ),
         ),
@@ -233,7 +229,7 @@ class SelectCountryScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildOne(BuildContext context) {
+  Widget _buildTicketSubscription(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 15.h,
@@ -284,8 +280,7 @@ class SelectCountryScreen extends StatelessWidget {
   Widget _buildBottomBar(BuildContext context) {
     return CustomBottomBar(
       onChanged: (BottomBarEnum type) {
-        // Navigator.pushNamed(
-        //     navigatorKey.currentContext!, getCurrentRoute(type));
+        Navigator.pushNamed(context, getCurrentRoute(type));
       },
     );
   }
@@ -316,5 +311,9 @@ class SelectCountryScreen extends StatelessWidget {
   /// Navigates to the previous screen.
   onTapImgArrowleftone(BuildContext context) {
     NavigatorService.goBack();
+  }
+
+  onSeeAllTicets() {
+    NavigatorService.popAndPushNamed(AppRoutes.seeAllTicets);
   }
 }

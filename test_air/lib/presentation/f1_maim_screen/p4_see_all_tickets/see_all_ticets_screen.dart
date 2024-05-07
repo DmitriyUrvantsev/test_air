@@ -9,7 +9,7 @@ import '../p1_main_page/air_main_page.dart';
 import 'models/k5_model.dart';
 import 'models/userprofile2_item_model.dart';
 import 'provider/k5_provider.dart';
-import 'widgets/userprofile2_item_widget.dart';
+import 'widgets/see_all_ticets_screen_item_widget.dart';
 
 class K5Screen extends StatefulWidget {
   const K5Screen({Key? key})
@@ -40,80 +40,90 @@ class K5ScreenState extends State<K5Screen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: _buildAppBar(context),
-        body: Container(
-          height: 596.v,
-          width: double.maxFinite,
-          padding: EdgeInsets.all(16.h),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  margin: EdgeInsets.only(
-                    left: 62.h,
-                    top: 527.v,
-                    right: 62.h,
-                  ),
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 10.h,
-                    vertical: 4.v,
-                  ),
-                  decoration: AppDecoration.fillBlue.copyWith(
-                    borderRadius: BorderRadiusStyle.roundedBorder16,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomImageView(
-                        imagePath: ImageConstant.imgCut,
-                        height: 16.adaptSize,
-                        width: 16.adaptSize,
-                        margin: EdgeInsets.symmetric(vertical: 5.v),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 4.h,
-                          top: 10.v,
+      child: PopScope(
+        canPop: false,
+        onPopInvoked: (bool didPop) {
+          if (didPop) {
+            return;
+          }
+          goBack();
+        },
+        child: Scaffold(
+          appBar: _buildAppBar(context),
+          body: Container(
+            color: Colors.grey,
+            // height: 596.v,
+            width: double.maxFinite,
+            padding: EdgeInsets.all(16.h),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    margin: EdgeInsets.only(
+                      left: 62.h,
+                      top: 527.v,
+                      right: 62.h,
+                    ),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.h,
+                      vertical: 4.v,
+                    ),
+                    decoration: AppDecoration.fillBlue.copyWith(
+                      borderRadius: BorderRadiusStyle.roundedBorder16,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CustomImageView(
+                          imagePath: ImageConstant.imgCut,
+                          height: 16.adaptSize,
+                          width: 16.adaptSize,
+                          margin: EdgeInsets.symmetric(vertical: 5.v),
                         ),
-                        child: Text(
-                          '5555555555!!!!!!!!!!',
-                          // "lbl28".tr,
-                          style: theme.textTheme.titleSmall,
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: 4.h,
+                            top: 10.v,
+                          ),
+                          child: Text(
+                            '5555555555!!!!!!!!!!',
+                            // "lbl28".tr,
+                            style: theme.textTheme.titleSmall,
+                          ),
                         ),
-                      ),
-                      CustomImageView(
-                        imagePath: ImageConstant.imgIconOnprimary,
-                        height: 16.adaptSize,
-                        width: 16.adaptSize,
-                        margin: EdgeInsets.only(
-                          left: 16.h,
-                          top: 5.v,
-                          bottom: 5.v,
+                        CustomImageView(
+                          imagePath: ImageConstant.imgIconOnprimary,
+                          height: 16.adaptSize,
+                          width: 16.adaptSize,
+                          margin: EdgeInsets.only(
+                            left: 16.h,
+                            top: 5.v,
+                            bottom: 5.v,
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          left: 4.h,
-                          top: 5.v,
-                          bottom: 4.v,
-                        ),
-                        child: Text(
-                          "lbl29".tr,
-                          style: theme.textTheme.titleSmall,
-                        ),
-                      )
-                    ],
+                        Padding(
+                          padding: EdgeInsets.only(
+                            left: 4.h,
+                            top: 5.v,
+                            bottom: 4.v,
+                          ),
+                          child: Text(
+                            "lbl29".tr,
+                            style: theme.textTheme.titleSmall,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              _buildUserProfile(context)
-            ],
+                //_buildUserProfile(context)
+              ],
+            ),
           ),
+          // bottomNavigationBar: _buildBottomBar(context),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
       ),
     );
   }
@@ -130,7 +140,7 @@ class K5ScreenState extends State<K5Screen> {
           bottom: 16.v,
         ),
         onTap: () {
-          onTapArrowleftone(context);
+          goBack();
         },
       ),
       title: Padding(
@@ -171,11 +181,12 @@ class K5ScreenState extends State<K5Screen> {
                   height: 16.v,
                 );
               },
-              itemCount: provider.k5ModelObj.userprofile2ItemList.length,
+              itemCount:
+                  provider.seeAllTicetsModelObj.userprofile2ItemList.length,
               itemBuilder: (context, index) {
-                Userprofile2ItemModel model =
-                    provider.k5ModelObj.userprofile2ItemList[index];
-                return Userprofile2ItemWidget(
+                SeeAllTicetsItemModel model =
+                    provider.seeAllTicetsModelObj.userprofile2ItemList[index];
+                return SeeAllTicetsItemWidget(
                   model,
                 );
               },
@@ -220,7 +231,11 @@ class K5ScreenState extends State<K5Screen> {
   }
 
   /// Navigates to the previous screen.
-  onTapArrowleftone(BuildContext context) {
-    NavigatorService.goBack();
+  // onTapArrowleftone(BuildContext context) {
+  //   NavigatorService.goBack();
+  // }
+
+  void goBack() {
+    NavigatorService.popAndPushNamed(AppRoutes.selectCountry);
   }
 }

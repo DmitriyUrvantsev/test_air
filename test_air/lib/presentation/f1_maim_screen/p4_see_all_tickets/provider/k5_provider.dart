@@ -11,7 +11,7 @@ import '../models/userprofile2_item_model.dart';
 
 // ignore_for_file: must_be_immutable
 class K5Provider extends ChangeNotifier {
-  K5Model k5ModelObj = K5Model();
+  seeAllTicetsModel seeAllTicetsModelObj = seeAllTicetsModel();
 
   @override
   void dispose() {
