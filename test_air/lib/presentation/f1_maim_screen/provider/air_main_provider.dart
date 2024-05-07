@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../../../core/app_export.dart';
-import '../../p2_select_country/models/select_country_model.dart';
-import '../../p2_select_country/models/settings_item_model.dart';
-import '../k3_bottomsheet.dart';
-import '../models/k1_model.dart';
-import '../models/scr1_item_model.dart';
+import '../../../core/app_export.dart';
+import '../../../domain/offer.dart';
+import '../../../services/api_client.dart';
+import '../p2_select_country/models/select_country_model.dart';
+import '../p2_select_country/models/settings_item_model.dart';
+import '../p4_see_all_tickets/models/k5_model.dart';
+import '../p1_main_page/k3_bottomsheet.dart';
+import '../p1_main_page/models/k1_model.dart';
+import '../p1_main_page/models/offer_image_model.dart';
 
 /// A provider class for the K1Page.
 ///
@@ -15,12 +18,19 @@ import '../models/scr1_item_model.dart';
 
 // ignore_for_file: must_be_immutable
 class K1Provider extends ChangeNotifier {
+  final _apiClient = ApiClient();
+  Offer? _offers;
+  Offer? get offers => _offers;
+//
+//
+
   final PrefUtils _prefUtils = PrefUtils();
   TextEditingController departureController = TextEditingController();
   TextEditingController arrivalController = TextEditingController(); //!======
 
   K1Model k1ModelObj = K1Model();
   SelectCountryModel k4ModelObj = SelectCountryModel();
+  SeeAllTicetsModel seeAllTicetsModelObj = SeeAllTicetsModel();
   String? _departureCity;
   String? get departureCity => _departureCity;
 
@@ -29,6 +39,7 @@ class K1Provider extends ChangeNotifier {
 
   K1Provider() {
     setup();
+    loadOffersData();
     _selectedDepartureDate = DateTime.now();
   }
 
@@ -40,6 +51,14 @@ class K1Provider extends ChangeNotifier {
         ? _prefUtils.getdepartureCity()
         : "lbl6".tr;
     // print(_departureCity);
+  }
+
+  Future<void> loadOffersData() async {
+    try {
+      _offers = await _apiClient.getOffersPost();
+      //print('_offers!!!!! ${_offers?.offers?.first.title}');
+      notifyListeners();
+    } catch (e) {}
   }
 
   void savedepartureCity() {
@@ -142,15 +161,29 @@ class K1Provider extends ChangeNotifier {
       callback(selectedDate);
     }
   }
-//========================календарь=============================================
 
-  bool isSelectedSwitch = false;
+//========================календарь=============================================
 //
+//
+//
+//------------------------фильтры-----------------------------------------------
+  bool isSelectedSwitch = false;
+  bool isSelectedSwitch1 = false;
+  //
   void changeSwitchBox(bool value) {
     isSelectedSwitch = value;
     notifyListeners();
   }
 
+//
+  void changeSwitchBox1(bool value) {
+    isSelectedSwitch1 = value;
+    notifyListeners();
+  }
+
+//------------------------навигация-----------------------------------------------
+//
+//
   void showSelectCountry() {
     NavigatorService.popAndPushNamed(AppRoutes.selectCountry);
   }

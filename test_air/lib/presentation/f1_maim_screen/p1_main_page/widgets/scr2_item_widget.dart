@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../core/app_export.dart';
 import '../models/scr2_item_model.dart';
-import '../provider/air_main_provider.dart';
+import '../../provider/air_main_provider.dart';
 
 class Scr2ItemWidget extends StatelessWidget {
   final Scr2ItemModel scr2ItemModelObj;

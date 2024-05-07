@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/app_export.dart';
-import '../../p1_main_page/provider/air_main_provider.dart';
+import '../../provider/air_main_provider.dart';
 import '../models/settings_item_model.dart';
 
 class SettingsItemWidget extends StatelessWidget {

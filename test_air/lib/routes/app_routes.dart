@@ -54,10 +54,11 @@ class AppRoutes {
         weekend: (context) => Weekend(),
         hotTickets: (context) => HotTickets(),
 
-        filtersScreen: FiltersScreen.builder,
-        selectCountry: (context) => SelectCountryScreen(),
 
-        seeAllTicets: K5Screen.builder,
+
+        filtersScreen: (context) => FiltersPage(),
+        selectCountry: (context) => SelectCountryPage(),
+        seeAllTicets: (context) => SeeAllTicetsPage(),
         // appNavigationScreen: AppNavigationScreen.builder,
         initialRoute: PageBuilderScreen.builder
       };

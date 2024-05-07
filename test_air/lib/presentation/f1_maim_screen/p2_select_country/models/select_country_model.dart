@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/app_export.dart';
-import '../../p1_main_page/provider/air_main_provider.dart';
+import '../../provider/air_main_provider.dart';
 import 'direct_flights_model.dart';
 import 'settings_item_model.dart'; // ignore_for_file: must_be_immutable
 

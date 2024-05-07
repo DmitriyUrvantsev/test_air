@@ -6,74 +6,65 @@ import '../../../widgets/app_bar/appbar_subtitle.dart';
 import '../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_switch.dart';
-import '../p1_main_page/provider/air_main_provider.dart';
+import '../provider/air_main_provider.dart';
 import 'models/k0_model.dart';
 import 'provider/k0_provider.dart';
 
-class FiltersScreen extends StatefulWidget {
-  const FiltersScreen({Key? key})
-      : super(
-          key: key,
-        );
 
-  @override
-  FiltersScreenState createState() => FiltersScreenState();
-  static Widget builder(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => K0Provider(),
-      child: FiltersScreen(),
-    );
-  }
-}
-
-class FiltersScreenState extends State<FiltersScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class FiltersPage extends StatelessWidget {
+  const FiltersPage({super.key});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: _buildAppBar(context),
-        body: Container(
-          width: double.maxFinite,
-          padding: EdgeInsets.symmetric(vertical: 24.v),
-          child: Column(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 16.h),
-                  child: Text(
-                    "lbl2".tr,
-                    style: theme.textTheme.titleMedium,
+      child: PopScope(
+ canPop: false,
+        onPopInvoked: (bool didPop) {
+          if (didPop) {
+            return;
+          }
+          goBack();
+        },
+
+        child: Scaffold(
+          appBar: _buildAppBar(context),
+          body: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(vertical: 24.v),
+            child: Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 16.h),
+                    child: Text(
+                      "lbl2".tr,
+                      style: theme.textTheme.titleMedium,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 14.v),
-              // Text('Без пересадок'),
-              _buildStackBaggage(context),
-              SizedBox(height: 15.v),
-              _buildRowTransfers(context),
-              SizedBox(height: 5.v)
-            ],
+                SizedBox(height: 14.v),
+                // Text('Без пересадок'),
+                _buildStackBaggage(context),
+                SizedBox(height: 15.v),
+                _buildRowTransfers(context),
+                SizedBox(height: 5.v)
+              ],
+            ),
           ),
+          bottomNavigationBar: _buildButtonDone(context),
         ),
-        bottomNavigationBar: _buildButtonDone(context),
       ),
     );
   }
 
   /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
-    final provider = context.read<K1Provider>();
+    //final provider = context.read<K1Provider>();
     return CustomAppBar(
       height: 40.v,
       leadingWidth: 44.h,
       leading: AppbarLeadingImage(
-        onTap: () => provider.goBack(),
+        onTap: () => goBack(),
         imagePath: ImageConstant.imgIconOnprimary24x24,
         margin: EdgeInsets.only(
           left: 20.h,
@@ -129,14 +120,14 @@ class FiltersScreenState extends State<FiltersScreen> {
                       style: theme.textTheme.bodyLarge,
                     ),
                   ),
-                  Selector<K0Provider, bool?>(
+                  Selector<K1Provider, bool?>(
                     selector: (context, provider) => provider.isSelectedSwitch,
                     builder: (context, isSelectedSwitch, child) {
                       return CustomSwitch(
                         margin: EdgeInsets.only(bottom: 89.v),
                         value: isSelectedSwitch,
                         onChange: (value) {
-                          context.read<K0Provider>().changeSwitchBox(value);
+                          context.read<K1Provider>().changeSwitchBox(value);
                         },
                       );
                     },
@@ -163,13 +154,13 @@ class FiltersScreenState extends State<FiltersScreen> {
             "msg".tr,
             style: theme.textTheme.bodyLarge,
           ),
-          Selector<K0Provider, bool?>(
+          Selector<K1Provider, bool?>(
             selector: (context, provider) => provider.isSelectedSwitch1,
             builder: (context, isSelectedSwitch1, child) {
               return CustomSwitch(
                 value: isSelectedSwitch1,
                 onChange: (value) {
-                  context.read<K0Provider>().changeSwitchBox1(value);
+                  context.read<K1Provider>().changeSwitchBox1(value);
                 },
               );
             },
@@ -183,7 +174,7 @@ class FiltersScreenState extends State<FiltersScreen> {
   Widget _buildButtonDone(BuildContext context) {
     final provider = context.read<K1Provider>();
     return CustomElevatedButton(
-      onPressed: () => provider.goBack(),
+      onPressed: () => goBack(),
       height: 48.v,
       text: "lbl5".tr,
       margin: EdgeInsets.only(
@@ -193,5 +184,10 @@ class FiltersScreenState extends State<FiltersScreen> {
       ),
       buttonStyle: CustomButtonStyles.fillErrorContainer,
     );
+  }
+  
+ /// Navigates to the previous screen.
+    void goBack() {
+    NavigatorService.popAndPushNamed(AppRoutes.selectCountry);
   }
 }

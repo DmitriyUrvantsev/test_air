@@ -5,7 +5,7 @@ import '../../../widgets/custom_bottom_bar.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_switch.dart';
 import '../p1_main_page/air_main_page.dart';
-import '../p1_main_page/provider/air_main_provider.dart';
+import '../provider/air_main_provider.dart';
 import '../p1_main_page/widgets/arrival_field_widget.dart';
 import '../p1_main_page/widgets/departure_field_widget.dart';
 import 'models/direct_flights_model.dart';
@@ -14,8 +14,8 @@ import 'models/settings_item_model.dart';
 import 'widgets/direct_flights_widget.dart';
 import 'widgets/settings_item_widget.dart';
 
-class SelectCountryScreen extends StatelessWidget {
-  const SelectCountryScreen({super.key});
+class SelectCountryPage extends StatelessWidget {
+  const SelectCountryPage({super.key});
 
   @override
   Widget build(BuildContext context) {

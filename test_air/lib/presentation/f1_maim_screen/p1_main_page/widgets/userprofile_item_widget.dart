@@ -1,21 +1,44 @@
 import 'package:flutter/material.dart';
 import '../../../../core/app_export.dart';
-import '../models/scr1_item_model.dart';
+import '../../../../domain/offer.dart';
+import '../../provider/air_main_provider.dart';
+import '../models/offer_image_model.dart';
 
-class UserprofileItemWidget extends StatelessWidget {
-  final Scr1ItemModel model;
+class OffersItemWidget extends StatelessWidget {
+  final Offers model;
 
-  const UserprofileItemWidget(this.model, {Key? key}) : super(key: key);
+  const OffersItemWidget(this.model, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.read<K1Provider>();
+    int? id = model.id ?? 1;
+    String? price = model.price!.value.toString().replaceAllMapped(
+              RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+              (Match match) => 'от ${match[1]} ',
+            ) +
+        ' ₽';
+    ;
+    OfferImageModel getOfferImageByIdOrLast(
+        List<OfferImageModel> itemList, int id) {
+      for (var offerImageModel in itemList) {
+        if (offerImageModel.id == id) {
+          return offerImageModel;
+        }
+      }
+      return itemList.isNotEmpty ? itemList.last : OfferImageModel();
+    }
+
+    OfferImageModel result =
+        getOfferImageByIdOrLast(provider.k1ModelObj.userprofileItemList, id);
+    print(result.offerImage);
     return SizedBox(
       width: 132.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomImageView(
-            imagePath: model.userImage!,
+            imagePath: result.offerImage,
             height: 133.v,
             width: 132.h,
             radius: BorderRadius.circular(
@@ -26,13 +49,13 @@ class UserprofileItemWidget extends StatelessWidget {
           Container(
             decoration: AppDecoration.outlineBlackF,
             child: Text(
-              model.userName!,
+              model.title ?? '',
               style: theme.textTheme.titleMedium,
             ),
           ),
           SizedBox(height: 8.v),
           Text(
-            model.location!,
+            model.town ?? '',
             style: theme.textTheme.bodyMedium,
           ),
           SizedBox(height: 3.v),
@@ -47,7 +70,7 @@ class UserprofileItemWidget extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 3.v),
                 child: Text(
-                  model.flightPrice!,
+                  price,
                   style: theme.textTheme.bodyMedium,
                 ),
               )

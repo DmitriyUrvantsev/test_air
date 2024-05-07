@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/app_export.dart';
-import 'presentation/f1_maim_screen/p1_main_page/provider/air_main_provider.dart';
+import 'presentation/f1_maim_screen/provider/air_main_provider.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 void main() {
@@ -23,8 +23,6 @@ class MyApp extends StatelessWidget {
         return MultiProvider(
           providers: [
             ChangeNotifierProvider(create: (context) => K1Provider()),
-            // ChangeNotifierProvider(
-            //     create: (context) => SelectCountryProvider()),
             ChangeNotifierProvider(create: (context) => ThemeProvider()),
           ],
           child: Consumer<ThemeProvider>(

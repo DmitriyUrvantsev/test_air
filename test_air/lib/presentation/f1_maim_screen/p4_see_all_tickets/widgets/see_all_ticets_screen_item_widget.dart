@@ -25,7 +25,7 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                padding: EdgeInsets.all(16.h),
+                padding: EdgeInsets.only(left: 16.h, bottom: 16.v, top: 8.v),
                 decoration: AppDecoration.fillOnPrimaryContainer.copyWith(
                   borderRadius: BorderRadiusStyle.roundedBorder8,
                 ),

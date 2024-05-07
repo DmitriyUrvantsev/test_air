@@ -2,22 +2,15 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/app_export.dart';
 import 'scr2_item_model.dart';
-import 'scr1_item_model.dart';
+import 'offer_image_model.dart';
 import 'view_tips_item_model.dart'; // ignore_for_file: must_be_immutable
 
 // ignore_for_file: must_be_immutable
 class K1Model {
-  List<Scr1ItemModel> userprofileItemList = [
-    Scr1ItemModel(
-        userImage: ImageConstant.imgRectangle287,
-        userName: "Die Antwoord",
-        location: "Будапешт",
-        flightPrice: "от 22 264 ₽ "),
-    Scr1ItemModel(
-        userImage: ImageConstant.imgRectangle287133x132,
-        userName: "Socrat& Lera",
-        location: "Санкт- Петербург",
-        flightPrice: "от 2 390 ₽ ")
+  List<OfferImageModel> userprofileItemList = [
+    OfferImageModel(offerImage: ImageConstant.imgRectangle287, id: 1),
+    OfferImageModel(offerImage: ImageConstant.imgRectangle287133x132, id: 2),
+    OfferImageModel(offerImage: ImageConstant.imgRectangle2871, id: 3)
   ];
 
   ///-----------------scr2-----------------------------

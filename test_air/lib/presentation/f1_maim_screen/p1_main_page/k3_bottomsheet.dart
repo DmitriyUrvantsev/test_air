@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import '../../../core/app_export.dart';
 import '../../../widgets/custom_text_form_field.dart';
-import 'provider/air_main_provider.dart';
+import '../provider/air_main_provider.dart';
 import 'models/scr2_item_model.dart';
 import 'models/view_tips_item_model.dart';
 import 'widgets/arrival_field_widget.dart';

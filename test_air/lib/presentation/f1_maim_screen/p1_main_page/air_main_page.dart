@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:urvandeniss_s_1/domain/offer.dart';
 import '../../../core/app_export.dart';
 import '../../../widgets/app_bar/appbar_title.dart';
 import '../../../widgets/app_bar/custom_app_bar.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_text_form_field.dart';
-import 'models/scr1_item_model.dart';
-import 'provider/air_main_provider.dart';
+import 'models/offer_image_model.dart';
+import '../provider/air_main_provider.dart';
 import 'widgets/departure_field_widget.dart';
 import 'widgets/userprofile_item_widget.dart';
 
@@ -55,7 +56,7 @@ class AirMainPageState extends State<AirMainPage> {
                   ),
                 ),
                 SizedBox(height: 12.v),
-                _buildUserProfile(context),
+                _buildOffersSection(context),
                 SizedBox(height: 28.v),
                 // CustomElevatedButton(
                 //   text: "msg5".tr,
@@ -110,10 +111,7 @@ class AirMainPageState extends State<AirMainPage> {
         decoration: AppDecoration.outlineBlack9003f1.copyWith(
           borderRadius: BorderRadiusStyle.roundedBorder16,
         ),
-        child:
-        
-        
-         Row(
+        child: Row(
           children: [
             CustomImageView(
               imagePath: ImageConstant.imgRewind,
@@ -153,12 +151,11 @@ class AirMainPageState extends State<AirMainPage> {
             )
           ],
         ),
-        
       ),
     );
   }
 
-  Widget _buildUserProfile(BuildContext context) {
+  Widget _buildOffersSection(BuildContext context) {
     return SizedBox(
       height: 223.v,
       child: Consumer<K1Provider>(
@@ -171,11 +168,11 @@ class AirMainPageState extends State<AirMainPage> {
                 width: 67.h,
               );
             },
-            itemCount: provider.k1ModelObj.userprofileItemList.length,
+            itemCount: provider.offers?.offers?.length ?? 0,
             itemBuilder: (context, index) {
-              Scr1ItemModel model =
-                  provider.k1ModelObj.userprofileItemList[index];
-              return UserprofileItemWidget(
+              Offers model = provider.offers!.offers![index];
+              // provider.offers?.offers?[index];
+              return OffersItemWidget(
                 model,
               );
             },

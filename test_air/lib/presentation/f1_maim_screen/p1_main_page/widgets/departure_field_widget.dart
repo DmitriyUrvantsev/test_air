@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:urvandeniss_s_1/core/app_export.dart';
 
 import '../../../../widgets/custom_text_form_field.dart';
-import '../provider/air_main_provider.dart';
+import '../../provider/air_main_provider.dart';
 
 class DepartureFieldWidget extends StatelessWidget {
   const DepartureFieldWidget({
