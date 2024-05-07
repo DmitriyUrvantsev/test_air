@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/app_export.dart';
-import '../../p3_select_country/models/select_country_model.dart';
-import '../../p3_select_country/models/settings_item_model.dart';
+import '../../p2_select_country/models/select_country_model.dart';
+import '../../p2_select_country/models/settings_item_model.dart';
 import '../k3_bottomsheet.dart';
 import '../models/k1_model.dart';
 import '../models/scr1_item_model.dart';
