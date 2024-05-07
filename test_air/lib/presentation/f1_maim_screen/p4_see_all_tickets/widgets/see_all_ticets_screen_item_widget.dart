@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:urvandeniss_s_1/core/utils/time.dart';
 import '../../../../core/app_export.dart';
 import '../../../../domain/all_tickets.dart';
 import '../../provider/air_main_provider.dart';
@@ -16,7 +17,7 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final provider = context.read<K1Provider>();
+    final provider = context.read<K1Provider>();
 
     String? price = model.price!.value.toString().replaceAllMapped(
               RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
@@ -24,16 +25,16 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
             ) +
         ' ₽';
 
-   
+    final arrival = DateTime.parse(model.arrival?.date as String);
+    final departure = DateTime.parse(model.departure?.date as String);
 
+    final flight = DepartureArrival(arrival, departure);
+    final formattedDuration = flight.getFormattedDuration();
+    final formattedDurationList = formattedDuration.split(', ').toList();
 
-  final flight = Departure(model.arrival, model.departure);
-  final formattedDuration = flight.getFormattedDuration();
+    // print(formattedDuration); // Выведет: '12:00-15:35   3.5ч в пути'
 
-  print(formattedDuration); // Выведет: '12:00-15:35   3.5ч в пути'
-
-     
-   // String time = model.timeRange?.join(' ') ?? '';
+    // String time = model.timeRange?.join(' ') ?? '';
     return Align(
       alignment: Alignment.center,
       child: SizedBox(
@@ -82,12 +83,14 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                model.time!,
-                                style: theme.textTheme.titleSmall,
+                                '${formattedDurationList[0]}',
+                                style: theme.textTheme.titleSmall
+                                    ?.copyWith(fontStyle: FontStyle.italic),
                               ),
                               SizedBox(height: 4.v),
                               Text(
-                                model.destination!,
+                                // '111111',
+                                model.departure?.airport ?? '',
                                 style:
                                     CustomTextStyles.titleSmallPrimaryContainer,
                               )
@@ -112,71 +115,74 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                model.time1!,
-                                style: theme.textTheme.titleSmall,
+                                '${formattedDurationList[1]}',
+                                // model.time1!,
+                                style: theme.textTheme.titleSmall
+                                    ?.copyWith(fontStyle: FontStyle.italic),
                               ),
                               SizedBox(height: 4.v),
                               Text(
-                                model.destination1!,
+                                model.arrival?.airport ?? '',
+                                // model.destination1!,
                                 style:
                                     CustomTextStyles.titleSmallPrimaryContainer,
                               )
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            left: 13.h,
-                            bottom: 19.v,
-                          ),
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: "lbl_42".tr,
-                                  style: theme.textTheme.bodyMedium,
+                        model.hasTransfer == false
+                            ? Padding(
+                                padding: EdgeInsets.only(
+                                  left: 13.h,
+                                  bottom: 25.v,
                                 ),
-                                TextSpan(
-                                  text: "lbl30".tr,
-                                  style: CustomTextStyles
-                                      .bodyMediumPrimaryContainer,
+                                child: RichText(
+                                  text: TextSpan(
+                                    children: [
+                                      TextSpan(
+                                        text: '${formattedDurationList[2]}',
+                                        style: theme.textTheme.bodyMedium,
+                                      ),
+                                      TextSpan(
+                                        text: "lbl30".tr,
+                                        style: CustomTextStyles
+                                            .bodyMediumPrimaryContainer,
+                                      ),
+                                      TextSpan(
+                                        text: "lbl31".tr,
+                                        style: theme.textTheme.bodyMedium,
+                                      )
+                                    ],
+                                  ),
+                                  textAlign: TextAlign.left,
                                 ),
-                                TextSpan(
-                                  text: "lbl31".tr,
-                                  style: theme.textTheme.bodyMedium,
-                                )
-                              ],
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                        )
+                              )
+                            : SizedBox.shrink(),
                       ],
                     )
                   ],
                 ),
               ),
             ),
-            model.badge !=null ?
-            Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                width: 126.h,
-                padding: EdgeInsets.symmetric(
-                  horizontal: 10.h,
-                  vertical: 1.v,
-                ),
-                decoration: AppDecoration.fillBlue.copyWith(
-                  borderRadius: BorderRadiusStyle.roundedBorder8,
-                ),
-                child: Text(
-                  model.badge??'',
-                  style: theme.textTheme.titleSmall,
-                ),
-              ),
-            ):SizedBox.shrink(),
-
-
-
+            model.badge != null
+                ? Align(
+                    alignment: Alignment.topLeft,
+                    child: Container(
+                      width: 126.h,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 10.h,
+                        vertical: 1.v,
+                      ),
+                      decoration: AppDecoration.fillBlue.copyWith(
+                        borderRadius: BorderRadiusStyle.roundedBorder8,
+                      ),
+                      child: Text(
+                        model.badge ?? '',
+                        style: theme.textTheme.titleSmall,
+                      ),
+                    ),
+                  )
+                : SizedBox.shrink(),
           ],
         ),
       ),

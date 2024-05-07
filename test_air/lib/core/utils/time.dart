@@ -1,8 +1,10 @@
-class Departure {
+import 'package:intl/intl.dart';
+
+class DepartureArrival {
   final DateTime arrival;
   final DateTime departure;
 
-  Departure(this.arrival, this.departure);
+  DepartureArrival(this.arrival, this.departure);
 
   String getFormattedDuration() {
     // Разница во времени между прибытием и отправлением
@@ -19,12 +21,10 @@ class Departure {
     final roundedTotalHours = (totalHours * 2).roundToDouble() / 2;
 
     // Форматируем время прибытия и отправления
-    final arrivalTime = '${arrival.hour.toString().padLeft(2, '0')}:${arrival.minute.toString().padLeft(2, '0')}';
-    final departureTime = '${departure.hour.toString().padLeft(2, '0')}:${departure.minute.toString().padLeft(2, '0')}';
+    final arrivalTime = DateFormat('HH:mm').format(arrival);
+    final departureTime = DateFormat('HH:mm').format(departure);
 
-    // Собираем строку с временем пути
-    final formattedDuration = '$departureTime-$arrivalTime   $roundedTotalHoursч в пути';
-
-    return formattedDuration;
+    // Возвращаем массив с временем отправления, временем прибытия и временем пути
+    return [departureTime, arrivalTime, '$roundedTotalHoursч в пути'].join(', ');
   }
 }

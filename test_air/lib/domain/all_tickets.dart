@@ -124,7 +124,7 @@ class Departure {
   String? date;
   String? airport;
 
-  Departure(Departure? arrival, {this.town, this.date, this.airport});
+  Departure({this.town, this.date, this.airport});
 
   Departure.fromJson(Map<String, dynamic> json) {
     town = json['town'];
