@@ -100,7 +100,9 @@ class K3BottomSheet extends StatelessWidget {
                             ArrivalFieldWidget(),
                             Spacer(),
                             CustomImageView(
-                              onTap: () => provider.goBack(),
+                              onTap: () {
+                                provider.arrivalController.clear();
+                              },
                               imagePath: ImageConstant.imgIconPrimarycontainer,
                               height: 24.adaptSize,
                               width: 24.adaptSize,

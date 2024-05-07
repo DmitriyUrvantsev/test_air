@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../core/app_export.dart';
+import '../../../domain/offers_tickets.dart';
 import '../../../theme/custom_button_style.dart';
 import '../../../widgets/custom_bottom_bar.dart';
 import '../../../widgets/custom_elevated_button.dart';
@@ -120,7 +121,7 @@ class SelectCountryPage extends StatelessWidget {
                         ArrivalFieldWidget(),
                         Spacer(),
                         CustomImageView(
-                          onTap: () => {},
+                          onTap: () => {provider.arrivalController.clear()},
                           imagePath: ImageConstant.imgIconPrimarycontainer,
                           height: 24.adaptSize,
                           width: 24.adaptSize,
@@ -206,23 +207,24 @@ class SelectCountryPage extends StatelessWidget {
                   height: 8.v,
                 );
               },
-              itemCount: provider.k4ModelObj.directFlightsList.length,
+              itemCount: provider.k4ModelObj.directFlightsList.length >= 3
+                  ? 3
+                  : provider.k4ModelObj.directFlightsList.length,
               itemBuilder: (context, index) {
-                DirectFlightsModel model =
-                    provider.k4ModelObj.directFlightsList[index];
-                return DirectFlightsWidget(
-                  model,
-                );
+                TicketsOffers model =
+                    provider.offersTickets?.ticketsOffers?[index] ??
+                        TicketsOffers();
+                return DirectFlightsWidget(model, index);
               },
             ),
           ),
 
-          SizedBox(height: 8.v),
-          CustomElevatedButton(
-            text: "lbl26".tr,
-            buttonStyle: CustomButtonStyles.fillOnPrimaryContainer,
-            buttonTextStyle: CustomTextStyles.titleMediumBlue800,
-          )
+          SizedBox(height: 55.v),
+          // CustomElevatedButton(
+          //   text: "lbl26".tr,
+          //   buttonStyle: CustomButtonStyles.fillOnPrimaryContainer,
+          //   buttonTextStyle: CustomTextStyles.titleMediumBlue800,
+          // )
         ],
       ),
     );

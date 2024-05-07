@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:urvandeniss_s_1/domain/offer.dart';
+import 'package:urvandeniss_s_1/presentation/f1_maim_screen/p1_main_page/widgets/arrival_field_widget.dart';
 import '../../../core/app_export.dart';
 import '../../../widgets/app_bar/appbar_title.dart';
 import '../../../widgets/app_bar/custom_app_bar.dart';
@@ -11,7 +12,7 @@ import '../../../widgets/custom_text_form_field.dart';
 import 'models/offer_image_model.dart';
 import '../provider/air_main_provider.dart';
 import 'widgets/departure_field_widget.dart';
-import 'widgets/userprofile_item_widget.dart';
+import 'widgets/offers_item_widget.dart';
 
 class AirMainPage extends StatefulWidget {
   const AirMainPage({Key? key}) : super(key: key);
@@ -138,6 +139,8 @@ class AirMainPageState extends State<AirMainPage> {
                       color: appTheme.gray700,
                     ),
                     SizedBox(height: 8.v),
+                  
+
                     GestureDetector(
                       onTap: () => provider.nextStep(context),
                       child: Text(

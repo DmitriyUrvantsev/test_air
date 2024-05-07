@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../core/app_export.dart';
 import '../../../domain/offer.dart';
+import '../../../domain/offers_tickets.dart';
 import '../../../services/api_client.dart';
 import '../p2_select_country/models/select_country_model.dart';
 import '../p2_select_country/models/settings_item_model.dart';
@@ -21,6 +22,8 @@ class K1Provider extends ChangeNotifier {
   final _apiClient = ApiClient();
   Offer? _offers;
   Offer? get offers => _offers;
+  OffersTickets? _offersTickets;
+  OffersTickets? get offersTickets => _offersTickets;
 //
 //
 
@@ -39,7 +42,7 @@ class K1Provider extends ChangeNotifier {
 
   K1Provider() {
     setup();
-    loadOffersData();
+
     _selectedDepartureDate = DateTime.now();
   }
 
@@ -51,12 +54,22 @@ class K1Provider extends ChangeNotifier {
         ? _prefUtils.getdepartureCity()
         : "lbl6".tr;
     // print(_departureCity);
+    loadOffersData();
+    loadOffersTicketsPost();
   }
 
   Future<void> loadOffersData() async {
     try {
       _offers = await _apiClient.getOffersPost();
       //print('_offers!!!!! ${_offers?.offers?.first.title}');
+      notifyListeners();
+    } catch (e) {}
+  }
+
+  Future<void> loadOffersTicketsPost() async {
+    try {
+      _offersTickets = await _apiClient.getOffersTicketsPost();
+
       notifyListeners();
     } catch (e) {}
   }

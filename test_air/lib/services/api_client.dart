@@ -120,6 +120,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import '../domain/offer.dart';
+import '../domain/offers_tickets.dart';
 
 enum ApiClientExceptionType { network, auth, other, sessionExpired } 
 
@@ -147,6 +148,30 @@ class ApiClient {
       _validateResponse(response, resultFile);
 
       final result = Offer.fromJson(resultFile);
+     
+      return result;
+    } on SocketException {
+      throw ApiClientException(type: ApiClientExceptionType.network);
+    } on ApiClientException {
+      rethrow;
+    } catch (_) {
+      throw ApiClientException(type: ApiClientExceptionType.other);
+    }
+  }
+
+  Future<OffersTickets> getOffersTicketsPost() async {
+    final url = Uri.parse('https://run.mocky.io/v3/3424132d-a51a-4613-b6c9-42b2d214f35f');
+
+    try {
+      final request = await client.getUrl(url);
+      final response = await request.close();
+
+      final jsonMap = await utf8.decodeStream(response); 
+      final resultFile = jsonDecode(jsonMap) as Map<String, dynamic>;
+
+      _validateResponse(response, resultFile);
+
+      final result = OffersTickets.fromJson(resultFile);
      
       return result;
     } on SocketException {

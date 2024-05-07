@@ -25,21 +25,21 @@ class ArrivalFieldWidget extends StatelessWidget {
             // final provider = context.read<K1Provider>();
             return CustomTextFormField(
               controller: arrivalController,
-              hintText: provider.arrivalCity ?? "lbl7".tr,
-              hintStyle: provider.arrivalCity == null //"lbl7".tr
-                  ? CustomTextStyles.titleMediumPrimaryContainer
-                  : null,
+              hintText: "lbl7".tr,
+              hintStyle: CustomTextStyles.titleMediumPrimaryContainer,
+              
               inputLanguageCode: 'ru',
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(
-                    r'[а-яА-Я]')), // Регулярное выражение для кириллических символов
-              ],
+                    r'[а-яА-Я]')),     ],
               textInputAction: TextInputAction.done,
               contentPadding: EdgeInsets.symmetric(horizontal: 1.h),
               borderDecoration: InputBorder.none,
               onSubmitted: (p0) => {
-                print('p0!!!!!!!!!!!!! $p0'),
-                provider.showSelectCountry(),
+                //print('p0!!!!!!!!!!!!! $p0'),
+                
+                if(arrivalController!.text.isNotEmpty){provider.showSelectCountry(),}
+                
               },
             );
           },

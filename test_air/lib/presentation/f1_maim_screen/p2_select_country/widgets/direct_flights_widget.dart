@@ -1,17 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:urvandeniss_s_1/core/utils/size_utils.dart';
 
 import '../../../../core/app_export.dart';
+import '../../../../domain/offers_tickets.dart';
+import '../../provider/air_main_provider.dart';
 import '../models/direct_flights_model.dart';
+import '../models/select_country_model.dart';
 
 class DirectFlightsWidget extends StatelessWidget {
-  final DirectFlightsModel directFlightsObj;
+  final TicketsOffers model;
+  final int index;
 
-  const DirectFlightsWidget(this.directFlightsObj, {Key? key})
+  const DirectFlightsWidget(this.model, this.index, {Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.read<K1Provider>();
+
+    String? price = model.price!.value.toString().replaceAllMapped(
+              RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+              (Match match) => 'от ${match[1]} ',
+            ) +
+        ' ₽';
+    String time = model.timeRange?.join(' ') ?? '';
+
     return Container(
       // padding: EdgeInsets.only(
       //   top: 7.v,
@@ -27,7 +41,7 @@ class DirectFlightsWidget extends StatelessWidget {
             width: 24.adaptSize,
             margin: EdgeInsets.only(bottom: 14.v),
             decoration: BoxDecoration(
-              color: directFlightsObj.circleColor ?? appTheme.redA200,
+              color: provider.k4ModelObj.directFlightsList[index].circleColor,
               borderRadius: BorderRadius.circular(
                 12.h,
               ),
@@ -51,13 +65,14 @@ class DirectFlightsWidget extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(top: 1.v),
                               child: Text(
-                                directFlightsObj.airCompany ?? "msg7".tr,
+                                model.title ?? "msg7".tr,
+
                                 // ,
                                 style: theme.textTheme.titleSmall,
                               ),
                             ),
                             Text(
-                              directFlightsObj.pice ?? "lbl_2_3902".tr,
+                              price,
                               style: CustomTextStyles.titleSmallBlue800,
                             )
                           ],
@@ -66,10 +81,13 @@ class DirectFlightsWidget extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                              directFlightsObj.time ??
-                                  "msg_08_05_09_55_16_35".tr,
-                              style: theme.textTheme.bodyMedium,
+                            Expanded(
+                              child: Text(
+                                time,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.textTheme.bodyMedium,
+                              ),
                             ),
                           ],
                         )
