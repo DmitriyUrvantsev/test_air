@@ -119,6 +119,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import '../domain/all_tickets.dart';
 import '../domain/offer.dart';
 import '../domain/offers_tickets.dart';
 
@@ -172,6 +173,30 @@ class ApiClient {
       _validateResponse(response, resultFile);
 
       final result = OffersTickets.fromJson(resultFile);
+     
+      return result;
+    } on SocketException {
+      throw ApiClientException(type: ApiClientExceptionType.network);
+    } on ApiClientException {
+      rethrow;
+    } catch (_) {
+      throw ApiClientException(type: ApiClientExceptionType.other);
+    }
+  }
+
+  Future<AllTickets> getAllTicketsPost() async {
+    final url = Uri.parse('https://run.mocky.io/v3/2dbc0999-86bf-4c08-8671-bac4b7a5f7eb');
+
+    try {
+      final request = await client.getUrl(url);
+      final response = await request.close();
+
+      final jsonMap = await utf8.decodeStream(response); 
+      final resultFile = jsonDecode(jsonMap) as Map<String, dynamic>;
+
+      _validateResponse(response, resultFile);
+
+      final result = AllTickets.fromJson(resultFile);
      
       return result;
     } on SocketException {

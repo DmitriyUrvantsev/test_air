@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../../../core/app_export.dart';
+import '../../../domain/all_tickets.dart';
 import '../../../domain/offer.dart';
 import '../../../domain/offers_tickets.dart';
 import '../../../services/api_client.dart';
@@ -24,6 +25,8 @@ class K1Provider extends ChangeNotifier {
   Offer? get offers => _offers;
   OffersTickets? _offersTickets;
   OffersTickets? get offersTickets => _offersTickets;
+  AllTickets? _tickets;
+  AllTickets? get tickets => _tickets;
 //
 //
 
@@ -56,6 +59,7 @@ class K1Provider extends ChangeNotifier {
     // print(_departureCity);
     loadOffersData();
     loadOffersTicketsPost();
+    loadAllTicketsPost();
   }
 
   Future<void> loadOffersData() async {
@@ -69,6 +73,14 @@ class K1Provider extends ChangeNotifier {
   Future<void> loadOffersTicketsPost() async {
     try {
       _offersTickets = await _apiClient.getOffersTicketsPost();
+
+      notifyListeners();
+    } catch (e) {}
+  }
+
+  Future<void> loadAllTicketsPost() async {
+    try {
+      _tickets = await _apiClient.getAllTicketsPost();
 
       notifyListeners();
     } catch (e) {}

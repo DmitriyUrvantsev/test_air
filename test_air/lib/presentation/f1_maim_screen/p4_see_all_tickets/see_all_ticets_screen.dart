@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../core/app_export.dart';
+import '../../../domain/all_tickets.dart';
 import '../../../widgets/app_bar/appbar_leading_image.dart';
 import '../../../widgets/app_bar/appbar_subtitle_one.dart';
 import '../../../widgets/app_bar/appbar_subtitle_two.dart';
@@ -27,14 +29,13 @@ class SeeAllTicetsPage extends StatelessWidget {
         child: Scaffold(
           appBar: _buildAppBar(context),
           body: Container(
-            color: Colors.grey,
             // height: 596.v,
             width: double.maxFinite,
-            // padding: EdgeInsets.all(16.h),
+            padding: EdgeInsets.only(top: 16.h),
             child: Stack(
               alignment: Alignment.topCenter,
               children: [
-                _buildTicketsList(context),
+                _buildTicketsViewList(context),
                 Positioned(bottom: 0, child: _buildFloatingActionButton()),
               ],
             ),
@@ -46,7 +47,7 @@ class SeeAllTicetsPage extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildTicketsList(BuildContext context) {
+  Widget _buildTicketsViewList(BuildContext context) {
     return Positioned(
       top: 0,
       left: 0,
@@ -71,10 +72,9 @@ class SeeAllTicetsPage extends StatelessWidget {
                     );
                   },
                   itemCount:
-                      provider.seeAllTicetsModelObj.userprofile2ItemList.length,
+                      provider.tickets?.tickets?.length??0,
                   itemBuilder: (context, index) {
-                    SeeAllTicetsItemModel model = provider
-                        .seeAllTicetsModelObj.userprofile2ItemList[index];
+                    Tickets model = provider.tickets?.tickets?[index]??Tickets();
                     return SeeAllTicetsItemWidget(
                       model,
                     );
@@ -153,6 +153,13 @@ class SeeAllTicetsPage extends StatelessWidget {
 
   /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
+    final provider = context.read<K1Provider>();
+    final String direction =
+        '${provider.departureCity}-${provider.arrivalCity}';
+    final dateFormat = DateFormat('dd MMMM', 'ru');
+    final String dateDeparture =
+        dateFormat.format(provider.selectedDepartureDate);
+    final String descriptionDeparture = '$dateDeparture, 1 пассажир';
     return CustomAppBar(
       leadingWidth: 40.h,
       leading: AppbarLeadingImage(
@@ -169,14 +176,15 @@ class SeeAllTicetsPage extends StatelessWidget {
       title: Padding(
         padding: EdgeInsets.only(left: 8.h),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppbarSubtitleOne(
-              text: '11111111-22222',
+              text: direction,
               margin: EdgeInsets.only(right: 60.h),
             ),
             SizedBox(height: 4.v),
             AppbarSubtitleTwo(
-              text: "msg_23_1".tr,
+              text: descriptionDeparture,
             )
           ],
         ),

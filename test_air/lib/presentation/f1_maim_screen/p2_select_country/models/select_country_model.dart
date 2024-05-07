@@ -25,7 +25,7 @@ class SelectCountryModel {
         time: "msg_08_05_09_55_16_35".tr,
         pice: '2390 \u20BD'),
   ];
-  final dateFormat = DateFormat('dd MMM, E', 'ru');
+  //final dateFormat = DateFormat('dd MMM, E', 'ru');
   List<SettingItemModel> settingsItemList = [
     SettingItemModel(
         iconButton: ImageConstant.imgPlus,

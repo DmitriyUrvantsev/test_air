@@ -1,19 +1,39 @@
 import 'package:flutter/material.dart';
 import '../../../../core/app_export.dart';
+import '../../../../domain/all_tickets.dart';
+import '../../provider/air_main_provider.dart';
 import '../models/userprofile2_item_model.dart'; // ignore: must_be_immutable
 // ignore_for_file: must_be_immutable
 
 // ignore_for_file: must_be_immutable
 class SeeAllTicetsItemWidget extends StatelessWidget {
-  SeeAllTicetsItemWidget(this.seeAllTicetsItemModelObj, {Key? key})
+  SeeAllTicetsItemWidget(this.model, {Key? key})
       : super(
           key: key,
         );
 
-  SeeAllTicetsItemModel seeAllTicetsItemModelObj;
+  Tickets model;
 
   @override
   Widget build(BuildContext context) {
+     final provider = context.read<K1Provider>();
+
+    String? price = model.price!.value.toString().replaceAllMapped(
+              RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+              (Match match) => 'от ${match[1]} ',
+            ) +
+        ' ₽';
+
+   
+
+
+  final flight = Departure(model.arrival, model.departure);
+  final formattedDuration = flight.getFormattedDuration();
+
+  print(formattedDuration); // Выведет: '12:00-15:35   3.5ч в пути'
+
+     
+   // String time = model.timeRange?.join(' ') ?? '';
     return Align(
       alignment: Alignment.center,
       child: SizedBox(
@@ -36,7 +56,7 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
                   children: [
                     SizedBox(height: 4.v),
                     Text(
-                      seeAllTicetsItemModelObj.price!,
+                      price,
                       style: theme.textTheme.titleLarge,
                     ),
                     SizedBox(height: 14.v),
@@ -62,12 +82,12 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                seeAllTicetsItemModelObj.time!,
+                                model.time!,
                                 style: theme.textTheme.titleSmall,
                               ),
                               SizedBox(height: 4.v),
                               Text(
-                                seeAllTicetsItemModelObj.destination!,
+                                model.destination!,
                                 style:
                                     CustomTextStyles.titleSmallPrimaryContainer,
                               )
@@ -92,12 +112,12 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                seeAllTicetsItemModelObj.time1!,
+                                model.time1!,
                                 style: theme.textTheme.titleSmall,
                               ),
                               SizedBox(height: 4.v),
                               Text(
-                                seeAllTicetsItemModelObj.destination1!,
+                                model.destination1!,
                                 style:
                                     CustomTextStyles.titleSmallPrimaryContainer,
                               )
@@ -136,6 +156,7 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
                 ),
               ),
             ),
+            model.badge !=null ?
             Align(
               alignment: Alignment.topLeft,
               child: Container(
@@ -148,11 +169,14 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
                   borderRadius: BorderRadiusStyle.roundedBorder8,
                 ),
                 child: Text(
-                  seeAllTicetsItemModelObj.buttonsmall!,
+                  model.badge??'',
                   style: theme.textTheme.titleSmall,
                 ),
               ),
-            )
+            ):SizedBox.shrink(),
+
+
+
           ],
         ),
       ),
