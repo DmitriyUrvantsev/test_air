@@ -18,12 +18,12 @@ class SettingsItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<K1Provider>(context);
+    final provider = Provider.of<AirScreensProvider>(context);
     final dateFormat = DateFormat('dd MMM, E', 'ru');
     return ElevatedButton(
       onPressed: () {
         if (chipsItemModelObj.onSelectDate != null && index == 0) {
-          Provider.of<K1Provider>(context, listen: false)
+          Provider.of<AirScreensProvider>(context, listen: false)
               .selectArrivalDateCallback((date) {
             if (onDateSelected != null) {
               onDateSelected!(date);
@@ -32,7 +32,7 @@ class SettingsItemWidget extends StatelessWidget {
         }
 
         if (chipsItemModelObj.onSelectDate != null && index == 1) {
-          Provider.of<K1Provider>(context, listen: false)
+          Provider.of<AirScreensProvider>(context, listen: false)
               .selectDepartureDateCallback((date) {
             if (onDateSelected != null) {
               onDateSelected!(date);
@@ -40,7 +40,7 @@ class SettingsItemWidget extends StatelessWidget {
           }, context);
         }
         if (index == 3) {
-          Provider.of<K1Provider>(context, listen: false).showFilters();
+          Provider.of<AirScreensProvider>(context, listen: false).showFilters();
         }
       },
       style: ElevatedButton.styleFrom(

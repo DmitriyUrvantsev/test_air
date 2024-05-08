@@ -28,7 +28,6 @@ class SeeAllTicetsPage extends StatelessWidget {
         child: Scaffold(
           appBar: _buildAppBar(context),
           body: Container(
-            // height: 596.v,
             width: double.maxFinite,
             padding: EdgeInsets.only(top: 16.h),
             child: Stack(
@@ -60,7 +59,7 @@ class SeeAllTicetsPage extends StatelessWidget {
           ),
           child: Container(
             height: 590.v,
-            child: Consumer<K1Provider>(
+            child: Consumer<AirScreensProvider>(
               builder: (context, provider, child) {
                 return ListView.separated(
                   physics: AlwaysScrollableScrollPhysics(),
@@ -70,10 +69,10 @@ class SeeAllTicetsPage extends StatelessWidget {
                       height: 14.v,
                     );
                   },
-                  itemCount:
-                      provider.tickets?.tickets?.length??0,
+                  itemCount: provider.tickets?.tickets?.length ?? 0,
                   itemBuilder: (context, index) {
-                    Tickets model = provider.tickets?.tickets?[index]??Tickets();
+                    Tickets model =
+                        provider.tickets?.tickets?[index] ?? Tickets();
                     return SeeAllTicetsItemWidget(
                       model,
                     );
@@ -152,7 +151,7 @@ class SeeAllTicetsPage extends StatelessWidget {
 
   /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
-    final provider = context.read<K1Provider>();
+    final provider = context.read<AirScreensProvider>();
     final String direction =
         '${provider.departureCity}-${provider.arrivalCity}';
     final dateFormat = DateFormat('dd MMMM', 'ru');
@@ -218,7 +217,7 @@ class SeeAllTicetsPage extends StatelessWidget {
   ) {
     switch (currentRoute) {
       case AppRoutes.airMainPage:
-        return AirMainPage.builder(context);
+        return AirMainPage();
       default:
         return DefaultWidget();
     }

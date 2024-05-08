@@ -22,13 +22,13 @@ class MyApp extends StatelessWidget {
       builder: (context, orientation, deviceType) {
         return MultiProvider(
           providers: [
-            ChangeNotifierProvider(create: (context) => K1Provider()),
+            ChangeNotifierProvider(create: (context) => AirScreensProvider()),
             ChangeNotifierProvider(create: (context) => ThemeProvider()),
           ],
           child: Consumer<ThemeProvider>(
             builder: (context, provider, child) {
               return MaterialApp(
-                title: 'urvandeniss_s_1',
+                title: 'air_test',
                 debugShowCheckedModeBanner: false,
                 theme: theme,
                 navigatorKey: NavigatorService.navigatorKey,
@@ -38,7 +38,10 @@ class MyApp extends StatelessWidget {
                   GlobalWidgetsLocalizations.delegate,
                   GlobalCupertinoLocalizations.delegate
                 ],
-                supportedLocales: [Locale('en', '')],
+                 supportedLocales: const [
+                  Locale('en', ''),
+                  Locale('ru', ''),
+                ],
                 initialRoute: AppRoutes.initialRoute,
                 routes: AppRoutes.routes,
               );

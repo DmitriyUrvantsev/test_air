@@ -8,22 +8,19 @@ import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_switch.dart';
 import '../provider/air_main_provider.dart';
 
-
-
 class FiltersPage extends StatelessWidget {
   const FiltersPage({super.key});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: PopScope(
- canPop: false,
+        canPop: false,
         onPopInvoked: (bool didPop) {
           if (didPop) {
             return;
           }
           goBack();
         },
-
         child: Scaffold(
           appBar: _buildAppBar(context),
           body: Container(
@@ -42,7 +39,6 @@ class FiltersPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 14.v),
-                // Text('Без пересадок'),
                 _buildStackBaggage(context),
                 SizedBox(height: 15.v),
                 _buildRowTransfers(context),
@@ -119,14 +115,16 @@ class FiltersPage extends StatelessWidget {
                       style: theme.textTheme.bodyLarge,
                     ),
                   ),
-                  Selector<K1Provider, bool?>(
+                  Selector<AirScreensProvider, bool?>(
                     selector: (context, provider) => provider.isSelectedSwitch,
                     builder: (context, isSelectedSwitch, child) {
                       return CustomSwitch(
                         margin: EdgeInsets.only(bottom: 89.v),
                         value: isSelectedSwitch,
                         onChange: (value) {
-                          context.read<K1Provider>().changeSwitchBox(value);
+                          context
+                              .read<AirScreensProvider>()
+                              .changeSwitchBox(value);
                         },
                       );
                     },
@@ -153,13 +151,13 @@ class FiltersPage extends StatelessWidget {
             "msg".tr,
             style: theme.textTheme.bodyLarge,
           ),
-          Selector<K1Provider, bool?>(
+          Selector<AirScreensProvider, bool?>(
             selector: (context, provider) => provider.isSelectedSwitch1,
             builder: (context, isSelectedSwitch1, child) {
               return CustomSwitch(
                 value: isSelectedSwitch1,
                 onChange: (value) {
-                  context.read<K1Provider>().changeSwitchBox1(value);
+                  context.read<AirScreensProvider>().changeSwitchBox1(value);
                 },
               );
             },
@@ -171,7 +169,6 @@ class FiltersPage extends StatelessWidget {
 
   /// Section Widget
   Widget _buildButtonDone(BuildContext context) {
-   
     return CustomElevatedButton(
       onPressed: () => goBack(),
       height: 48.v,
@@ -184,9 +181,9 @@ class FiltersPage extends StatelessWidget {
       buttonStyle: CustomButtonStyles.fillErrorContainer,
     );
   }
-  
- /// Navigates to the previous screen.
-    void goBack() {
+
+  /// Navigates to the previous screen.
+  void goBack() {
     NavigatorService.popAndPushNamed(AppRoutes.selectCountry);
   }
 }

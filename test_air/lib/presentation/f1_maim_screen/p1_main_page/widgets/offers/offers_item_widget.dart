@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../../core/app_export.dart';
-import '../../../../domain/offer.dart';
-import '../../provider/air_main_provider.dart';
-import '../models/offer_image_model.dart';
+import '../../../../../core/app_export.dart';
+import '../../../../../domain/offer.dart';
+import '../../../provider/air_main_provider.dart';
+import '../../models/data/offer_image_model.dart';
 
 class OffersItemWidget extends StatelessWidget {
   final Offers model;
@@ -11,7 +11,7 @@ class OffersItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<K1Provider>();
+    final provider = context.read<AirScreensProvider>();
     int? id = model.id ?? 1;
     String? price = model.price!.value.toString().replaceAllMapped(
               RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
@@ -29,8 +29,8 @@ class OffersItemWidget extends StatelessWidget {
       return itemList.isNotEmpty ? itemList.last : OfferImageModel();
     }
 
-    OfferImageModel result =
-        getOfferImageByIdOrLast(provider.k1ModelObj.userprofileItemList, id);
+    OfferImageModel result = getOfferImageByIdOrLast(
+        provider.mainPageModelObj.offerImageItemList, id);
     print(result.offerImage);
     return SizedBox(
       width: 132.h,

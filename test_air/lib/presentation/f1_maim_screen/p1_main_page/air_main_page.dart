@@ -5,31 +5,16 @@ import '../../../core/app_export.dart';
 
 import '../provider/air_main_provider.dart';
 import 'widgets/departure_field_widget.dart';
-import 'widgets/offers_item_widget.dart';
+import 'widgets/offers/offers_item_widget.dart';
 
-class AirMainPage extends StatefulWidget {
-  const AirMainPage({Key? key}) : super(key: key);
-
-  @override
-  AirMainPageState createState() => AirMainPageState();
-
-  static Widget builder(BuildContext context) {
-    return AirMainPage();
-  }
-}
-
-class AirMainPageState extends State<AirMainPage> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class AirMainPage extends StatelessWidget {
+  const AirMainPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        //appBar: _buildAppBar(context),
         body: SizedBox(
           width: SizeUtils.width,
           child: SingleChildScrollView(
@@ -80,17 +65,8 @@ class AirMainPageState extends State<AirMainPage> {
     );
   }
 
-  // PreferredSizeWidget _buildAppBar(BuildContext context) {
-  //   return CustomAppBar(
-  //     centerTitle: true,
-  //     title: AppbarTitle(
-  //       text: "msg2".tr,
-  //     ),
-  //   );
-  // }
-
   Widget _buildTextField(BuildContext context) {
-    final provider = context.read<K1Provider>();
+    final provider = context.read<AirScreensProvider>();
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.h),
       padding: EdgeInsets.all(16.h),
@@ -133,7 +109,7 @@ class AirMainPageState extends State<AirMainPage> {
                     ),
                     SizedBox(height: 8.v),
                     GestureDetector(
-                      onTap: () => provider.nextStep(context),
+                      onTap: () => provider.showBottomSheetDialog(context),
                       child: Text(
                         "lbl7".tr,
                         style: CustomTextStyles.titleMediumPrimaryContainer,
@@ -152,7 +128,7 @@ class AirMainPageState extends State<AirMainPage> {
   Widget _buildOffersSection(BuildContext context) {
     return SizedBox(
       height: 223.v,
-      child: Consumer<K1Provider>(
+      child: Consumer<AirScreensProvider>(
         builder: (context, provider, child) {
           return ListView.separated(
             padding: EdgeInsets.only(left: 16.h),

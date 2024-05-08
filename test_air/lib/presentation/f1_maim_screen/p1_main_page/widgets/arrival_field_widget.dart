@@ -12,14 +12,14 @@ class ArrivalFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<K1Provider>();
+    final provider = context.read<AirScreensProvider>();
     return Expanded(
       child: Padding(
         padding: EdgeInsets.only(
           //left: 8.h,
           bottom: 2.v,
         ),
-        child: Selector<K1Provider, TextEditingController?>(
+        child: Selector<AirScreensProvider, TextEditingController?>(
           selector: (context, provider) => provider.arrivalController,
           builder: (context, arrivalController, child) {
             // final provider = context.read<K1Provider>();
@@ -27,19 +27,20 @@ class ArrivalFieldWidget extends StatelessWidget {
               controller: arrivalController,
               hintText: "lbl7".tr,
               hintStyle: CustomTextStyles.titleMediumPrimaryContainer,
-              
               inputLanguageCode: 'ru',
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(
-                    r'[а-яА-Я]')),     ],
+                FilteringTextInputFormatter.allow(RegExp(r'[а-яА-Я]')),
+              ],
               textInputAction: TextInputAction.done,
               contentPadding: EdgeInsets.symmetric(horizontal: 1.h),
               borderDecoration: InputBorder.none,
               onSubmitted: (p0) => {
                 //print('p0!!!!!!!!!!!!! $p0'),
-                
-                if(arrivalController!.text.isNotEmpty){provider.showSelectCountry(),}
-                
+
+                if (arrivalController!.text.isNotEmpty)
+                  {
+                    provider.showSelectCountry(),
+                  }
               },
             );
           },

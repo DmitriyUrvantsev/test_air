@@ -18,12 +18,11 @@ class DepartureFieldWidget extends StatelessWidget {
           //left: 8.h,
           bottom: 2.v,
         ),
-        child: Selector<K1Provider, TextEditingController?>(
+        child: Selector<AirScreensProvider, TextEditingController?>(
           selector: (context, provider) => provider.departureController,
           builder: (context, departureController, child) {
-            final provider = context.read<K1Provider>();
+            final provider = context.read<AirScreensProvider>();
             return CustomTextFormField(
-              
               controller: departureController,
               hintText: provider.departureCity ?? "lbl6".tr,
               hintStyle: provider.departureCity == "lbl6".tr

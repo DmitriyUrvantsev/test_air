@@ -5,7 +5,6 @@ import '../../../../core/app_export.dart';
 import '../../../../domain/offers_tickets.dart';
 import '../../provider/air_main_provider.dart';
 
-
 class DirectFlightsWidget extends StatelessWidget {
   final TicketsOffers model;
   final int index;
@@ -15,7 +14,7 @@ class DirectFlightsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<K1Provider>();
+    final provider = context.read<AirScreensProvider>();
 
     String? price = model.price!.value.toString().replaceAllMapped(
               RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
@@ -39,7 +38,8 @@ class DirectFlightsWidget extends StatelessWidget {
             width: 24.adaptSize,
             margin: EdgeInsets.only(bottom: 14.v),
             decoration: BoxDecoration(
-              color: provider.k4ModelObj.directFlightsList[index].circleColor,
+              color: provider
+                  .selectCountryModelObj.directFlightsList[index].circleColor,
               borderRadius: BorderRadius.circular(
                 12.h,
               ),

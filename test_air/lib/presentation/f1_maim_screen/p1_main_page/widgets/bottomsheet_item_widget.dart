@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import '../../../../core/app_export.dart';
-import '../models/scr2_item_model.dart';
+import '../models/data/bottomsheet_item_model.dart';
 import '../../provider/air_main_provider.dart';
 
-class Scr2ItemWidget extends StatelessWidget {
-  final Scr2ItemModel scr2ItemModelObj;
+class BottomsheetItemWidget extends StatelessWidget {
+  final BottomsheetItemModel scr2ItemModelObj;
 
-  const Scr2ItemWidget(this.scr2ItemModelObj, {Key? key}) : super(key: key);
+  const BottomsheetItemWidget(this.scr2ItemModelObj, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<K1Provider>();
+    final provider = context.read<AirScreensProvider>();
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Stack(

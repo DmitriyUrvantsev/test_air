@@ -16,33 +16,29 @@ import '../presentation/f3_placeholders/s4_profile.dart';
 
 class AppRoutes {
   static const String pageBuilderScreen = '/';
-
+// ----------------tabs ----------------------
   static const String airMainPage = '/air_main_page';
   static const String hotels = '/hotels';
   static const String short = '/short';
   static const String subscr = '/subscr';
   static const String profile = '/profile';
-  //-------------DifficultRoute--------------
+  //--------------stubs-----------------------
   static const String difficultRoute = '/difficultRoute';
   static const String anywhere = '/anywhere';
   static const String weekend = '/weekend';
   static const String hotTickets = '/hotTickets';
-
-  //static const String k1Page = '/k1_page';
-
+//--------------airMainPage-----------------------
   static const String selectCountry = '/selectCountry';
   static const String filtersScreen = '/filtersScreen';
-
   static const String seeAllTicets = '/k5_screen';
 
-  //static const String appNavigationScreen = '/app_navigation_screen';
+
 
   static const String initialRoute = '/initialRoute';
 
   static Map<String, WidgetBuilder> get routes => {
         pageBuilderScreen: PageBuilderScreen.builder,
-
-        airMainPage: AirMainPage.builder,
+        airMainPage: (context) => AirMainPage(),
         hotels: (context) => HotelsPage(),
         short: (context) => ShorterPage(),
         subscr: (context) => SubscriptionPage(),
@@ -52,13 +48,9 @@ class AppRoutes {
         anywhere: (context) => Anywhere(),
         weekend: (context) => Weekend(),
         hotTickets: (context) => HotTickets(),
-
-
-
         filtersScreen: (context) => FiltersPage(),
         selectCountry: (context) => SelectCountryPage(),
         seeAllTicets: (context) => SeeAllTicetsPage(),
-        // appNavigationScreen: AppNavigationScreen.builder,
         initialRoute: PageBuilderScreen.builder
       };
 }

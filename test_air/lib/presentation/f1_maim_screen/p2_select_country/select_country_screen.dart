@@ -19,7 +19,6 @@ class SelectCountryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -56,7 +55,7 @@ class SelectCountryPage extends StatelessWidget {
   // -------Section Widget---------------------
 
   Widget _buildTextFields(BuildContext context) {
-    final provider = context.read<K1Provider>();
+    final provider = context.read<AirScreensProvider>();
     return Card(
       clipBehavior: Clip.antiAlias,
       elevation: 0,
@@ -141,27 +140,21 @@ class SelectCountryPage extends StatelessWidget {
 
   /// Section Widget
   Widget _buildSettingsSection(BuildContext context) {
-    return Consumer<K1Provider>(
+    return Consumer<AirScreensProvider>(
       builder: (context, provider, child) {
         return SizedBox(
           height: 33.v, // Замените эту высоту на необходимую
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: provider.k4ModelObj.settingsItemList.length,
+            itemCount: provider.selectCountryModelObj.settingsItemList.length,
             itemBuilder: (context, index) {
               SettingItemModel model =
-                  provider.k4ModelObj.settingsItemList[index];
+                  provider.selectCountryModelObj.settingsItemList[index];
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: SettingsItemWidget(
-                  index: index, chipsItemModelObj: model,
-                  //                 onDateSelected: (date) {
-                  //   // Обработка выбранной даты здесь
-                  //   print('Selected date: $date');
-                  // },
-                  // onSelectedChipView: (value) {
-                  //   // provider.onSelectedChipView(index, value);
-                  // },
+                  index: index,
+                  chipsItemModelObj: model,
                 ),
               );
             },
@@ -173,7 +166,7 @@ class SelectCountryPage extends StatelessWidget {
 
   ///---------  _buildDirectFlights(---------------
   Widget _buildDirectFlights(BuildContext context) {
-    final provider = context.read<K1Provider>();
+    final provider = context.read<AirScreensProvider>();
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 16.h,
@@ -195,9 +188,7 @@ class SelectCountryPage extends StatelessWidget {
 
 //------------------
           Container(
-            // margin: EdgeInsets.only(left: 10.h),
             padding: EdgeInsets.only(top: 10.h),
-
             child: ListView.separated(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -206,9 +197,10 @@ class SelectCountryPage extends StatelessWidget {
                   height: 8.v,
                 );
               },
-              itemCount: provider.k4ModelObj.directFlightsList.length >= 3
-                  ? 3
-                  : provider.k4ModelObj.directFlightsList.length,
+              itemCount:
+                  provider.selectCountryModelObj.directFlightsList.length >= 3
+                      ? 3
+                      : provider.selectCountryModelObj.directFlightsList.length,
               itemBuilder: (context, index) {
                 TicketsOffers model =
                     provider.offersTickets?.ticketsOffers?[index] ??
@@ -260,14 +252,14 @@ class SelectCountryPage extends StatelessWidget {
             ),
           ),
           Spacer(),
-          Selector<K1Provider, bool?>(
+          Selector<AirScreensProvider, bool?>(
             selector: (context, provider) => provider.isSelectedSwitch,
             builder: (context, isSelectedSwitch, child) {
               return CustomSwitch(
                 margin: EdgeInsets.only(bottom: 1.v),
                 value: isSelectedSwitch,
                 onChange: (value) {
-                  context.read<K1Provider>().changeSwitchBox(value);
+                  context.read<AirScreensProvider>().changeSwitchBox(value);
                 },
               );
             },
@@ -303,7 +295,7 @@ class SelectCountryPage extends StatelessWidget {
   ) {
     switch (currentRoute) {
       case AppRoutes.airMainPage:
-        return AirMainPage.builder(context);
+        return AirMainPage();
       default:
         return DefaultWidget();
     }

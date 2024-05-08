@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import '../../../../core/app_export.dart';
 import '../../../../widgets/custom_icon_button.dart';
-import '../models/view_tips_item_model.dart';
-import '../../provider/air_main_provider.dart'; // 
+import '../models/data/view_tips_item_model.dart';
+import '../../provider/air_main_provider.dart'; //
 // ignore_for_file: must_be_immutable
-
 
 class ViewTipsItemWidget extends StatelessWidget {
   ViewTipsItemWidget(this.viewTipsItemModelObj, {Key? key})
@@ -16,7 +16,7 @@ class ViewTipsItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<K1Provider>();
+    final provider = context.read<AirScreensProvider>();
     return SizedBox(
       // width: 62.h,
       child: Column(
@@ -42,15 +42,17 @@ class ViewTipsItemWidget extends StatelessWidget {
             ),
           ),
           SizedBox(height: 7.v),
-          SizedBox(
-            width: 76.h,
-            child: Text(
-              viewTipsItemModelObj.complexRouteTex!,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-              textAlign: TextAlign.center,
-              style: theme.textTheme.bodyMedium!
-                  .copyWith(height: 1.20, fontSize: 15),
+          Expanded(
+            child: SizedBox(
+              width: 76.h,
+              child: Text(
+                viewTipsItemModelObj.complexRouteTex!,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodyMedium!
+                    .copyWith(height: 1.20, fontSize: 15),
+              ),
             ),
           )
         ],

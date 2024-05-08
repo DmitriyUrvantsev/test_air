@@ -7,17 +7,19 @@ import '../../../domain/offers_tickets.dart';
 import '../../../services/api_client.dart';
 import '../p2_select_country/models/select_country_model.dart';
 import '../p4_see_all_tickets/models/k5_model.dart';
-import '../p1_main_page/k3_bottomsheet.dart';
-import '../p1_main_page/models/k1_model.dart';
+import '../p1_main_page/bottomsheet.dart';
+import '../p1_main_page/models/p1_model.dart';
 
-/// A provider class for the K1Page.
-///
-/// This provider manages the state of the K1Page, including the
-/// current k1ModelObj
-// ignore_for_file: must_be_immutable
 
-class K1Provider extends ChangeNotifier {
+class AirScreensProvider extends ChangeNotifier {
+  final PrefUtils _prefUtils = PrefUtils();
   final _apiClient = ApiClient();
+  //
+  PageMainModel mainPageModelObj = PageMainModel();
+  SelectCountryModel selectCountryModelObj = SelectCountryModel();
+  SeeAllTicetsModel seeAllTicetsModelObj = SeeAllTicetsModel();
+
+  ///--------------API loading------------------------
   Offer? _offers;
   Offer? get offers => _offers;
   OffersTickets? _offersTickets;
@@ -26,96 +28,78 @@ class K1Provider extends ChangeNotifier {
   AllTickets? get tickets => _tickets;
 //
 //
-
-  final PrefUtils _prefUtils = PrefUtils();
+  ///--------------Departure-Arrival ------------------------
   TextEditingController departureController = TextEditingController();
-  TextEditingController arrivalController = TextEditingController(); //!======
-
-  K1Model k1ModelObj = K1Model();
-  SelectCountryModel k4ModelObj = SelectCountryModel();
-  SeeAllTicetsModel seeAllTicetsModelObj = SeeAllTicetsModel();
+  TextEditingController arrivalController = TextEditingController();
+//
   String? _departureCity;
   String? get departureCity => _departureCity;
-
+//
   String? _arrivalCity;
   String? get arrivalCity => _arrivalCity;
 
-  K1Provider() {
+  ///=============================================================================
+  AirScreensProvider() {
     setup();
-
     _selectedDepartureDate = DateTime.now();
   }
 
+  ///=============================================================================
+  ///
+  ///
+  ///
   void setup() {
-    //_prefUtils.clearPreferencesData();
     final savedDepartureCity = _prefUtils.getdepartureCity();
+    _departureCity =
+        savedDepartureCity != "" ? _prefUtils.getdepartureCity() : "lbl6".tr;
 
-    _departureCity = savedDepartureCity != "" //"lbl6".tr
-        ? _prefUtils.getdepartureCity()
-        : "lbl6".tr;
-    // print(_departureCity);
     loadOffersData();
     loadOffersTicketsPost();
     loadAllTicketsPost();
   }
 
+  ///-------------------API loading-----------------------------------------------
   Future<void> loadOffersData() async {
     try {
       _offers = await _apiClient.getOffersPost();
-      //print('_offers!!!!! ${_offers?.offers?.first.title}');
       notifyListeners();
     } catch (e) {}
   }
-
+//
   Future<void> loadOffersTicketsPost() async {
     try {
       _offersTickets = await _apiClient.getOffersTicketsPost();
-
       notifyListeners();
     } catch (e) {}
   }
-
+//
   Future<void> loadAllTicketsPost() async {
     try {
       _tickets = await _apiClient.getAllTicketsPost();
-
       notifyListeners();
     } catch (e) {}
   }
-
+//--------
+//
+//
+//
+//
+  ///--------------Departure-Arrival ------------------------
   void savedepartureCity() {
     _departureCity = departureController.text.isNotEmpty
         ? '${departureController.text.trim().substring(0, 1).toUpperCase()}${departureController.text.trim().substring(1).toLowerCase()}'
         : "lbl6".tr;
     _prefUtils.setdepartureCity(_departureCity ?? "lbl6".tr);
-
-    print(_departureCity);
   }
-
+//
   void setArrivalCity(String city) {
     _arrivalCity = city;
     arrivalController.text = city;
     print(_arrivalCity);
-    notifyListeners(); // Уведомляем слушателей об изменении состояния
+    notifyListeners();
   }
-
-  void nextStep(context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return Dialog(
-          insetPadding: EdgeInsets.all(0), // Убираем внутренние отступы
-          child: SizedBox(
-            // Ограничиваем размеры AlertDialog
-            width: double.infinity, // Занимает всю ширину экрана
-            child: K3BottomSheet(), // Ваш виджет K3BottomSheet
-          ),
-        );
-      },
-    );
-  }
-
-  void swapCities() {
+//
+  void swapCities() {// Приключения убытия прибытия местами
     String? temp = _departureCity;
     _departureCity = _arrivalCity;
     _arrivalCity = temp;
@@ -123,12 +107,14 @@ class K1Provider extends ChangeNotifier {
     arrivalController.text = _arrivalCity ?? '';
     notifyListeners();
   }
-
-//========================календарь=============================================
-//========================календарь=============================================
-//========================календарь=============================================
-//========================календарь=============================================
-//========================календарь=============================================
+  //--------
+//
+//
+//
+//
+//
+//
+//
 //========================календарь=============================================
   final dateFormat = DateFormat('dd MMM, E', 'ru');
   DateTime _selectedDepartureDate = DateTime.now();
@@ -141,10 +127,7 @@ class K1Provider extends ChangeNotifier {
   bool _isArrivalDate = false;
   bool get isArrivalDate => _isArrivalDate;
 //
-
 //
-//
-
   void selectDepartureDateCallback(
       void Function(DateTime) callback, context) async {
     final DateTime? selectedDate = await showDatePicker(
@@ -153,19 +136,14 @@ class K1Provider extends ChangeNotifier {
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
     );
-
     if (selectedDate != null) {
       _selectedDepartureDate = selectedDate;
-
       _isDepartureDate = true;
-
-      print('_selectedDepartureDate!!!!!!!!!! $_selectedDepartureDate');
-
       notifyListeners();
       callback(selectedDate);
     }
   }
-
+//
   void selectArrivalDateCallback(
       void Function(DateTime) callback, context) async {
     final DateTime? selectedDate = await showDatePicker(
@@ -183,37 +161,50 @@ class K1Provider extends ChangeNotifier {
       callback(selectedDate);
     }
   }
-
-//========================календарь=============================================
 //
 //
 //
 //------------------------фильтры-----------------------------------------------
   bool isSelectedSwitch = false;
   bool isSelectedSwitch1 = false;
-  //
+//
   void changeSwitchBox(bool value) {
     isSelectedSwitch = value;
     notifyListeners();
   }
-
 //
   void changeSwitchBox1(bool value) {
     isSelectedSwitch1 = value;
     notifyListeners();
   }
-
-//------------------------навигация-----------------------------------------------
 //
+//
+//
+//------------------------навигация-----------------------------------------------
+ void showBottomSheetDialog(context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          insetPadding: EdgeInsets.all(0), // Убираем внутренние отступы
+          child: SizedBox(
+            // Ограничиваем размеры AlertDialog
+            width: double.infinity, // Занимает всю ширину экрана
+            child: BottomSheetPage(), // Ваш виджет K3BottomSheet
+          ),
+        );
+      },
+    );
+  }
 //
   void showSelectCountry() {
     NavigatorService.popAndPushNamed(AppRoutes.selectCountry);
   }
-
+//
   void showFilters() {
     NavigatorService.popAndPushNamed(AppRoutes.filtersScreen);
   }
-
+//
   void goBack() {
     NavigatorService.goBack();
   }

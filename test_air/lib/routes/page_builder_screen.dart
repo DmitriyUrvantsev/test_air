@@ -7,6 +7,8 @@ import '../presentation/f1_maim_screen/p1_main_page/air_main_page.dart';
 import '../presentation/f3_placeholders/s2_shorter.dart';
 import '../presentation/f3_placeholders/s3_subscription.dart';
 
+
+
 class PageBuilderScreen extends StatefulWidget {
   const PageBuilderScreen({Key? key})
       : super(
@@ -22,7 +24,7 @@ class PageBuilderScreen extends StatefulWidget {
 // ignore_for_file: must_be_immutable
 
 class PageBuilderScreenState extends State<PageBuilderScreen> {
-  GlobalKey<NavigatorState> navigatorKey = GlobalKey();
+ GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
   void initState() {
@@ -90,7 +92,7 @@ class PageBuilderScreenState extends State<PageBuilderScreen> {
   ) {
     switch (currentRoute) {
       case AppRoutes.airMainPage:
-        return AirMainPage.builder(context);
+        return AirMainPage();
 
       case AppRoutes.hotels:
         return HotelsPage();

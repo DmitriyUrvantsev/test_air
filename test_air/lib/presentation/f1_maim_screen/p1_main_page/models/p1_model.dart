@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/app_export.dart';
-import 'scr2_item_model.dart';
-import 'offer_image_model.dart';
-import 'view_tips_item_model.dart'; // ignore_for_file: must_be_immutable
+import 'data/bottomsheet_item_model.dart';
+import 'data/offer_image_model.dart';
+import 'data/view_tips_item_model.dart'; // ignore_for_file: must_be_immutable
 
-// ignore_for_file: 
-class K1Model {
-  List<OfferImageModel> userprofileItemList = [
+// ignore_for_file:
+class PageMainModel {
+  List<OfferImageModel> offerImageItemList = [
     OfferImageModel(offerImage: ImageConstant.imgRectangle287, id: 1),
     OfferImageModel(offerImage: ImageConstant.imgRectangle287133x132, id: 2),
     OfferImageModel(offerImage: ImageConstant.imgRectangle2871, id: 3)
@@ -37,16 +37,16 @@ class K1Model {
         complexRouteTex: "Горячие билеты")
   ];
 
-  List<Scr2ItemModel> scr2ItemList = [
-    Scr2ItemModel(
+  List<BottomsheetItemModel> bottomsheetItemList = [
+    BottomsheetItemModel(
         userImage: ImageConstant.imgRectangle288,
         username: "Стамбул",
         description: "Популярное направление"),
-    Scr2ItemModel(
+    BottomsheetItemModel(
         userImage: ImageConstant.imgRectangle28840x40,
         username: "Сочи",
         description: "Популярное направление"),
-    Scr2ItemModel(
+    BottomsheetItemModel(
         userImage: ImageConstant.imgRectangle2881,
         username: "Пхукет",
         description: "Популярное направление")
