@@ -40,7 +40,7 @@ class SettingsItemWidget extends StatelessWidget {
           }, context);
         }
         if (index == 3) {
-          Provider.of<AirScreensProvider>(context, listen: false).showFilters();
+          provider.showFilters();
         }
       },
       style: ElevatedButton.styleFrom(

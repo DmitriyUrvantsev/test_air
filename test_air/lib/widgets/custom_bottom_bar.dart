@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import '../core/app_export.dart';
+import '../presentation/f1_maim_screen/provider/air_main_provider.dart';
 
 enum BottomBarEnum { air, hotel, short, subscr, profile }
 // ignore_for_file: must_be_immutable
 
 // ignore_for_file: 
 class CustomBottomBar extends StatefulWidget {
-  CustomBottomBar({this.onChanged});
+  CustomBottomBar({this.onChanged, required int currentIndex});
 
   Function(BottomBarEnum)? onChanged;
 
   @override
   CustomBottomBarState createState() => CustomBottomBarState();
 }
-// ignore_for_file: 
 
-// ignore_for_file: 
 class CustomBottomBarState extends State<CustomBottomBar> {
-  int selectedIndex = 0;
+    late AirScreensProvider provider;
+ // int selectedIndex = 0;
 
   List<BottomMenuModel> bottomMenuList = [
     BottomMenuModel(
@@ -57,6 +57,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
 
   @override
   Widget build(BuildContext context) {
+     provider = context.watch<AirScreensProvider>();
     return Container(
       height: 100.v,
       decoration: BoxDecoration(
@@ -85,7 +86,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
         showUnselectedLabels: false,
         selectedFontSize: 0,
         elevation: 0,
-        currentIndex: selectedIndex,
+        currentIndex: provider.currentIndex,
         type: BottomNavigationBarType.fixed,
         items: List.generate(bottomMenuList.length, (index) {
           return BottomNavigationBarItem(
@@ -136,11 +137,29 @@ class CustomBottomBarState extends State<CustomBottomBar> {
             label: '',
           );
         }),
-        onTap: (index) {
-          selectedIndex = index;
-          widget.onChanged?.call(bottomMenuList[index].type);
-          setState(() {});
-        },
+         onTap: (index) {
+  BottomBarEnum selectedTab;
+  switch (index) {
+    case 0:
+      selectedTab = BottomBarEnum.air;
+      break;
+    case 1:
+      selectedTab = BottomBarEnum.hotel;
+      break;
+    case 2:
+      selectedTab = BottomBarEnum.short;
+      break;
+    case 3:
+      selectedTab = BottomBarEnum.subscr;
+      break;
+    case 4:
+      selectedTab = BottomBarEnum.profile;
+      break;
+    default:
+      selectedTab = BottomBarEnum.air; // В случае, если индекс неверный
+  }
+  provider.changeIndex(selectedTab);
+},
       ),
     );
   }

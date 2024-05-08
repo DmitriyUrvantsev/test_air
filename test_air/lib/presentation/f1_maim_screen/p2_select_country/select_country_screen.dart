@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import '../../../core/app_export.dart';
 import '../../../domain/offers_tickets.dart';
 import '../../../theme/custom_button_style.dart';
-import '../../../widgets/custom_bottom_bar.dart';
 import '../../../widgets/custom_elevated_button.dart';
 import '../../../widgets/custom_switch.dart';
-import '../p1_main_page/air_main_page.dart';
 import '../provider/air_main_provider.dart';
 import '../p1_main_page/widgets/arrival_field_widget.dart';
 import '../p1_main_page/widgets/departure_field_widget.dart';
@@ -19,35 +17,46 @@ class SelectCountryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.read<AirScreensProvider>();
+
     return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: Container(
-          width: double.maxFinite,
-          padding: EdgeInsets.symmetric(
-            horizontal: 16.h,
-            //vertical: 39.v,
+      child: PopScope(
+        canPop: false,
+        onPopInvoked: (bool didPop) {
+          if (didPop) {
+            return;
+          }
+          provider.showBottomSheetDialog(context);
+        },
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: Container(
+            width: double.maxFinite,
+            padding: EdgeInsets.symmetric(
+              horizontal: 16.h,
+              //vertical: 39.v,
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 8.v),
+                _buildTextFields(context),
+                SizedBox(height: 13.v),
+                _buildSettingsSection(context),
+                SizedBox(height: 12.v),
+                _buildDirectFlights(context),
+                SizedBox(height: 23.v),
+                CustomElevatedButton(
+                  onPressed: () => provider.onSeeAllTicets(),
+                  text: "msg8".tr,
+                  buttonStyle: CustomButtonStyles.fillBlue,
+                ),
+                SizedBox(height: 24.v),
+                _buildTicketSubscription(context)
+              ],
+            ),
           ),
-          child: Column(
-            children: [
-              SizedBox(height: 8.v),
-              _buildTextFields(context),
-              SizedBox(height: 13.v),
-              _buildSettingsSection(context),
-              SizedBox(height: 12.v),
-              _buildDirectFlights(context),
-              SizedBox(height: 23.v),
-              CustomElevatedButton(
-                onPressed: () => onSeeAllTicets(),
-                text: "msg8".tr,
-                buttonStyle: CustomButtonStyles.fillBlue,
-              ),
-              SizedBox(height: 24.v),
-              _buildTicketSubscription(context)
-            ],
-          ),
+          // bottomNavigationBar: _buildBottomBar(context),
         ),
-        bottomNavigationBar: _buildBottomBar(context),
       ),
     );
   }
@@ -82,7 +91,7 @@ class SelectCountryPage extends StatelessWidget {
               width: 24.adaptSize,
               //margin: EdgeInsets.symmetric(vertical: 17.v),
               onTap: () {
-                onTapImgArrowleftone(context);
+                provider.showBottomSheetDialog(context);
               },
             ),
             Expanded(
@@ -270,43 +279,34 @@ class SelectCountryPage extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
-    return CustomBottomBar(
-      onChanged: (BottomBarEnum type) {
-        Navigator.pushNamed(context, getCurrentRoute(type));
-      },
-    );
-  }
+  // Widget _buildBottomBar(BuildContext context) {
+  //   return CustomBottomBar(
+  //     onChanged: (BottomBarEnum type) {
+  //       Navigator.pushNamed(context, getCurrentRoute(type));
+  //     },
+  //   );
+  // }
 
-  ///!Handling route based on bottom click actions
-  String getCurrentRoute(BottomBarEnum type) {
-    switch (type) {
-      case BottomBarEnum.air:
-        return AppRoutes.airMainPage;
-      default:
-        return "/";
-    }
-  }
+  // ///!Handling route based on bottom click actions
+  // String getCurrentRoute(BottomBarEnum type) {
+  //   switch (type) {
+  //     case BottomBarEnum.air:
+  //       return AppRoutes.airMainPage;
+  //     default:
+  //       return "/";
+  //   }
+  // }
 
-  ///Handling page based on route
-  Widget getCurrentPage(
-    BuildContext context,
-    String currentRoute,
-  ) {
-    switch (currentRoute) {
-      case AppRoutes.airMainPage:
-        return AirMainPage();
-      default:
-        return DefaultWidget();
-    }
-  }
-
-  /// Navigates to the previous screen.
-  onTapImgArrowleftone(BuildContext context) {
-    NavigatorService.goBack();
-  }
-
-  onSeeAllTicets() {
-    NavigatorService.popAndPushNamed(AppRoutes.seeAllTicets);
-  }
+  // ///Handling page based on route
+  // Widget getCurrentPage(
+  //   BuildContext context,
+  //   String currentRoute,
+  // ) {
+  //   switch (currentRoute) {
+  //     case AppRoutes.airMainPage:
+  //       return AirMainPage();
+  //     default:
+  //       return DefaultWidget();
+  //   }
+  // }
 }

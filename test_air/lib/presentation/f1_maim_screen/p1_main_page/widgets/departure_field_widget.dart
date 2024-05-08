@@ -37,7 +37,6 @@ class DepartureFieldWidget extends StatelessWidget {
               contentPadding: EdgeInsets.symmetric(horizontal: 1.h),
               borderDecoration: InputBorder.none,
               onSubmitted: (p0) => {
-                print('p0!!!!!!!!!!!!! $p0'),
                 provider.savedepartureCity(),
               },
             );

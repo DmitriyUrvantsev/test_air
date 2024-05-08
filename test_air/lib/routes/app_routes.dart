@@ -1,18 +1,11 @@
 import 'package:flutter/material.dart';
 //import '../presentation/app_navigation_screen/app_navigation_screen.dart';
 import 'page_builder_screen.dart';
-import '../presentation/f1_maim_screen/p1_main_page/air_main_page.dart';
 import '../presentation/f1_maim_screen/p1_main_page/widgets/search_placeholders/anywhere.dart';
 import '../presentation/f1_maim_screen/p1_main_page/widgets/search_placeholders/difficult_route.dart';
 import '../presentation/f1_maim_screen/p1_main_page/widgets/search_placeholders/hotTickets.dart';
 import '../presentation/f1_maim_screen/p1_main_page/widgets/search_placeholders/weekend.dart';
-import '../presentation/f1_maim_screen/p3_filters/filters_screen.dart';
-import '../presentation/f1_maim_screen/p2_select_country/select_country_screen.dart';
-import '../presentation/f1_maim_screen/p4_see_all_tickets/see_all_ticets_screen.dart';
-import '../presentation/f3_placeholders/s1_hotels.dart';
-import '../presentation/f3_placeholders/s2_shorter.dart';
-import '../presentation/f3_placeholders/s3_subscription.dart';
-import '../presentation/f3_placeholders/s4_profile.dart';
+
 
 class AppRoutes {
   static const String pageBuilderScreen = '/';
@@ -37,20 +30,17 @@ class AppRoutes {
   static const String initialRoute = '/initialRoute';
 
   static Map<String, WidgetBuilder> get routes => {
-        pageBuilderScreen: PageBuilderScreen.builder,
-        airMainPage: (context) => AirMainPage(),
-        hotels: (context) => HotelsPage(),
-        short: (context) => ShorterPage(),
-        subscr: (context) => SubscriptionPage(),
-        profile: (context) => ProfilePage(),
+        pageBuilderScreen: (context) => PageBuilderScreen(),
+        // hotels: (context) => HotelsPage(),
+        // short: (context) =>  ShorterPage(),
+        // subscr: (context) => SubscriptionPage(),
+        // profile: (context) => ProfilePage(),
         //-------------DifficultRoute--------------
         difficultRoute: (context) => DifficultRoute(),
         anywhere: (context) => Anywhere(),
         weekend: (context) => Weekend(),
         hotTickets: (context) => HotTickets(),
-        filtersScreen: (context) => FiltersPage(),
-        selectCountry: (context) => SelectCountryPage(),
-        seeAllTicets: (context) => SeeAllTicetsPage(),
-        initialRoute: PageBuilderScreen.builder
+   
+        initialRoute: (context) => PageBuilderScreen()
       };
 }

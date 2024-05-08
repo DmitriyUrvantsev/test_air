@@ -29,6 +29,7 @@ class ViewTipsItemWidget extends StatelessWidget {
               } else {
                 provider
                     .setArrivalCity(viewTipsItemModelObj.complexRouteTex ?? '');
+                Navigator.of(context).pop();
                 provider.showSelectCountry();
               }
             },

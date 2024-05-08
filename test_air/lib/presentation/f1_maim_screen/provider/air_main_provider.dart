@@ -5,11 +5,15 @@ import '../../../domain/all_tickets.dart';
 import '../../../domain/offer.dart';
 import '../../../domain/offers_tickets.dart';
 import '../../../services/api_client.dart';
+import '../../../widgets/custom_bottom_bar.dart';
+import '../p1_main_page/air_main_page.dart';
 import '../p2_select_country/models/select_country_model.dart';
+import '../p2_select_country/select_country_screen.dart';
+import '../p3_filters/filters_screen.dart';
 import '../p4_see_all_tickets/models/k5_model.dart';
 import '../p1_main_page/bottomsheet.dart';
 import '../p1_main_page/models/p1_model.dart';
-
+import '../p4_see_all_tickets/see_all_ticets_screen.dart';
 
 class AirScreensProvider extends ChangeNotifier {
   final PrefUtils _prefUtils = PrefUtils();
@@ -37,6 +41,7 @@ class AirScreensProvider extends ChangeNotifier {
 //
   String? _arrivalCity;
   String? get arrivalCity => _arrivalCity;
+  //
 
   ///=============================================================================
   AirScreensProvider() {
@@ -65,6 +70,7 @@ class AirScreensProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {}
   }
+
 //
   Future<void> loadOffersTicketsPost() async {
     try {
@@ -72,6 +78,7 @@ class AirScreensProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {}
   }
+
 //
   Future<void> loadAllTicketsPost() async {
     try {
@@ -79,6 +86,7 @@ class AirScreensProvider extends ChangeNotifier {
       notifyListeners();
     } catch (e) {}
   }
+
 //--------
 //
 //
@@ -91,15 +99,18 @@ class AirScreensProvider extends ChangeNotifier {
         : "lbl6".tr;
     _prefUtils.setdepartureCity(_departureCity ?? "lbl6".tr);
   }
+
 //
   void setArrivalCity(String city) {
     _arrivalCity = city;
     arrivalController.text = city;
-    print(_arrivalCity);
+
     notifyListeners();
   }
+
 //
-  void swapCities() {// Приключения убытия прибытия местами
+  void swapCities() {
+    // Приключения убытия прибытия местами
     String? temp = _departureCity;
     _departureCity = _arrivalCity;
     _arrivalCity = temp;
@@ -107,6 +118,7 @@ class AirScreensProvider extends ChangeNotifier {
     arrivalController.text = _arrivalCity ?? '';
     notifyListeners();
   }
+
   //--------
 //
 //
@@ -143,6 +155,7 @@ class AirScreensProvider extends ChangeNotifier {
       callback(selectedDate);
     }
   }
+
 //
   void selectArrivalDateCallback(
       void Function(DateTime) callback, context) async {
@@ -156,11 +169,11 @@ class AirScreensProvider extends ChangeNotifier {
     if (selectedDate != null) {
       _selectedArrivalDate = selectedDate;
       _isArrivalDate = true;
-      print('_selectedArrivalDate!!!!!!!!!! $_selectedArrivalDate');
-      notifyListeners();
+            notifyListeners();
       callback(selectedDate);
     }
   }
+
 //
 //
 //
@@ -172,16 +185,78 @@ class AirScreensProvider extends ChangeNotifier {
     isSelectedSwitch = value;
     notifyListeners();
   }
+
 //
   void changeSwitchBox1(bool value) {
     isSelectedSwitch1 = value;
     notifyListeners();
   }
+
 //
 //
 //
-//------------------------навигация-----------------------------------------------
- void showBottomSheetDialog(context) {
+//------------------------навигация BottomBar-----------------------------------
+  // BottomBarEnum _currentScreen = BottomBarEnum.air;
+  // BottomBarEnum get currentScreen => _currentScreen;
+//
+  int _currentIndex = 0;
+  int get currentIndex => _currentIndex;
+//
+//
+  set currentIndex(int index) {
+    _currentIndex = index;
+    notifyListeners();
+  }
+
+  //
+  void changeIndex(BottomBarEnum screen) {
+    switch (screen) {
+      case BottomBarEnum.air:
+        _currentIndex = 0;
+        break;
+      case BottomBarEnum.hotel:
+        _currentIndex = 1;
+        break;
+      case BottomBarEnum.short:
+        _currentIndex = 2;
+
+        break;
+      case BottomBarEnum.subscr:
+        _currentIndex = 3;
+        break;
+      case BottomBarEnum.profile:
+        _currentIndex = 4;
+        break;
+    }
+    notifyListeners();
+  }
+//
+
+
+
+  void showSelectCountry() {
+    //NavigatorService.popAndPushNamed(AppRoutes.selectCountry);
+    _currentWidget = SelectCountryPage();
+    notifyListeners();
+  }
+
+  //
+  onSeeAllTicets() {
+    _currentWidget = SeeAllTicetsPage();
+    notifyListeners();
+  }
+
+  //
+  void showFilters() {
+    _currentWidget = FiltersPage();
+    notifyListeners();
+  }
+
+  //-----------------------Navigation Screens--------------------------------
+  Widget _currentWidget = AirMainPage();
+  Widget get currentWidget => _currentWidget;
+
+  void showBottomSheetDialog(context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -196,18 +271,15 @@ class AirScreensProvider extends ChangeNotifier {
       },
     );
   }
+
 //
-  void showSelectCountry() {
-    NavigatorService.popAndPushNamed(AppRoutes.selectCountry);
-  }
+
 //
-  void showFilters() {
-    NavigatorService.popAndPushNamed(AppRoutes.filtersScreen);
-  }
+
 //
-  void goBack() {
-    NavigatorService.goBack();
-  }
+  // void goBack() {
+  //   NavigatorService.goBack();
+  // }
 
   @override
   void dispose() {

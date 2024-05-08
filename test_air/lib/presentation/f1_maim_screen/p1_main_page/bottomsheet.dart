@@ -15,42 +15,51 @@ class BottomSheetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final provider = context.read<AirScreensProvider>();
-    return Column(
-      children: [
-        Expanded(
-          child: SingleChildScrollView(
-            child: Container(
-              color: Color.fromRGBO(41, 42, 47, 1),
-              width: double.maxFinite,
-              padding: EdgeInsets.symmetric(
-                horizontal: 11.h,
-                vertical: 16.v,
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    height: 5.v,
-                    width: 38.h,
-                    decoration: BoxDecoration(
-                      color: appTheme.gray700,
-                      borderRadius: BorderRadius.circular(
-                        2.h,
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (bool didPop) {
+        if (didPop) {
+          return;
+        }
+        Navigator.of(context).pop();
+      },
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Container(
+                color: Color.fromRGBO(41, 42, 47, 1),
+                width: double.maxFinite,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 11.h,
+                  vertical: 16.v,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 5.v,
+                      width: 38.h,
+                      decoration: BoxDecoration(
+                        color: appTheme.gray700,
+                        borderRadius: BorderRadius.circular(
+                          2.h,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 24.v),
-                  _buildDepartureArrivalSection(provider),
-                  SizedBox(height: 24.v),
-                  _buildTipsSection(),
-                  SizedBox(height: 27.v),
-                  _buildRecommendationsPlaces(),
-                  SizedBox(height: 200.v)
-                ],
+                    SizedBox(height: 24.v),
+                    _buildDepartureArrivalSection(provider),
+                    SizedBox(height: 24.v),
+                    _buildTipsSection(),
+                    SizedBox(height: 27.v),
+                    _buildRecommendationsPlaces(),
+                    SizedBox(height: 200.v)
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

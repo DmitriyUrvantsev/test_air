@@ -41,6 +41,7 @@ class ArrivalFieldWidget extends StatelessWidget {
                   {
                      provider
                     .setArrivalCity(p0),
+                    Navigator.of(context).pop(),
                     provider.showSelectCountry(),
                   }
               },

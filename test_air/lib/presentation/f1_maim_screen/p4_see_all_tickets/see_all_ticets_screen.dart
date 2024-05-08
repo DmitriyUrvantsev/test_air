@@ -6,8 +6,6 @@ import '../../../widgets/app_bar/appbar_leading_image.dart';
 import '../../../widgets/app_bar/appbar_subtitle_one.dart';
 import '../../../widgets/app_bar/appbar_subtitle_two.dart';
 import '../../../widgets/app_bar/custom_app_bar.dart';
-import '../../../widgets/custom_bottom_bar.dart';
-import '../p1_main_page/air_main_page.dart';
 import '../provider/air_main_provider.dart';
 import 'widgets/see_all_ticets_screen_item_widget.dart';
 
@@ -16,6 +14,7 @@ class SeeAllTicetsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.read<AirScreensProvider>();
     return SafeArea(
       child: PopScope(
         canPop: false,
@@ -23,7 +22,7 @@ class SeeAllTicetsPage extends StatelessWidget {
           if (didPop) {
             return;
           }
-          goBack();
+          provider.showSelectCountry();
         },
         child: Scaffold(
           appBar: _buildAppBar(context),
@@ -38,7 +37,7 @@ class SeeAllTicetsPage extends StatelessWidget {
               ],
             ),
           ),
-          bottomNavigationBar: _buildBottomBar(context),
+          //bottomNavigationBar: _buildBottomBar(context),
         ),
       ),
     );
@@ -168,7 +167,7 @@ class SeeAllTicetsPage extends StatelessWidget {
           bottom: 16.v,
         ),
         onTap: () {
-          goBack();
+          provider.showSelectCountry();
         },
       ),
       title: Padding(
@@ -178,7 +177,6 @@ class SeeAllTicetsPage extends StatelessWidget {
           children: [
             AppbarSubtitleOne(
               text: direction,
-              
               margin: EdgeInsets.only(right: 60.h),
             ),
             SizedBox(height: 4.v),
@@ -193,36 +191,36 @@ class SeeAllTicetsPage extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildBottomBar(BuildContext context) {
-    return CustomBottomBar(
-      onChanged: (BottomBarEnum type) {
-        Navigator.pushNamed(context, getCurrentRoute(type));
-      },
-    );
-  }
+  // Widget _buildBottomBar(BuildContext context) {
+  //   return CustomBottomBar(
+  //     onChanged: (BottomBarEnum type) {
+  //       Navigator.pushNamed(context, getCurrentRoute(type));
+  //     },
+  //   );
+  // }
 
-  ///Handling route based on bottom click actions
-  String getCurrentRoute(BottomBarEnum type) {
-    switch (type) {
-      case BottomBarEnum.air:
-        return AppRoutes.airMainPage;
-      default:
-        return "/";
-    }
-  }
+  // ///Handling route based on bottom click actions
+  // String getCurrentRoute(BottomBarEnum type) {
+  //   switch (type) {
+  //     case BottomBarEnum.air:
+  //       return AppRoutes.airMainPage;
+  //     default:
+  //       return "/";
+  //   }
+  // }
 
-  ///Handling page based on route
-  Widget getCurrentPage(
-    BuildContext context,
-    String currentRoute,
-  ) {
-    switch (currentRoute) {
-      case AppRoutes.airMainPage:
-        return AirMainPage();
-      default:
-        return DefaultWidget();
-    }
-  }
+  // ///Handling page based on route
+  // Widget getCurrentPage(
+  //   BuildContext context,
+  //   String currentRoute,
+  // ) {
+  //   switch (currentRoute) {
+  //     case AppRoutes.airMainPage:
+  //       return AirMainPage();
+  //     default:
+  //       return DefaultWidget();
+  //   }
+  // }
 
   /// Navigates to the previous screen.
 

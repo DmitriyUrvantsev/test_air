@@ -12,6 +12,7 @@ class AirMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = context.watch<AirScreensProvider>();
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -25,12 +26,15 @@ class AirMainPage extends StatelessWidget {
                 SizedBox(height: 34.v),
                 Align(
                   alignment: Alignment.centerLeft,
-                  child: Container(
-                    margin: EdgeInsets.only(left: 16.h),
-                    decoration: AppDecoration.outlineBlackF,
-                    child: Text(
-                      "msg3".tr,
-                      style: CustomTextStyles.titleLarge22,
+                  child: GestureDetector(
+                    onTap: () => provider.showSelectCountry(),
+                    child: Container(
+                      margin: EdgeInsets.only(left: 16.h),
+                      decoration: AppDecoration.outlineBlackF,
+                      child: Text(
+                        "msg3".tr,
+                        style: CustomTextStyles.titleLarge22,
+                      ),
                     ),
                   ),
                 ),
@@ -111,7 +115,6 @@ class AirMainPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () => provider.showBottomSheetDialog(context),
                       child: Text(
-                      
                         "lbl7".tr,
                         style: CustomTextStyles.titleMediumPrimaryContainer1,
                       ),

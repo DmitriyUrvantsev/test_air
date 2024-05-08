@@ -12,6 +12,7 @@ class FiltersPage extends StatelessWidget {
   const FiltersPage({super.key});
   @override
   Widget build(BuildContext context) {
+    final provider = context.read<AirScreensProvider>();
     return SafeArea(
       child: PopScope(
         canPop: false,
@@ -19,7 +20,7 @@ class FiltersPage extends StatelessWidget {
           if (didPop) {
             return;
           }
-          goBack();
+          provider.showSelectCountry();
         },
         child: Scaffold(
           appBar: _buildAppBar(context),
@@ -54,12 +55,12 @@ class FiltersPage extends StatelessWidget {
 
   /// Section Widget
   PreferredSizeWidget _buildAppBar(BuildContext context) {
-    //final provider = context.read<K1Provider>();
+    final provider = context.read<AirScreensProvider>();
     return CustomAppBar(
       height: 40.v,
       leadingWidth: 44.h,
       leading: AppbarLeadingImage(
-        onTap: () => goBack(),
+        onTap: () => provider.showSelectCountry(),
         imagePath: ImageConstant.imgIconOnprimary24x24,
         margin: EdgeInsets.only(
           left: 20.h,
@@ -169,8 +170,9 @@ class FiltersPage extends StatelessWidget {
 
   /// Section Widget
   Widget _buildButtonDone(BuildContext context) {
+    final provider = context.read<AirScreensProvider>();
     return CustomElevatedButton(
-      onPressed: () => goBack(),
+      onPressed: () => provider.showSelectCountry(),
       height: 48.v,
       text: "lbl5".tr,
       margin: EdgeInsets.only(
@@ -180,10 +182,5 @@ class FiltersPage extends StatelessWidget {
       ),
       buttonStyle: CustomButtonStyles.fillErrorContainer,
     );
-  }
-
-  /// Navigates to the previous screen.
-  void goBack() {
-    NavigatorService.popAndPushNamed(AppRoutes.selectCountry);
   }
 }

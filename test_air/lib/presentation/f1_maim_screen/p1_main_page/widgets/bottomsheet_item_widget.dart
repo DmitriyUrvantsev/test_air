@@ -59,6 +59,7 @@ class BottomsheetItemWidget extends StatelessWidget {
               child: InkWell(
                 onTap: () {
                   provider.setArrivalCity(scr2ItemModelObj.username ?? '');
+                  Navigator.of(context).pop();
                   provider.showSelectCountry();
                 },
                 child: SizedBox(
