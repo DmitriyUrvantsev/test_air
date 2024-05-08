@@ -66,7 +66,7 @@ class AirMainPage extends StatelessWidget {
   }
 
   Widget _buildTextField(BuildContext context) {
-    final provider = context.read<AirScreensProvider>();
+   final provider = context.read<AirScreensProvider>();
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.h),
       padding: EdgeInsets.all(16.h),

@@ -1,4 +1,4 @@
-final Map<String, String> enUs = {
+final Map<String, String> ruRu = {
   // Фильтры  Screen
   "lbl": "Фильтры", "lbl2": "Пересадки", "lbl3": "Багаж",
   "lbl4": "Без пересадок", "lbl5": "Готово", "msg": "Только с багажом",
