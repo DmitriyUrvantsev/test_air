@@ -182,7 +182,7 @@ class SelectCountryPage extends StatelessWidget {
           SizedBox(height: 8.v),
           Text(
             "lbl24".tr,
-            style: CustomTextStyles.titleLarge20,
+            style: CustomTextStyles.titleLarge22,
           ),
           SizedBox(height: 2.v),
 
@@ -226,7 +226,7 @@ class SelectCountryPage extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
         horizontal: 15.h,
-        vertical: 6.v,
+        vertical: 3.v,
       ),
       decoration: AppDecoration.fillGray.copyWith(
         borderRadius: BorderRadiusStyle.roundedBorder8,

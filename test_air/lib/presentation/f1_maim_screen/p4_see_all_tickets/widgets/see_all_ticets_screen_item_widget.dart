@@ -51,11 +51,7 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(height: 4.v),
-                    Text(
-                      price,
-                      style: theme.textTheme.titleLarge
-                          ?.copyWith(fontStyle: FontStyle.normal),
-                    ),
+                    Text(price, style: CustomTextStyles.titleLarge22),
                     SizedBox(height: 14.v),
                     Row(
                       children: [

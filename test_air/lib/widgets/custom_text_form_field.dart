@@ -36,8 +36,8 @@ class CustomTextFormField extends StatelessWidget {
     this.fillColor,
     this.filled = false,
     this.validator,
-    required this.onSubmitted, 
-    this.inputLanguageCode, 
+    required this.onSubmitted,
+    this.inputLanguageCode,
   }) : super(
           key: key,
         );
@@ -84,7 +84,7 @@ class CustomTextFormField extends StatelessWidget {
           scrollPadding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           controller: controller,
-           inputFormatters: inputLanguageCode != null
+          inputFormatters: inputLanguageCode != null
               ? [FilteringTextInputFormatter.allow(RegExp(r'[а-яА-Я]'))]
               : null,
           focusNode: focusNode,
@@ -99,7 +99,7 @@ class CustomTextFormField extends StatelessWidget {
           },
           onFieldSubmitted: onSubmitted,
           autofocus: autofocus!,
-          style: textStyle ?? theme.textTheme.titleMedium,
+          style: textStyle ?? CustomTextStyles.titleMedium,
           obscureText: obscureText!,
           textInputAction: textInputAction,
           keyboardType: textInputType,
@@ -109,9 +109,8 @@ class CustomTextFormField extends StatelessWidget {
         ),
       );
   InputDecoration get decoration => InputDecoration(
-
         hintText: hintText ?? "",
-        hintStyle: hintStyle ?? theme.textTheme.titleMedium,
+        hintStyle: hintStyle ?? CustomTextStyles.titleMedium,
         prefixIcon: prefix,
         prefixIconConstraints: prefixConstraints,
         suffixIcon: suffix,
@@ -141,10 +140,7 @@ class CustomTextFormField extends StatelessWidget {
             UnderlineInputBorder(
               borderSide: BorderSide(
                 color: appTheme.gray800,
-
               ),
-              
             ),
-            
       );
 }

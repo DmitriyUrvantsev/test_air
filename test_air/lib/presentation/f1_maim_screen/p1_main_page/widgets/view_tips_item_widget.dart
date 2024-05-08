@@ -51,7 +51,7 @@ class ViewTipsItemWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: theme.textTheme.bodyMedium!
-                    .copyWith(height: 1.20, fontSize: 15),
+                    .copyWith(height: 1.20, fontSize: 14),
               ),
             ),
           )

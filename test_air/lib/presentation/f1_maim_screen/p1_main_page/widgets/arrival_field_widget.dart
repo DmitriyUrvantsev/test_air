@@ -26,7 +26,7 @@ class ArrivalFieldWidget extends StatelessWidget {
             return CustomTextFormField(
               controller: arrivalController,
               hintText: "lbl7".tr,
-              hintStyle: CustomTextStyles.titleMediumPrimaryContainer,
+              hintStyle: CustomTextStyles.titleMediumPrimaryContainer1,
               inputLanguageCode: 'ru',
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[а-яА-Я]')),
@@ -39,6 +39,8 @@ class ArrivalFieldWidget extends StatelessWidget {
 
                 if (arrivalController!.text.isNotEmpty)
                   {
+                     provider
+                    .setArrivalCity(p0),
                     provider.showSelectCountry(),
                   }
               },

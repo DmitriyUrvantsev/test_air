@@ -178,6 +178,7 @@ class SeeAllTicetsPage extends StatelessWidget {
           children: [
             AppbarSubtitleOne(
               text: direction,
+              
               margin: EdgeInsets.only(right: 60.h),
             ),
             SizedBox(height: 4.v),

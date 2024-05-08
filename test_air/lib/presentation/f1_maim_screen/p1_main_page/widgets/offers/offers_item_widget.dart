@@ -50,7 +50,7 @@ class OffersItemWidget extends StatelessWidget {
             decoration: AppDecoration.outlineBlackF,
             child: Text(
               model.title ?? '',
-              style: theme.textTheme.titleMedium,
+              style: CustomTextStyles.titleMedium2,
             ),
           ),
           SizedBox(height: 8.v),

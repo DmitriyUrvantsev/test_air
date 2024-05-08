@@ -38,7 +38,7 @@ class BottomsheetItemWidget extends StatelessWidget {
                     children: [
                       Text(
                         scr2ItemModelObj.username!,
-                        style: theme.textTheme.titleMedium,
+                        style: CustomTextStyles.titleMedium,
                       ),
                       SizedBox(height: 3.v),
                       Text(

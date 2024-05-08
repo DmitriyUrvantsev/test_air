@@ -30,7 +30,7 @@ class AirMainPage extends StatelessWidget {
                     decoration: AppDecoration.outlineBlackF,
                     child: Text(
                       "msg3".tr,
-                      style: theme.textTheme.titleLarge,
+                      style: CustomTextStyles.titleLarge22,
                     ),
                   ),
                 ),
@@ -66,7 +66,7 @@ class AirMainPage extends StatelessWidget {
   }
 
   Widget _buildTextField(BuildContext context) {
-   final provider = context.read<AirScreensProvider>();
+    final provider = context.read<AirScreensProvider>();
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16.h),
       padding: EdgeInsets.all(16.h),
@@ -111,8 +111,9 @@ class AirMainPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () => provider.showBottomSheetDialog(context),
                       child: Text(
+                      
                         "lbl7".tr,
-                        style: CustomTextStyles.titleMediumPrimaryContainer,
+                        style: CustomTextStyles.titleMediumPrimaryContainer1,
                       ),
                     )
                   ],

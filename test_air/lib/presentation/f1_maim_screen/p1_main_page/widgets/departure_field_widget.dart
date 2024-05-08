@@ -26,7 +26,7 @@ class DepartureFieldWidget extends StatelessWidget {
               controller: departureController,
               hintText: provider.departureCity ?? "lbl6".tr,
               hintStyle: provider.departureCity == "lbl6".tr
-                  ? CustomTextStyles.titleMediumPrimaryContainer
+                  ? CustomTextStyles.titleMediumPrimaryContainer1
                   : null,
               inputLanguageCode: 'ru',
               inputFormatters: [

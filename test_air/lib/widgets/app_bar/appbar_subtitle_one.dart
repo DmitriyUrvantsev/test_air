@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../core/app_export.dart'; // ignore: 
+import '../../core/app_export.dart'; // ignore:
 // ignore_for_file: must_be_immutable
 
 class AppbarSubtitleOne extends StatelessWidget {
@@ -22,12 +22,7 @@ class AppbarSubtitleOne extends StatelessWidget {
       },
       child: Padding(
         padding: margin ?? EdgeInsets.zero,
-        child: Text(
-          text,
-          style: theme.textTheme.titleMedium!.copyWith(
-            color: theme.colorScheme.onPrimary,
-          ),
-        ),
+        child: Text(text, style: CustomTextStyles.titleLarge18),
       ),
     );
   }

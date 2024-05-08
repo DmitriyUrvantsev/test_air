@@ -64,8 +64,6 @@ class DirectFlightsWidget extends StatelessWidget {
                               padding: EdgeInsets.only(top: 1.v),
                               child: Text(
                                 model.title ?? "msg7".tr,
-
-                                // ,
                                 style: theme.textTheme.titleSmall,
                               ),
                             ),
