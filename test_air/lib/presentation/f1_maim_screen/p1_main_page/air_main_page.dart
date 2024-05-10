@@ -114,9 +114,12 @@ class AirMainPage extends StatelessWidget {
                     SizedBox(height: 8.v),
                     GestureDetector(
                       onTap: () => provider.showBottomSheetDialog(context),
-                      child: Text(
-                        "lbl7_where_Türkiye".tr,
-                        style: CustomTextStyles.titleMediumPrimaryContainer1,
+                      child: Container(
+                        width: 260.h,
+                        child: Text(
+                          "lbl7_where_Türkiye".tr,
+                          style: CustomTextStyles.titleMediumPrimaryContainer1,
+                        ),
                       ),
                     )
                   ],
