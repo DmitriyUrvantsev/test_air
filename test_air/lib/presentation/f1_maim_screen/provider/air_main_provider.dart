@@ -54,10 +54,11 @@ class AirScreensProvider extends ChangeNotifier {
   ///
   ///
   void setup() {
+    //  _prefUtils.clearPreferencesData();
     final savedDepartureCity = _prefUtils.getdepartureCity();
     _departureCity =
-        savedDepartureCity != "" ? _prefUtils.getdepartureCity() : "lbl6".tr;
-
+        savedDepartureCity != "" ? _prefUtils.getdepartureCity() :   "lbl6_from_Moscow".tr;
+  
     loadOffersData();
     loadOffersTicketsPost();
     loadAllTicketsPost();
@@ -169,7 +170,7 @@ class AirScreensProvider extends ChangeNotifier {
     if (selectedDate != null) {
       _selectedArrivalDate = selectedDate;
       _isArrivalDate = true;
-            notifyListeners();
+      notifyListeners();
       callback(selectedDate);
     }
   }
@@ -231,8 +232,6 @@ class AirScreensProvider extends ChangeNotifier {
     notifyListeners();
   }
 //
-
-
 
   void showSelectCountry() {
     //NavigatorService.popAndPushNamed(AppRoutes.selectCountry);

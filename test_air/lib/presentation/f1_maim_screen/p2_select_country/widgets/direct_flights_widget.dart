@@ -16,11 +16,15 @@ class DirectFlightsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = context.read<AirScreensProvider>();
 
-    String? price = model.price!.value.toString().replaceAllMapped(
+    String? price = 
+    model.price !=null?
+    model.price!.value.toString().replaceAllMapped(
               RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
               (Match match) => 'от ${match[1]} ',
             ) +
-        ' ₽';
+        ' ₽':
+        ''
+        ;
     String time = model.timeRange?.join(' ') ?? '';
 
     return Container(

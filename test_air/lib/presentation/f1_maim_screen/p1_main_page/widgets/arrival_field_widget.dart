@@ -25,7 +25,7 @@ class ArrivalFieldWidget extends StatelessWidget {
             // final provider = context.read<K1Provider>();
             return CustomTextFormField(
               controller: arrivalController,
-              hintText: "lbl7".tr,
+              hintText: "lbl7_where_Türkiye".tr,
               hintStyle: CustomTextStyles.titleMediumPrimaryContainer1,
               inputLanguageCode: 'ru',
               inputFormatters: [
@@ -35,7 +35,7 @@ class ArrivalFieldWidget extends StatelessWidget {
               contentPadding: EdgeInsets.symmetric(horizontal: 1.h),
               borderDecoration: InputBorder.none,
               onSubmitted: (p0) => {
-                //print('p0!!!!!!!!!!!!! $p0'),
+               
 
                 if (arrivalController!.text.isNotEmpty)
                   {

@@ -24,8 +24,8 @@ class DepartureFieldWidget extends StatelessWidget {
             final provider = context.read<AirScreensProvider>();
             return CustomTextFormField(
               controller: departureController,
-              hintText: provider.departureCity ?? "lbl6".tr,
-              hintStyle: provider.departureCity == "lbl6".tr
+              hintText: provider.departureCity ?? "lbl6_from_Moscow".tr,
+              hintStyle: provider.departureCity == "lbl6_from_Moscow".tr
                   ? CustomTextStyles.titleMediumPrimaryContainer1
                   : null,
               inputLanguageCode: 'ru',

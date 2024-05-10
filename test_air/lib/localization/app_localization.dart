@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import '../core/app_export.dart';
-import 'en_us/en_us_translations.dart';
+import 'ru_ru/ru_ru_translations.dart';
 
 extension LocalizationExtension on String {
   String get tr => AppLocalization.of().getString(this);

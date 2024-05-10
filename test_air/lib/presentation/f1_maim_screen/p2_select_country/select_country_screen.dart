@@ -29,30 +29,31 @@ class SelectCountryPage extends StatelessWidget {
           provider.showBottomSheetDialog(context);
         },
         child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Container(
-            width: double.maxFinite,
-            padding: EdgeInsets.symmetric(
-              horizontal: 16.h,
-              //vertical: 39.v,
-            ),
-            child: Column(
-              children: [
-                SizedBox(height: 8.v),
-                _buildTextFields(context),
-                SizedBox(height: 13.v),
-                _buildSettingsSection(context),
-                SizedBox(height: 12.v),
-                _buildDirectFlights(context),
-                SizedBox(height: 23.v),
-                CustomElevatedButton(
-                  onPressed: () => provider.onSeeAllTicets(),
-                  text: "msg8".tr,
-                  buttonStyle: CustomButtonStyles.fillBlue,
-                ),
-                SizedBox(height: 24.v),
-                _buildTicketSubscription(context)
-              ],
+          body: SingleChildScrollView(
+            child: Container(
+              width: double.maxFinite,
+              padding: EdgeInsets.symmetric(
+                horizontal: 16.h,
+                //vertical: 39.v,
+              ),
+              child: Column(
+                children: [
+                  SizedBox(height: 8.v),
+                  _buildTextFields(context),
+                  SizedBox(height: 13.v),
+                  _buildSettingsSection(context),
+                  SizedBox(height: 12.v),
+                  _buildDirectFlights(context),
+                  SizedBox(height: 23.v),
+                  CustomElevatedButton(
+                    onPressed: () => provider.onSeeAllTicets(),
+                    text: "msg8_View_all_tickets".tr,
+                    buttonStyle: CustomButtonStyles.fillBlue,
+                  ),
+                  SizedBox(height: 24.v),
+                  _buildTicketSubscription(context)
+                ],
+              ),
             ),
           ),
           // bottomNavigationBar: _buildBottomBar(context),
@@ -190,7 +191,7 @@ class SelectCountryPage extends StatelessWidget {
         children: [
           SizedBox(height: 8.v),
           Text(
-            "lbl24".tr,
+            "lbl24_Straight_rails".tr,
             style: CustomTextStyles.titleLarge22,
           ),
           SizedBox(height: 2.v),
@@ -256,7 +257,7 @@ class SelectCountryPage extends StatelessWidget {
               bottom: 1.v,
             ),
             child: Text(
-              "msg9".tr,
+              "msg9_Subscribe_price".tr,
               style: theme.textTheme.bodyLarge,
             ),
           ),

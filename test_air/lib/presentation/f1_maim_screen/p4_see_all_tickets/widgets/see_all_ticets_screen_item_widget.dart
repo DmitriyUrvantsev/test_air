@@ -27,9 +27,7 @@ class SeeAllTicetsItemWidget extends StatelessWidget {
     final formattedDuration = flight.getFormattedDuration();
     final formattedDurationList = formattedDuration.split(', ').toList();
 
-    // print(formattedDuration); // Выведет: '12:00-15:35   3.5ч в пути'
-
-    // String time = model.timeRange?.join(' ') ?? '';
+  
     return Align(
       alignment: Alignment.center,
       child: SizedBox(

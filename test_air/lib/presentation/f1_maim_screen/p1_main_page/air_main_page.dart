@@ -32,7 +32,7 @@ class AirMainPage extends StatelessWidget {
                       margin: EdgeInsets.only(left: 16.h),
                       decoration: AppDecoration.outlineBlackF,
                       child: Text(
-                        "msg3".tr,
+                        "msg1_fly_away_musically".tr,
                         style: CustomTextStyles.titleLarge22,
                       ),
                     ),
@@ -115,7 +115,7 @@ class AirMainPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () => provider.showBottomSheetDialog(context),
                       child: Text(
-                        "lbl7".tr,
+                        "lbl7_where_Türkiye".tr,
                         style: CustomTextStyles.titleMediumPrimaryContainer1,
                       ),
                     )

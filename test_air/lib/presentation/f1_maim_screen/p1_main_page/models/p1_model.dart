@@ -19,36 +19,36 @@ class PageMainModel {
         routName: AppRoutes.difficultRoute,
         colorItem: Color.fromRGBO(58, 99, 59, 1),
         televisionImage: ImageConstant.imgTelevision,
-        complexRouteTex: "Сложный маршрут"),
+        complexRouteTex: "lbl16_Difficult_route".tr),
     ViewTipsItemModel(
         //routName: AppRoutes.anywhere,
         colorItem: Color.fromRGBO(34, 97, 188, 1),
         televisionImage: ImageConstant.imgGlobe,
-        complexRouteTex: "Куда угодно"),
+        complexRouteTex: "lbl17_Anywhere".tr),
     ViewTipsItemModel(
         routName: AppRoutes.weekend,
         colorItem: Color.fromRGBO(0, 66, 125, 1),
         televisionImage: ImageConstant.imgCalendar,
-        complexRouteTex: "Выходные"),
+        complexRouteTex:  "lbl18_Weekend".tr),
     ViewTipsItemModel(
         routName: AppRoutes.hotTickets,
         colorItem: Color.fromRGBO(255, 94, 94, 1),
         televisionImage: ImageConstant.imgFire,
-        complexRouteTex: "Горячие билеты")
+        complexRouteTex:"lbl19_Hot tickets".tr)
   ];
 
   List<BottomsheetItemModel> bottomsheetItemList = [
     BottomsheetItemModel(
         userImage: ImageConstant.imgRectangle288,
-        username: "Стамбул",
-        description: "Популярное направление"),
+        username: "lbl20_Istanbul".tr,
+        description: "msg6_Popular_destination".tr),
     BottomsheetItemModel(
         userImage: ImageConstant.imgRectangle28840x40,
-        username: "Сочи",
-        description: "Популярное направление"),
+        username: "lbl21_Sochi".tr,
+        description: "msg6_Popular_destination".tr),
     BottomsheetItemModel(
         userImage: ImageConstant.imgRectangle2881,
         username: "Пхукет",
-        description: "Популярное направление")
+        description: "msg6_Popular_destination".tr)
   ];
 }
